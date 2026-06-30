@@ -347,15 +347,16 @@ const DIA_LABORABLE = false;
 
 // Cobertura (CM016) y Cartera Vencida (CXC008) leídas directamente de los
 // correos diarios que envía sac@soyoda.com a Diego Barros (CC Pamela
-// Cedillo, Oficial de Crédito). Corte: domingo 28/06/2026, 19:06-19:16.
+// Cedillo, Oficial de Crédito). Corte: lunes 30/06/2026 — ventas vía Power BI Report Server API.
+// PENDIENTE: actualizar cobVtas300, cobVentasNegativo, clientesInactivos (CM016) y carteraVencida (CXC008).
 const ASESORES = [
-  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 21016.61, presupuesto: 54000,
+  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 21405.37, presupuesto: 54000,
     baseCobertura: 40, cobVtas300: 13, cobVentasNegativo: 1, carteraVencida: 14990.31,
     clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, historial: [] },
-  { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 26655.75, presupuesto: 60000,
+  { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 29693.96, presupuesto: 60000,
     baseCobertura: 40, cobVtas300: 31, cobVentasNegativo: 2, carteraVencida: 9936.56,
     clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, historial: [] },
-  { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 29106.53, presupuesto: 52000,
+  { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 30617.72, presupuesto: 52000,
     baseCobertura: 40, cobVtas300: 27, cobVentasNegativo: 0, carteraVencida: 2095.05,
     clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, historial: [] },
   { id: "edisson", nombre: "Edisson Taipe", ventaReal: 5983.35, presupuesto: 42000,
