@@ -1001,15 +1001,20 @@ function badge(color, text) { return `<span class="badge c-${color}">${esc(text)
 function metric(color, value, suffix) { return `<span class="metric c-${color}">${esc(value)}${suffix ? esc(suffix) : ""}</span>`; }
 
 const VIDEOS_CAPACITACION = [
-  { titulo: "Cómo vender cualquier producto", desc: "Recomendado para repasar antes de visitas, en reuniones de equipo o como refuerzo para vendedores nuevos.", src: "Capacitacion - Como vender cualquier producto.mp4" },
-  { titulo: "La clave para vender: escuchar y preguntar", desc: "Técnica de escucha activa y preguntas para entender mejor la necesidad del cliente.", src: "Capacitacion - La clave para vender, escuchar y preguntar.mp4" },
-  { titulo: "Técnica de ventas contraintuitiva", desc: "Estrategia poco convencional para cambiar el enfoque de la conversación de venta.", src: "Capacitacion - Tecnica de ventas contraintuitiva.mp4" },
-  { titulo: "El mejor ejemplo de llamada en frío", desc: "Ejemplo práctico de cómo abrir y manejar una llamada en frío con un prospecto.", src: "Capacitacion - Ejemplo de llamada en frio.mp4" },
-  { titulo: "Técnica de ventas para persuadir", desc: "Recursos de persuasión aplicables en visita o en llamada con el cliente.", src: "Capacitacion - Tecnica de ventas para persuadir.mp4" },
+  { titulo: "Cómo vender cualquier producto", desc: "Recomendado para repasar antes de visitas, en reuniones de equipo o como refuerzo para vendedores nuevos.", src: "videos/Capacitacion_Como_Vender_Cualquier_Producto.mp4" },
+  { titulo: "La clave para vender: escuchar y preguntar", desc: "Técnica de escucha activa y preguntas para entender mejor la necesidad del cliente.", src: "videos/Capacitacion_Clave_Escuchar_Preguntar.mp4" },
+  { titulo: "Técnica de ventas contraintuitiva", desc: "Estrategia poco convencional para cambiar el enfoque de la conversación de venta.", src: "videos/Capacitacion_Tecnica_Contraintuitiva.mp4" },
+  { titulo: "El mejor ejemplo de llamada en frío", desc: "Ejemplo práctico de cómo abrir y manejar una llamada en frío con un prospecto.", src: "videos/Capacitacion_Ejemplo_Llamada_Frio.mp4" },
+  { titulo: "Técnica de ventas para persuadir", desc: "Recursos de persuasión aplicables en visita o en llamada con el cliente.", pendiente: true },
 ];
 
 function contenidoCapacitacion() {
-  const videosHtml = VIDEOS_CAPACITACION.map((v) => `
+  const videosHtml = VIDEOS_CAPACITACION.map((v) => v.pendiente ? `
+    <div class="cap-video-item" style="margin-bottom:18px;opacity:.55;">
+      <p class="hint" style="margin:0 0 8px;font-weight:700;color:var(--slate-700);">🎬 ${esc(v.titulo)}</p>
+      <p class="hint" style="margin:0 0 10px;">${esc(v.desc)}</p>
+      <p class="hint" style="margin:0;">⏳ Disponible próximamente.</p>
+    </div>` : `
     <div class="cap-video-item" style="margin-bottom:18px;">
       <p class="hint" style="margin:0 0 8px;font-weight:700;color:var(--slate-700);">🎬 ${esc(v.titulo)}</p>
       <p class="hint" style="margin:0 0 10px;">${esc(v.desc)}</p>
@@ -2003,13 +2008,3 @@ render();
 
 // ---------------------------------------------------------------------------
 // PWA — registro del service worker (instalable + funciona sin internet
-// mostrando la última versión guardada)
-// ---------------------------------------------------------------------------
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(() => {});
-  });
-}
-</script>
-</body>
-</html>
