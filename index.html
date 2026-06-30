@@ -2003,4 +2003,58 @@ function renderPortal() {
             <p class="chart-card-hint">💡 Pasa el cursor sobre un punto o haz clic para ver el detalle del día</p>
             <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por día (eso se actualizará manualmente cada día con los datos de eBA Web).</p>
             ${svgLineChart(lineDataAsesor(a), [
-              { key: "realAcumulado", name: "Real acumulado", color: "#1d4e
+              { key: "realAcumulado", name: "Real acumulado", color: "#1d4ed8" },
+              { key: "metaAcumulada", name: "Meta acumulada", color: "#94a3b8", dash: "4 4" },
+            ], { scope: "asesor", label: a.nombre.split(" ")[0] })}
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById("btn-volver-dash").addEventListener("click", () => { state.asesorId = null; render(); });
+
+  document.querySelectorAll("[data-kpi-portal]").forEach((card) => {
+    card.addEventListener("click", () => abrirComparativoKPI(card.getAttribute("data-kpi-portal"), a));
+  });
+
+  document.querySelectorAll("[data-kpi-portal-row]").forEach((row) => {
+    row.addEventListener("click", () => abrirComparativoKPI(row.getAttribute("data-kpi-portal-row"), a));
+  });
+
+  wireMenu({
+    cartera: () => openModal("📋 Cartera de clientes", contenidoCarteraClientes(a), () => wireCarteraClientes(a)),
+    checklist: () => openModal("✅ Checklist de cierre de visita — hoy", contenidoChecklist(a), () => wireChecklist(a)),
+    catalogos: () => openModal("📚 Catálogos de productos", renderCatalogos()),
+    chat: () => openModal("🤖 Asistente de ventas", contenidoChat(a), () => wireChat(a)),
+    necesidad: () => openModal("📨 Enviar necesidad a un área", contenidoNecesidad(a), () => wireNecesidad(a)),
+    casos: () => openModal("🏆 Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a)),
+    informe: () => openModal("🧾 Informe comercial de cliente", contenidoInforme(a), () => wireInforme(a)),
+    sugerencias: () => openModal("💡 Buzón de sugerencias", contenidoSugerenciasPortal(), () => wireSugerenciasPortal(a)),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// RENDER PRINCIPAL
+// ---------------------------------------------------------------------------
+function render() {
+  if (state.asesorId) {
+    renderPortal();
+  } else {
+    renderDashboard();
+  }
+}
+
+render();
+
+// ---------------------------------------------------------------------------
+// PWA — registro del service worker (instalable + funciona sin internet
+// mostrando la última versión guardada)
+// ---------------------------------------------------------------------------
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
