@@ -343,7 +343,7 @@
 const DIA_ACTUAL = 30;
 const DIAS_MES = 30;
 const HORA_CORTE_EBA = "3:00pm";
-const DIA_LABORABLE = false;
+const DIA_LABORABLE = true;
 
 // Cobertura (CM016) y Cartera Vencida (CXC008) leídas directamente de los
 // correos diarios que envía sac@soyoda.com a Diego Barros (CC Pamela
@@ -353,16 +353,16 @@ const DIA_LABORABLE = false;
 const ASESORES = [
   { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 21405.37, presupuesto: 54000,
     baseCobertura: 40, cobVtas300: 13, cobVentasNegativo: 1, carteraVencida: 14990.31,
-    clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, historial: [] },
+    clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992352056", historial: [] },
   { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 29693.96, presupuesto: 60000,
     baseCobertura: 40, cobVtas300: 31, cobVentasNegativo: 2, carteraVencida: 9936.56,
-    clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, historial: [] },
+    clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593967700975", historial: [] },
   { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 30617.72, presupuesto: 52000,
     baseCobertura: 40, cobVtas300: 27, cobVentasNegativo: 0, carteraVencida: 2095.05,
-    clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, historial: [] },
+    clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992351546", historial: [] },
   { id: "edisson", nombre: "Edisson Taipe", ventaReal: 5983.35, presupuesto: 42000,
     baseCobertura: 40, cobVtas300: 4, cobVentasNegativo: 0, carteraVencida: 12389.88,
-    clientesInactivos: 1, ingresadoHoy: 0, esperadoHoy: 0, historial: [] },
+    clientesInactivos: 1, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593959761210", historial: [] },
 ];
 
 // Códigos de acceso simples por asesor — NO es autenticación segura real,
@@ -399,7 +399,7 @@ const CONTACTOS_AREAS = {
   "Post venta": "Jesús Jadán Soyoda",
   "Otro": "Diego Barros (Jefe Zonal)",
 };
-const WHATSAPP_DIEGO = ""; // número de Diego Barros (Jefe Zonal) para informes de cliente
+const WHATSAPP_DIEGO = "593997921759"; // número de Diego Barros (Jefe Zonal) para informes de cliente
 const EMAIL_DIEGO = "diegobarcoello@gmail.com"; // correo de Diego Barros para sugerencias de mejora
 
 // ---------------------------------------------------------------------------
@@ -1191,11 +1191,9 @@ function renderDashboard() {
       <div class="container">
         <div class="disclaimer">
           Venta y presupuesto: datos reales de Power BI, SOLO junio 2026 (no acumulado del año).
-          Cobertura y cartera vencida: datos reales leídos directamente de los correos diarios de
-          sac@soyoda.com — CM016 "Cumplimiento de Cobertura JUNIO" y CXC008 "Informe de Cartera
-          Vencida JUNIO" (corte domingo 28/06/2026). Avance diario de eBA Web: pendiente de
-          automatizar (hoy no hay actividad por ser día no laborable). Envío por WhatsApp y correo:
-          aún simulado hasta conectar WhatsApp Web y Microsoft 365.
+          Cobertura y cartera vencida: datos reales de correos diarios sac@soyoda.com — CM016 y
+          CXC008 (corte 28/06/2026). Envío por WhatsApp individual a asesores: activo con un clic.
+          Mensajes a grupos (Buenos días / Resumen): se copian al portapapeles para pegar en WhatsApp.
         </div>
 
         <div class="brand">
@@ -1300,7 +1298,7 @@ function renderDashboard() {
           <div class="card">
             <h3 class="section-title">Acumulado zona: día a día vs meta proporcional</h3>
             <p class="chart-card-hint">💡 Pasa el cursor sobre un punto o haz clic para ver el detalle del día</p>
-            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por día (eso vendrá del informe diario de eBA Web una vez automatizado).</p>
+            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por día (eso se actualizará manualmente cada día con los datos de eBA Web).</p>
             ${svgLineChart(LINE_DATA, [
               { key: "realAcumulado", name: "Real acumulado", color: "#1d4ed8" },
               { key: "metaAcumulada", name: "Meta acumulada", color: "#94a3b8", dash: "4 4" },
@@ -1328,20 +1326,60 @@ function renderDashboard() {
 
 function handleAction(action) {
   if (action === "modal-whatsapp") {
-    const blocks = ASESORES_M.map((a) =>
-      `<div class="wa-block"><p>${esc(a.nombre)}</p><pre>${esc(mensajeWhatsApp(a))}</pre></div>`
-    ).join("");
-    openModal("Seguimiento WhatsApp a asesores",
-      blocks + `<div class="sim-banner">Simulación — en producción se enviaría a las 7:00am a cada asesor por WhatsApp individual.</div>`);
+    const blocks = ASESORES_M.map((a, idx) => {
+      const btnLabel = a.nombre.split(" ")[0];
+      const btn = a.whatsapp
+        ? `<button class="btn-primary" style="margin-top:8px;font-size:12px;" data-wa-idx="${idx}">📲 Enviar a ${esc(btnLabel)}</button>`
+        : `<button class="btn-primary" style="margin-top:8px;font-size:12px;background:var(--amber-500);" data-copy-idx="${idx}">📋 Copiar mensaje de ${esc(btnLabel)}</button>`;
+      return `<div class="wa-block"><p>${esc(a.nombre)}</p><pre>${esc(mensajeWhatsApp(a))}</pre>${btn}</div>`;
+    }).join("");
+    openModal("Seguimiento WhatsApp a asesores", blocks, () => {
+      document.querySelectorAll("[data-wa-idx]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const a = ASESORES_M[+btn.dataset.waIdx];
+          enviarPorWhatsApp(a.whatsapp, mensajeWhatsApp(a));
+        });
+      });
+      document.querySelectorAll("[data-copy-idx]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const a = ASESORES_M[+btn.dataset.copyIdx];
+          navigator.clipboard.writeText(mensajeWhatsApp(a));
+          btn.textContent = "✅ Copiado";
+        });
+      });
+    });
   } else if (action === "modal-eba") {
+    const msg = reporteEBATexto();
     openModal("Reporte EBA Web",
-      `<pre>${esc(reporteEBATexto())}</pre><div class="sim-banner">Simulación — en producción se enviaría al grupo de WhatsApp Zona Austro a las 12pm, 3pm y 5pm.</div>`);
+      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-eba-copy">📋 Copiar reporte</button><p style="font-size:12px;color:var(--amber-700);margin-top:6px;">Pega este mensaje en el grupo WhatsApp Zona Austro.</p><div id="confirm-eba"></div>`,
+      () => {
+        document.getElementById("btn-eba-copy").addEventListener("click", () => {
+          navigator.clipboard.writeText(msg);
+          document.getElementById("confirm-eba").innerHTML = `<p class="confirm-banner">✅ Reporte copiado. Pégalo en el grupo WhatsApp.</p>`;
+        });
+      });
   } else if (action === "modal-buenosdias") {
+    const msg = mensajeBuenosDias();
     openModal("Buenos días equipo",
-      `<pre>${esc(mensajeBuenosDias())}</pre><div class="sim-banner">Simulación — en producción se enviaría al grupo Zona Austro cada mañana.</div>`);
+      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-bd-copy">📋 Copiar mensaje</button><p style="font-size:12px;color:var(--amber-700);margin-top:6px;">Pega este mensaje en el grupo WhatsApp Zona Austro.</p><div id="confirm-bd"></div>`,
+      () => {
+        document.getElementById("btn-bd-copy").addEventListener("click", () => {
+          navigator.clipboard.writeText(msg);
+          document.getElementById("confirm-bd").innerHTML = `<p class="confirm-banner">✅ Mensaje copiado. Pégalo en el grupo WhatsApp.</p>`;
+        });
+      });
   } else if (action === "modal-resumen7pm") {
+    const msg = resumen7pm();
     openModal("Resumen 7pm a Diego",
-      `<pre>${esc(resumen7pm())}</pre><div class="sim-banner">Simulación — en producción llegaría a tu WhatsApp personal todos los días a las 7:00pm.</div>`);
+      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-res7-wa">📲 Enviar a mi WhatsApp</button><div id="confirm-res7"></div>`,
+      () => {
+        document.getElementById("btn-res7-wa").addEventListener("click", () => {
+          const r = enviarPorWhatsApp(WHATSAPP_DIEGO, msg);
+          document.getElementById("confirm-res7").innerHTML = r
+            ? `<p class="confirm-banner">✅ Se abrió WhatsApp con el resumen listo. Solo confirma el envío.</p>`
+            : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">⚠️ No se pudo abrir WhatsApp. Revisa que el número esté configurado.</p>`;
+        });
+      });
   }
 }
 
@@ -1963,60 +2001,6 @@ function renderPortal() {
           <div class="card">
             <h3 class="section-title">Acumulado del mes: día a día vs meta proporcional</h3>
             <p class="chart-card-hint">💡 Pasa el cursor sobre un punto o haz clic para ver el detalle del día</p>
-            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por día (eso vendrá del informe diario de eBA Web una vez automatizado).</p>
+            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por día (eso se actualizará manualmente cada día con los datos de eBA Web).</p>
             ${svgLineChart(lineDataAsesor(a), [
-              { key: "realAcumulado", name: "Real acumulado", color: "#1d4ed8" },
-              { key: "metaAcumulada", name: "Meta acumulada", color: "#94a3b8", dash: "4 4" },
-            ], { scope: "asesor", label: a.nombre.split(" ")[0] })}
-          </div>
-        </div>
-      </div>
-    </div>`;
-
-  document.getElementById("btn-volver-dash").addEventListener("click", () => { state.asesorId = null; render(); });
-
-  document.querySelectorAll("[data-kpi-portal]").forEach((card) => {
-    card.addEventListener("click", () => abrirComparativoKPI(card.getAttribute("data-kpi-portal"), a));
-  });
-
-  document.querySelectorAll("[data-kpi-portal-row]").forEach((row) => {
-    row.addEventListener("click", () => abrirComparativoKPI(row.getAttribute("data-kpi-portal-row"), a));
-  });
-
-  wireMenu({
-    cartera: () => openModal("📋 Cartera de clientes", contenidoCarteraClientes(a), () => wireCarteraClientes(a)),
-    checklist: () => openModal("✅ Checklist de cierre de visita — hoy", contenidoChecklist(a), () => wireChecklist(a)),
-    catalogos: () => openModal("📚 Catálogos de productos", renderCatalogos()),
-    chat: () => openModal("🤖 Asistente de ventas", contenidoChat(a), () => wireChat(a)),
-    necesidad: () => openModal("📨 Enviar necesidad a un área", contenidoNecesidad(a), () => wireNecesidad(a)),
-    casos: () => openModal("🏆 Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a)),
-    informe: () => openModal("🧾 Informe comercial de cliente", contenidoInforme(a), () => wireInforme(a)),
-    sugerencias: () => openModal("💡 Buzón de sugerencias", contenidoSugerenciasPortal(), () => wireSugerenciasPortal(a)),
-  });
-}
-
-// ---------------------------------------------------------------------------
-// RENDER PRINCIPAL
-// ---------------------------------------------------------------------------
-function render() {
-  if (state.asesorId) {
-    renderPortal();
-  } else {
-    renderDashboard();
-  }
-}
-
-render();
-
-// ---------------------------------------------------------------------------
-// PWA — registro del service worker (instalable + funciona sin internet
-// mostrando la última versión guardada)
-// ---------------------------------------------------------------------------
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(() => {});
-  });
-}
-</script>
-</body>
-</html>
+              { key: "realAcumulado", name: "Real acumulado", color: "#1d4e
