@@ -1533,33 +1533,43 @@ function abrirTopClientes(id) {
 }
 
 // ----- Catálogos de productos -----
-// Archivos PDF reales tomados de la carpeta CATALOGOS de Diego. Se enlazan en
-// modo relativo: este HTML debe quedar guardado en esa misma carpeta para que
-// los enlaces abran el PDF correcto. Mismo catálogo para los 4 asesores.
+// Los catálogos pequeños (≤10 MB) viven en la carpeta /catalogos del propio
+// repo de GitHub y se enlazan con ruta relativa. Los medianos/grandes, mientras
+// no se suban, quedan marcados como pendientes (sin enlace roto) hasta que
+// Diego comparta el link de OneDrive o se complete la subida a GitHub.
+// Mismo catálogo para los 4 asesores.
 const CATALOGOS_PRODUCTOS = [
-  { nombre: "Catálogo Total 2025-2026", archivo: "Catálogo TOTAL 2025-2026 low.pdf", mb: 261 },
-  { nombre: "Master Ferretería", archivo: "MASTER CATALOGO FERRETERIA.pdf", mb: 1010 },
-  { nombre: "Master Consumo 2025", archivo: "MASTER CATALOGO CONSUMO-2025-1.pdf", mb: 206 },
-  { nombre: "Wadfow 2025", archivo: "CATALOGO WADFOW 2025.pdf", mb: 252 },
-  { nombre: "CMT 2025", archivo: "CATÁLOGO CMT 2025.pdf", mb: 66 },
-  { nombre: "Decakila 2025", archivo: "CATALOGO DECAKILA 2025.pdf", mb: 68 },
-  { nombre: "Hogar — Top Portafolio (nov 2024)", archivo: "CATALOGO DIVISION HOGAR TOP PORTAFOLIO NOVIEMBRE 2024.pdf", mb: 44 },
-  { nombre: "Pro Lighting 2025", archivo: "PRO LIGHTING 2025 CP.pdf", mb: 59 },
-  { nombre: "Pro Lighting (adicional)", archivo: "PRO LIGHTING_20250311_125321_0000.pdf", mb: 6 },
-  { nombre: "Mascotas — Petking 2025", archivo: "CATALOGO MASCOTAS - PETKING 2025.pdf", mb: 16 },
-  { nombre: "Accesorios de pintura 2025", archivo: "Accesorios de pintura 2025.pdf", mb: 31 },
-  { nombre: "Construcción (enero 2025)", archivo: "CATALOGO DE CONSTRUCCION ENERO 2025.pdf", mb: 12 },
-  { nombre: "Línea Iluminación (enero 2023)", archivo: "Catalogo LINEA ILUMINACION ENERo 2023.pdf", mb: 12 },
-  { nombre: "Aquarame Grifería 2024", archivo: "CATALOGO AQUARAME GRIFERÍA 2024.pdf", mb: 6 },
-  { nombre: "Agrícola 2025", archivo: "Catálogo Agrícola 2025 low.pdf", mb: 4 },
-  { nombre: "Catálogo de Crecer", archivo: "CATALOGO DE CRECER.pdf", mb: 7 },
-  { nombre: "Puertas metálicas 2025", archivo: "Puertas Metálicas 2025.pdf", mb: 8 },
-  { nombre: "Pernos Soyoda", archivo: "Catálogo_Pernos_Soyoda17_104606.pdf", mb: 2 },
-  { nombre: "Wall Panel — Presentación", archivo: "Wall Panel  Presentacion.pdf", mb: 1 },
+  { nombre: "Catálogo Total 2025-2026", mb: 261, pendiente: true },
+  { nombre: "Master Ferretería", mb: 1010, pendiente: true },
+  { nombre: "Master Consumo 2025", mb: 206, pendiente: true },
+  { nombre: "Wadfow 2025", mb: 252, pendiente: true },
+  { nombre: "CMT 2025", mb: 66, pendiente: true },
+  { nombre: "Decakila 2025", mb: 68, pendiente: true },
+  { nombre: "Hogar — Top Portafolio (nov 2024)", mb: 44, pendiente: true },
+  { nombre: "Pro Lighting 2025", mb: 59, pendiente: true },
+  { nombre: "Pro Lighting (adicional)", archivo: "catalogos/Pro_Lighting_Adicional.pdf", mb: 6 },
+  { nombre: "Mascotas — Petking 2025", mb: 16, pendiente: true },
+  { nombre: "Accesorios de pintura 2025", mb: 31, pendiente: true },
+  { nombre: "Construcción (enero 2025)", mb: 12, pendiente: true },
+  { nombre: "Línea Iluminación (enero 2023)", mb: 12, pendiente: true },
+  { nombre: "Aquarame Grifería 2024", archivo: "catalogos/Catalogo_Aquarame_Griferia_2024.pdf", mb: 6 },
+  { nombre: "Agrícola 2025", archivo: "catalogos/Catalogo_Agricola_2025.pdf", mb: 4 },
+  { nombre: "Catálogo de Crecer", archivo: "catalogos/Catalogo_de_Crecer.pdf", mb: 7 },
+  { nombre: "Puertas metálicas 2025", archivo: "catalogos/Puertas_Metalicas_2025.pdf", mb: 8 },
+  { nombre: "Pernos Soyoda", archivo: "catalogos/Catalogo_Pernos_Soyoda.pdf", mb: 2 },
+  { nombre: "Wall Panel — Presentación", archivo: "catalogos/Wall_Panel_Presentacion.pdf", mb: 1 },
 ];
 
 function renderCatalogos() {
-  const items = CATALOGOS_PRODUCTOS.map((c) => `
+  const items = CATALOGOS_PRODUCTOS.map((c) => c.pendiente ? `
+    <span class="cat-item" style="opacity:.55; cursor:default;">
+      <span class="cat-ico">📄</span>
+      <span class="cat-info">
+        <b>${esc(c.nombre)}</b>
+        <small>${c.mb >= 1000 ? (c.mb / 1000).toFixed(1) + " GB" : c.mb + " MB"} · próximamente</small>
+      </span>
+      <span class="cat-go">⏳</span>
+    </span>` : `
     <a class="cat-item" href="${esc(c.archivo)}" target="_blank" rel="noopener">
       <span class="cat-ico">📄</span>
       <span class="cat-info">
@@ -1568,8 +1578,9 @@ function renderCatalogos() {
       </span>
       <span class="cat-go">Abrir →</span>
     </a>`).join("");
+  const disponibles = CATALOGOS_PRODUCTOS.filter((c) => !c.pendiente).length;
   return `
-    <p class="hint" style="margin:0 0 10px;">${CATALOGOS_PRODUCTOS.length} catálogos vigentes. Se abren en una pestaña nueva — el archivo debe estar en la misma carpeta que este tablero. Algunos son pesados (Ferretería ≈1 GB); con buena conexión puede tardar en cargar.</p>
+    <p class="hint" style="margin:0 0 10px;">${disponibles} de ${CATALOGOS_PRODUCTOS.length} catálogos disponibles. Se abren en una pestaña nueva. Los marcados "próximamente" se están subiendo.</p>
     <div class="cat-grid">${items}</div>`;
 }
 
