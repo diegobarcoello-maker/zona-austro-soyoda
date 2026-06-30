@@ -347,8 +347,9 @@ const DIA_LABORABLE = false;
 
 // Cobertura (CM016) y Cartera Vencida (CXC008) leídas directamente de los
 // correos diarios que envía sac@soyoda.com a Diego Barros (CC Pamela
-// Cedillo, Oficial de Crédito). Corte: lunes 30/06/2026 — ventas vía Power BI Report Server API.
-// PENDIENTE: actualizar cobVtas300, cobVentasNegativo, clientesInactivos (CM016) y carteraVencida (CXC008).
+// Cedillo, Oficial de Crédito). Corte: martes 30/06/2026 — ventas vía Power BI Report Server API.
+// CM016 verificado 30/06/2026 02:03 UTC — cobVtas300, cobVentasNegativo confirmados.
+// CXC008 verificado 28-06-2026 19:06 (más reciente disponible) — carteraVencida confirmada.
 const ASESORES = [
   { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 21405.37, presupuesto: 54000,
     baseCobertura: 40, cobVtas300: 13, cobVentasNegativo: 1, carteraVencida: 14990.31,
@@ -2013,9 +2014,4 @@ render();
 // ---------------------------------------------------------------------------
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(() => {});
-  });
-}
-</script>
-</body>
-</html>
+    navigator.service
