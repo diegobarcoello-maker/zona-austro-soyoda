@@ -1005,7 +1005,7 @@ const VIDEOS_CAPACITACION = [
   { titulo: "La clave para vender: escuchar y preguntar", desc: "Técnica de escucha activa y preguntas para entender mejor la necesidad del cliente.", src: "videos/Capacitacion_Clave_Escuchar_Preguntar.mp4" },
   { titulo: "Técnica de ventas contraintuitiva", desc: "Estrategia poco convencional para cambiar el enfoque de la conversación de venta.", src: "videos/Capacitacion_Tecnica_Contraintuitiva.mp4" },
   { titulo: "El mejor ejemplo de llamada en frío", desc: "Ejemplo práctico de cómo abrir y manejar una llamada en frío con un prospecto.", src: "videos/Capacitacion_Ejemplo_Llamada_Frio.mp4" },
-  { titulo: "Técnica de ventas para persuadir", desc: "Recursos de persuasión aplicables en visita o en llamada con el cliente.", pendiente: true },
+  { titulo: "Técnica de ventas para persuadir", desc: "Recursos de persuasión aplicables en visita o en llamada con el cliente.", src: "videos/Capacitacion_Tecnica_Persuadir.mp4" },
 ];
 
 function contenidoCapacitacion() {
@@ -1548,15 +1548,15 @@ const CATALOGOS_PRODUCTOS = [
   { nombre: "Master Ferretería", mb: 1010, pendiente: true },
   { nombre: "Master Consumo 2025", mb: 206, pendiente: true },
   { nombre: "Wadfow 2025", mb: 252, pendiente: true },
-  { nombre: "CMT 2025", mb: 66, pendiente: true },
-  { nombre: "Decakila 2025", mb: 68, pendiente: true },
-  { nombre: "Hogar — Top Portafolio (nov 2024)", mb: 44, pendiente: true },
-  { nombre: "Pro Lighting 2025", mb: 59, pendiente: true },
+  { nombre: "CMT 2025", archivo: "catalogos/Catalogo_CMT_2025.pdf", mb: 66 },
+  { nombre: "Decakila 2025", archivo: "catalogos/Catalogo_Decakila_2025.pdf", mb: 68 },
+  { nombre: "Hogar — Top Portafolio (nov 2024)", archivo: "catalogos/Catalogo_Hogar_Top_Portafolio_Nov2024.pdf", mb: 44 },
+  { nombre: "Pro Lighting 2025", archivo: "catalogos/Pro_Lighting_2025.pdf", mb: 59 },
   { nombre: "Pro Lighting (adicional)", archivo: "catalogos/Pro_Lighting_Adicional.pdf", mb: 6 },
-  { nombre: "Mascotas — Petking 2025", mb: 16, pendiente: true },
-  { nombre: "Accesorios de pintura 2025", mb: 31, pendiente: true },
-  { nombre: "Construcción (enero 2025)", mb: 12, pendiente: true },
-  { nombre: "Línea Iluminación (enero 2023)", mb: 12, pendiente: true },
+  { nombre: "Mascotas — Petking 2025", archivo: "catalogos/Catalogo_Mascotas_Petking_2025.pdf", mb: 16 },
+  { nombre: "Accesorios de pintura 2025", archivo: "catalogos/Accesorios_Pintura_2025.pdf", mb: 31 },
+  { nombre: "Construcción (enero 2025)", archivo: "catalogos/Catalogo_Construccion_Enero_2025.pdf", mb: 12 },
+  { nombre: "Línea Iluminación (enero 2023)", archivo: "catalogos/Catalogo_Linea_Iluminacion_2023.pdf", mb: 12 },
   { nombre: "Aquarame Grifería 2024", archivo: "catalogos/Catalogo_Aquarame_Griferia_2024.pdf", mb: 6 },
   { nombre: "Agrícola 2025", archivo: "catalogos/Catalogo_Agricola_2025.pdf", mb: 4 },
   { nombre: "Catálogo de Crecer", archivo: "catalogos/Catalogo_de_Crecer.pdf", mb: 7 },
@@ -1995,16 +1995,4 @@ function renderPortal() {
 
 // ---------------------------------------------------------------------------
 // RENDER PRINCIPAL
-// ---------------------------------------------------------------------------
-function render() {
-  if (state.asesorId) {
-    renderPortal();
-  } else {
-    renderDashboard();
-  }
-}
-
-render();
-
-// ---------------------------------------------------------------------------
-// PWA — registro del service worker (instalable + funciona sin internet
+// ------------------------
