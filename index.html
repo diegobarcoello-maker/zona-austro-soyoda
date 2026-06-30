@@ -1995,4 +1995,26 @@ function renderPortal() {
 
 // ---------------------------------------------------------------------------
 // RENDER PRINCIPAL
-// ------------------------
+// ---------------------------------------------------------------------------
+function render() {
+  if (state.asesorId) {
+    renderPortal();
+  } else {
+    renderDashboard();
+  }
+}
+
+render();
+
+// ---------------------------------------------------------------------------
+// PWA — registro del service worker (instalable + funciona sin internet
+// mostrando la última versión guardada)
+// ---------------------------------------------------------------------------
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
