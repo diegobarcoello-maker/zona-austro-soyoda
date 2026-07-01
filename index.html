@@ -344,6 +344,7 @@ const DIA_ACTUAL = 30;
 const DIAS_MES = 30;
 const HORA_CORTE_EBA = "3:00pm";
 const DIA_LABORABLE = true;
+const FECHA_HOY = (() => { const d = new Date(); return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}/${d.getFullYear()}`; })();
 
 // Cobertura (CM016) y Cartera Vencida (CXC008) leídas directamente de los
 // correos diarios que envía sac@soyoda.com a Diego Barros (CC Pamela
@@ -393,11 +394,11 @@ const CARTERA_CLIENTES = {"walnis":{"total":27,"top":[{"c":"FERREARMIJOS S.A.","
 // aprobación) al contacto correspondiente.
 // ---------------------------------------------------------------------------
 const CONTACTOS_AREAS = {
-  "Cartera": "Base Cobranza Soyoda S.A.",
-  "Logística": "Anny Toalla (Coord. Logística Soyoda)",
-  "Pedidos": "Rudy Vargas (Aprobación Pedidos) y Madelein (Aprobación)",
-  "Post venta": "Jesús Jadán Soyoda",
-  "Otro": "Diego Barros (Jefe Zonal)",
+  "Cartera":    { nombre: "Base Cobranza Soyoda S.A.",      whatsapp: ["593959966355"] },
+  "Logística":  { nombre: "Anny Toalla (Coord. Logística)", whatsapp: ["593982332373"] },
+  "Pedidos":    { nombre: "Rudy Vargas y Madelein",         whatsapp: ["593994110617", "593994310966"] },
+  "Post venta": { nombre: "Jesús Jadán Soyoda",             whatsapp: ["593967003152"] },
+  "Otro":       { nombre: "Diego Barros (Jefe Zonal)",      whatsapp: ["593997921759"] },
 };
 const WHATSAPP_DIEGO = "593997921759"; // número de Diego Barros (Jefe Zonal) para informes de cliente
 const EMAIL_DIEGO = "diegobarcoello@gmail.com"; // correo de Diego Barros para sugerencias de mejora
@@ -1192,7 +1193,7 @@ function renderDashboard() {
         <div class="disclaimer">
           Venta y presupuesto: datos reales de Power BI, SOLO junio 2026 (no acumulado del año).
           Cobertura y cartera vencida: datos reales de correos diarios sac@soyoda.com — CM016 y
-          CXC008 (corte 28/06/2026). Envío por WhatsApp individual a asesores: activo con un clic.
+          CXC008 (corte ${FECHA_HOY}). Envío por WhatsApp individual a asesores: activo con un clic.
           Mensajes a grupos (Buenos días / Resumen): se copian al portapapeles para pegar en WhatsApp.
         </div>
 
@@ -1762,10 +1763,18 @@ function wireNecesidad(a) {
     const desc = document.getElementById("necesidad-desc").value.trim();
     const confirmEl = document.getElementById("necesidad-confirm");
     if (!desc) { confirmEl.innerHTML = `<p class="login-error">Describe la necesidad antes de enviar.</p>`; return; }
-    const contacto = CONTACTOS_AREAS[area] || "Diego Barros (Jefe Zonal)";
-    const msg = `📨 Necesidad de ${a.nombre}\nÁrea: ${area}\nDirigir a: ${contacto}\n${desc}`;
-    try { if (navigator.clipboard) navigator.clipboard.writeText(msg); } catch (e) { /* sin portapapeles disponible */ }
-    confirmEl.innerHTML = `<p class="confirm-banner">✅ Mensaje copiado. Avisa a Diego Barros (Jefe Zonal) para que lo reenvíe por WhatsApp a: <b>${esc(contacto)}</b>.</p>`;
+    const info = CONTACTOS_AREAS[area] || CONTACTOS_AREAS["Otro"];
+    const msg = `📨 *Necesidad — Soyoda Zona Austro*\n\n*Asesor:* ${a.nombre}\n*Área:* ${area}\n*Descripción:* ${desc}\n\n_(Copia enviada a Diego Barros, Jefe Zonal)_`;
+    const msgDiego = `📨 *Copia necesidad reportada*\n\n*Asesor:* ${a.nombre} → *${area}* (${info.nombre})\n*Descripción:* ${desc}`;
+    // Abrir WA para cada número del área con pequeño delay entre ventanas
+    info.whatsapp.forEach((num, idx) => {
+      setTimeout(() => enviarPorWhatsApp(num, msg), idx * 900);
+    });
+    // Copia a Diego (si el área no es "Otro", que ya es Diego)
+    if (area !== "Otro") {
+      setTimeout(() => enviarPorWhatsApp(WHATSAPP_DIEGO, msgDiego), info.whatsapp.length * 900);
+    }
+    confirmEl.innerHTML = `<p class="confirm-banner">✅ WhatsApp abierto con <b>${esc(info.nombre)}</b>${area !== "Otro" ? " + copia a Diego Barros" : ""}. Confirma el envío en cada ventana.</p>`;
     document.getElementById("necesidad-desc").value = "";
   });
 }
