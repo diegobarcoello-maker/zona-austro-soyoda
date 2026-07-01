@@ -13,6 +13,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Zona Austro" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Centro de Comando Zona Austro — Soyoda S.A." />
+<meta property="og:description" content="Dashboard de ventas, portal de asesores y herramientas comerciales de la Zona Austro." />
+<meta property="og:image" content="icon-192.png" />
+<meta name="twitter:card" content="summary" />
 <style>
   :root{
     --slate-50:#f8fafc; --slate-100:#f1f5f9; --slate-200:#e2e8f0; --slate-300:#cbd5e1;
@@ -52,7 +58,7 @@
   .header-stripe span{flex:1;height:100%;}
   .header-stripe .r{background:var(--red-600);} .header-stripe .b{background:var(--sky-500);} .header-stripe .g{background:var(--green-500);}
   .header-body{padding:22px 24px;color:#fff;position:relative;z-index:1;}
-  .header-body h1{margin:0 0 6px;font-size:30px;font-weight:800;letter-spacing:-.5px;text-shadow:0 2px 14px rgba(0,0,0,.3);}
+  .header-body h1{margin:0 0 6px;font-size:clamp(20px,4vw,30px);font-weight:800;letter-spacing:-.5px;text-shadow:0 2px 14px rgba(0,0,0,.3);}
   .header-body p{margin:0;font-size:13px;color:var(--blue-200,#bfdbfe);}
   .header-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
   .hpill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:999px;
@@ -144,7 +150,7 @@
   .portal-head .sub{margin:0;font-size:12px;color:var(--slate-500);}
   .header-body .portal-head{margin-bottom:0;}
   .header-body .portal-head .avatar{box-shadow:0 0 0 4px rgba(255,255,255,.25), 0 8px 18px -6px rgba(0,0,0,.35);}
-  .header-body .portal-head h2{color:#fff;font-size:26px;text-shadow:0 2px 14px rgba(0,0,0,.3);}
+  .header-body .portal-head h2{color:#fff;font-size:clamp(18px,3.5vw,26px);text-shadow:0 2px 14px rgba(0,0,0,.3);}
   .header-body .portal-head .sub{color:var(--blue-200,#bfdbfe);font-size:13px;}
   .hist-item{background:var(--slate-50);border-radius:8px;padding:8px 12px;font-size:14px;color:var(--slate-600);margin-bottom:8px;}
   .section-title{margin:0 0 10px;font-size:14px;font-weight:800;color:var(--slate-700);}
@@ -382,6 +388,26 @@
     border-radius:12px;width:40px;display:flex;align-items:center;justify-content:center;
     cursor:pointer;font-size:16px;transition:transform .15s;flex-shrink:0;}
   .cb-send:hover{transform:scale(1.08);}
+
+  /* ----- Accesibilidad: sin movimiento ----- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ----- Focus visible para navegación por teclado ----- */
+  :focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  button:focus:not(:focus-visible),
+  input:focus:not(:focus-visible),
+  select:focus:not(:focus-visible) { outline: none; }
 </style>
 </head>
 <body>
@@ -2168,24 +2194,24 @@ function initChatbot() {
         <span class="cb-name-tag">Ari · IA</span>
         <div class="cb-btn-outer">
           <div class="cb-pulse"></div>
-          <button class="cb-btn" id="cb-btn" title="Ari — Asistente IA Soyoda">${CB_SVG_BOT}</button>
+          <button class="cb-btn" id="cb-btn" title="Ari — Asistente IA Soyoda" aria-label="Abrir asistente Ari" aria-haspopup="dialog">${CB_SVG_BOT}</button>
         </div>
       </div>
       <div class="cb-bubble" id="cb-bubble">${CB_FRASES[0]}</div>
     </div>
-    <div class="cb-panel hidden" id="cb-panel">
+    <div class="cb-panel hidden" id="cb-panel" role="dialog" aria-label="Asistente Ari — Chat IA Soyoda" aria-modal="true">
       <div class="cb-header">
         <div class="cb-avatar">${CB_SVG_HEADER}</div>
         <div class="cb-hinfo"><b>Ari · Asistente Soyoda</b><span>IA · Zona Austro · En línea</span></div>
         <div class="cb-online"></div>
-        <button class="cb-close" id="cb-close">✕</button>
+        <button class="cb-close" id="cb-close" aria-label="Cerrar asistente Ari">✕</button>
       </div>
       <div class="cb-messages" id="cb-messages">
         <div class="cb-msg bot">¡Hola! Soy <b>Ari</b>, el asistente IA de Soyoda 🤖<br>Puedo ayudarte con ventas, cartera, productos o procesos del equipo. ¿En qué te ayudo?</div>
       </div>
       <div class="cb-input-row">
         <input class="cb-input" id="cb-input" placeholder="Pregúntale a Ari..." autocomplete="off"/>
-        <button class="cb-send" id="cb-send">➤</button>
+        <button class="cb-send" id="cb-send" aria-label="Enviar mensaje a Ari">➤</button>
       </div>
     </div>`;
 
