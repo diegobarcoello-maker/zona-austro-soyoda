@@ -435,20 +435,21 @@ const FECHA_HOY = (() => { const d = new Date(); return `${String(d.getDate()).p
 // correos diarios que envía sac@soyoda.com a Diego Barros (CC Pamela
 // Cedillo, Oficial de Crédito). Corte: martes 30/06/2026 — ventas vía Power BI Report Server API.
 // CM016 verificado 30/06/2026 02:03 UTC — cobVtas300, cobVentasNegativo confirmados.
-// CXC008 verificado 28-06-2026 19:06 (más reciente disponible) — carteraVencida confirmada.
+// ⚡ AUTO-ACTUALIZADO desde Power BI — 2026-07-01 | Mes: Julio 2026
+// Fuente: http://186.5.72.155:7052/reports/powerbi/Ventas/Dashboard%20Ventas (tab Ventas, mes actual)
 const ASESORES = [
-  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 21405.37, presupuesto: 54000,
+  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 0, presupuesto: 55000,
     baseCobertura: 40, cobVtas300: 13, cobVentasNegativo: 1, carteraVencida: 14990.31,
-    clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992352056", historial: [] },
-  { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 29693.96, presupuesto: 60000,
+    clientesActivos: 49, clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992352056", historial: [] },
+  { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 0, presupuesto: 60000,
     baseCobertura: 40, cobVtas300: 31, cobVentasNegativo: 2, carteraVencida: 9936.56,
-    clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593967700975", historial: [] },
-  { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 30617.72, presupuesto: 52000,
+    clientesActivos: 94, clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593967700975", historial: [] },
+  { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 405, presupuesto: 49000,
     baseCobertura: 40, cobVtas300: 27, cobVentasNegativo: 0, carteraVencida: 2095.05,
-    clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992351546", historial: [] },
-  { id: "edisson", nombre: "Edisson Taipe", ventaReal: 5983.35, presupuesto: 42000,
+    clientesActivos: 59, clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992351546", historial: [] },
+  { id: "edisson", nombre: "Edisson Taipe", ventaReal: 0, presupuesto: 42000,
     baseCobertura: 40, cobVtas300: 4, cobVentasNegativo: 0, carteraVencida: 12389.88,
-    clientesInactivos: 1, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593959761210", historial: [] },
+    clientesActivos: 14, clientesInactivos: 1, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593959761210", historial: [] },
 ];
 
 // Códigos de acceso simples por asesor — NO es autenticación segura real,
