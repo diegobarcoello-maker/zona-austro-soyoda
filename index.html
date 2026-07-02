@@ -602,8 +602,8 @@
         gate.classList.add('hidden');document.body.style.overflow='';
         if(ud.rol==='asesor'&&ud.asesor_id){
           var t=function(){
-            if(typeof openModal==='function'&&window.ASESORES&&window.ASESORES.length>0){
-              var a=window.ASESORES.find(function(x){return x.id===ud.asesor_id;});
+            if(typeof openModal==='function'&&typeof ASESORES!=='undefined'&&ASESORES.length>0){
+              var a=ASESORES.find(function(x){return x.id===ud.asesor_id;});
               if(a)openModal(a);
             }else{setTimeout(t,300);}
           };setTimeout(t,600);
