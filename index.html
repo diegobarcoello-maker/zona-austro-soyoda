@@ -425,11 +425,14 @@
 // leída directamente el día del corte. Día/mes actuales fijados al corte.
 // ---------------------------------------------------------------------------
 
-const DIA_ACTUAL = 30;
-const DIAS_MES = 30;
+const _HOY = new Date();
+const DIA_ACTUAL = _HOY.getDate();
+const DIAS_MES = new Date(_HOY.getFullYear(), _HOY.getMonth() + 1, 0).getDate();
+const MES_NOMBRE = _HOY.toLocaleString('es-EC', { month: 'long' });
+const AÑO_ACTUAL = _HOY.getFullYear();
 const HORA_CORTE_EBA = "3:00pm";
-const DIA_LABORABLE = true;
-const FECHA_HOY = (() => { const d = new Date(); return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}/${d.getFullYear()}`; })();
+const DIA_LABORABLE = [1,2,3,4,5].includes(_HOY.getDay());
+const FECHA_HOY = `${String(_HOY.getDate()).padStart(2,"0")}/${String(_HOY.getMonth()+1).padStart(2,"0")}/${_HOY.getFullYear()}`;
 
 // Cobertura (CM016) y Cartera Vencida (CXC008) leídas directamente de los
 // correos diarios que envía sac@soyoda.com a Diego Barros (CC Pamela
@@ -1277,7 +1280,7 @@ function renderDashboard() {
       ])}
       <div class="container">
         <div class="disclaimer">
-          Venta y presupuesto: datos reales de Power BI, SOLO junio 2026 (no acumulado del año).
+          Venta y presupuesto: datos reales de Power BI, SOLO ${MES_NOMBRE} ${AÑO_ACTUAL} (no acumulado del año).
           Cobertura y cartera vencida: datos reales de correos diarios sac@soyoda.com — CM016 y
           CXC008 (corte ${FECHA_HOY}). Envío por WhatsApp individual a asesores: activo con un clic.
           Mensajes a grupos (Buenos días / Resumen): se copian al portapapeles para pegar en WhatsApp.
