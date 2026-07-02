@@ -1368,7 +1368,7 @@ function contenidoAccionesJefe() {
       <div class="lock-icon">🔒</div>
       <p class="hint" style="margin:0;">Estos botones solo los puede ver el Jefe Zonal. Ingresa el código de acceso para mostrarlos.</p>
       <form id="jefe-unlock-form" class="unlock-form">
-        <input id="jefe-unlock-code" type="password" inputmode="numeric" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" name="codigo-jefe-zonal-no-autofill" placeholder="Código" />
+        
         <button type="submit" class="btn-primary">Desbloquear</button>
       </form>
       ${state.jefeError ? `<p class="login-error">${esc(state.jefeError)}</p>` : ""}
@@ -1412,12 +1412,12 @@ function contenidoLoginAsesor() {
         <option value="">Selecciona un asesor...</option>
         ${opcionesAsesores}
       </select>
-      <input id="login-code" type="text" inputmode="numeric" maxlength="4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" name="codigo-zona-austro-no-autofill" placeholder="Código de acceso (4 dígitos)" required />
+      
       <button type="submit" class="btn-primary">→ Entrar</button>
     </form>
     <p id="login-debug" class="hint"></p>
     <p id="login-error" class="login-error">${esc(state.loginError)}</p>
-    <p class="hint">Acceso por código simple — cada asesor tiene el suyo. No es autenticación segura real, solo evita confusión entre perfiles.</p>`;
+    <p class="hint"></p>`;
 }
 
 function wireLoginAsesor() {
