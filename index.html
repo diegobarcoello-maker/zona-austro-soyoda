@@ -6,7 +6,7 @@
 <title>Centro de Comando Zona Austro</title>
 <meta name="description" content="Dashboard de ventas y portal de asesores de la Zona Austro — Grupo Corporativo Soyoda S.A." />
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#0b1a3a" />
+<meta name="theme-color" content="#004475" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
 <link rel="apple-touch-icon" href="icon-192.png" />
 <meta name="mobile-web-app-capable" content="yes" />
@@ -47,16 +47,17 @@
   @keyframes shimmer{0%{background-position:-200px 0;}100%{background-position:200px 0;}}
 
   .header-card{margin-bottom:20px;overflow:hidden;border-radius:18px;border:none;position:relative;
-    background:linear-gradient(120deg,#0b1a3a,#1d4ed8,#0ea5e9,#172554);background-size:300% 300%;
+    background:linear-gradient(120deg,#003560,#004475,#0077c8,#002a4a);background-size:300% 300%;
     animation:gradientShift 14s ease infinite, fadeInUp .5s ease both;
     box-shadow:0 12px 30px -10px rgba(23,37,84,.55);}
   .header-card::before{content:"";position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(circle at 88% 12%,rgba(255,255,255,.16),transparent 42%),
                radial-gradient(circle at 6% 95%,rgba(34,197,94,.18),transparent 38%);
     animation:floatBlob 9s ease-in-out infinite;}
-  .header-stripe{display:flex;height:5px;width:100%;position:relative;z-index:1;}
-  .header-stripe span{flex:1;height:100%;}
-  .header-stripe .r{background:var(--red-600);} .header-stripe .b{background:var(--sky-500);} .header-stripe .g{background:var(--green-500);}
+  .header-stripe{height:4px;width:100%;position:relative;z-index:1;
+    background:linear-gradient(90deg,#004475 0%,#0077c8 50%,#004475 100%);}
+  .header-logo-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .header-logo-img{height:28px;filter:brightness(0) invert(1);opacity:.92;}
   .header-body{padding:22px 24px;color:#fff;position:relative;z-index:1;}
   .header-body h1{margin:0 0 6px;font-size:clamp(20px,4vw,30px);font-weight:800;letter-spacing:-.5px;text-shadow:0 2px 14px rgba(0,0,0,.3);}
   .header-body p{margin:0;font-size:13px;color:var(--blue-200,#bfdbfe);}
@@ -1497,8 +1498,14 @@ function renderDashboard() {
         </div>
 
         <div class="header-card">
-          <div class="header-stripe"><span class="r"></span><span class="b"></span><span class="g"></span></div>
+          <div class="header-stripe"></div>
           <div class="header-body">
+            <div class="header-logo-row">
+              <img class="header-logo-img"
+                src="https://www.soyoda.com/wp-content/uploads/2022/08/Logo-soyoda-1-140x39.png"
+                alt="Soyoda S.A." />
+              <span style="font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px;">Zona Austro</span>
+            </div>
             <h1>Centro de Comando Zona Austro</h1>
             <p>Grupo Corporativo Soyoda S.A. · Jefe Zonal: Diego Barros · día ${DIA_ACTUAL} de ${DIAS_MES}</p>
             <div class="header-pills">
