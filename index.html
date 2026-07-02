@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Centro de Comando Zona Austro</title>
-<meta name="description" content="Dashboard de ventas y portal de asesores de la Zona Austro â Grupo Corporativo Soyoda S.A." />
+<meta name="description" content="Dashboard de ventas y portal de asesores de la Zona Austro — Grupo Corporativo Soyoda S.A." />
 <link rel="manifest" href="manifest.json" />
 <meta name="theme-color" content="#004475" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -15,7 +15,7 @@
 <meta name="apple-mobile-web-app-title" content="Zona Austro" />
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Centro de Comando Zona Austro â Soyoda S.A." />
+<meta property="og:title" content="Centro de Comando Zona Austro — Soyoda S.A." />
 <meta property="og:description" content="Dashboard de ventas, portal de asesores y herramientas comerciales de la Zona Austro." />
 <meta property="og:image" content="icon-192.png" />
 <meta name="twitter:card" content="summary" />
@@ -158,7 +158,7 @@
   .section-title{margin:0 0 10px;font-size:14px;font-weight:800;color:var(--slate-700);}
   .border-top{border-top:1px solid var(--slate-200);margin-top:24px;padding-top:20px;}
 
-  /* ----- CatÃ¡logos de productos (portal asesor) ----- */
+  /* ----- Catálogos de productos (portal asesor) ----- */
   .cat-grid{display:grid;grid-template-columns:1fr;gap:8px;}
   @media(min-width:640px){.cat-grid{grid-template-columns:1fr 1fr;}}
   .cat-item{display:flex;align-items:center;gap:10px;border:1px solid var(--slate-200);border-radius:10px;
@@ -176,7 +176,7 @@
   .chart-legend{margin-top:6px;display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--slate-500);}
   .chart-legend .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:middle;}
 
-  /* ----- GrÃ¡ficos interactivos (tooltip flotante + clic para detalle) ----- */
+  /* ----- Gráficos interactivos (tooltip flotante + clic para detalle) ----- */
   .chart-card-hint{font-size:11.5px;color:var(--blue-700);font-weight:600;margin:-2px 0 10px;display:flex;align-items:center;gap:4px;}
   .ichart-bar{cursor:pointer;transition:opacity .15s ease, filter .15s ease;}
   .ichart-bar:hover{opacity:.82;filter:drop-shadow(0 3px 6px rgba(29,78,216,.25));}
@@ -336,7 +336,7 @@
     padding:11px 18px;cursor:pointer;white-space:nowrap;transition:transform .15s ease, box-shadow .15s ease;}
   .btn-portal-cta:hover{transform:translateY(-2px);box-shadow:0 10px 22px -8px rgba(0,0,0,.3);}
 
-  /* ===== CHATBOT FLOTANTE â ARI ===== */
+  /* ===== CHATBOT FLOTANTE — ARI ===== */
   .cb-wrap{position:fixed;top:16px;right:24px;z-index:9000;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
   .cb-bubble{background:linear-gradient(135deg,#1e40af,#1d4ed8);color:#fff;border-radius:4px 18px 18px 18px;
     padding:11px 16px;font-size:14px;font-weight:600;max-width:220px;line-height:1.4;
@@ -401,7 +401,7 @@
     }
   }
 
-  /* ----- Focus visible para navegaciÃ³n por teclado ----- */
+  /* ----- Focus visible para navegación por teclado ----- */
   :focus-visible {
     outline: 3px solid #2563eb;
     outline-offset: 2px;
@@ -411,7 +411,7 @@
   input:focus:not(:focus-visible),
   select:focus:not(:focus-visible) { outline: none; }
 
-  /* ââ ACCESS GATE âââââââââââââââââââââââââââââââââââââââââââ */
+  /* ── ACCESS GATE ─────────────────────────────────────────── */
   #access-gate {
     position: fixed; inset: 0; z-index: 99999;
     background: #003560;
@@ -420,7 +420,7 @@
   }
   #access-gate.hidden { display: none; }
 
-  /* Panel izquierdo â imagen de fondo Soyoda */
+  /* Panel izquierdo — imagen de fondo Soyoda */
   .gate-left {
     flex: 1; display: none;
     background: url('https://www.soyoda.com/wp-content/uploads/2025/04/Colaboradores-Soyoda.png') center/cover no-repeat;
@@ -432,7 +432,7 @@
   }
   @media(min-width:720px){ .gate-left { display: block; } }
 
-  /* Panel derecho â formulario */
+  /* Panel derecho — formulario */
   .gate-right {
     width: min(420px, 100vw);
     background: #002a4a;
@@ -534,7 +534,7 @@
 </head>
 <body>
 
-<!-- ââ ACCESS GATE âââââââââââââââââââââââââââââââââââââââââââ -->
+<!-- ── ACCESS GATE ─────────────────────────────────────────── -->
 <div id="access-gate">
   <!-- Panel izquierdo: imagen corporativa Soyoda -->
   <div class="gate-left"></div>
@@ -546,16 +546,16 @@
     <div class="gate-tagline">Desarrollamos Largas Amistades</div>
     <div class="gate-divider"></div>
     <div class="gate-title">Centro de Comando</div>
-    <div class="gate-sub">Zona Austro Â· Acceso restringido</div>
-    <div class="gate-label">CÃ³digo de acceso</div>
+    <div class="gate-sub">Zona Austro · Acceso restringido</div>
+    <div class="gate-label">Código de acceso</div>
     <div class="gate-input-wrap">
       <input id="gate-input" class="gate-input" type="password"
-        placeholder="â¢â¢â¢â¢â¢â¢" maxlength="10"
+        placeholder="••••••" maxlength="10"
         autocomplete="off" autocorrect="off" spellcheck="false" />
     </div>
     <button class="gate-btn" id="gate-btn">Ingresar</button>
     <div class="gate-error" id="gate-error"></div>
-    <div class="gate-footer">Grupo Corporativo Soyoda S.A. Â· Solo personal autorizado</div>
+    <div class="gate-footer">Grupo Corporativo Soyoda S.A. · Solo personal autorizado</div>
   </div>
 </div>
 
@@ -568,13 +568,13 @@
   const btn = document.getElementById('gate-btn');
   const errEl = document.getElementById('gate-error');
 
-  // Si ya autenticÃ³ en esta sesiÃ³n, ocultar gate inmediatamente
+  // Si ya autenticó en esta sesión, ocultar gate inmediatamente
   if (sessionStorage.getItem(GATE_KEY) === '1') {
     gate.classList.add('hidden');
     return;
   }
 
-  // Bloquear scroll del fondo mientras gate estÃ¡ visible
+  // Bloquear scroll del fondo mientras gate está visible
   document.body.style.overflow = 'hidden';
 
   function tryAccess() {
@@ -587,7 +587,7 @@
         document.body.style.overflow = '';
       }, 400);
     } else {
-      errEl.textContent = 'CÃ³digo incorrecto. Intenta nuevamente.';
+      errEl.textContent = 'Código incorrecto. Intenta nuevamente.';
       input.classList.add('shake');
       input.value = '';
       setTimeout(() => {
@@ -609,42 +609,42 @@
 <div id="chart-tip" class="chart-tip"></div>
 <div id="chatbot-root"></div>
 
-<!-- Supabase JS client — base de datos en la nube -->
+<!-- Supabase JS client -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 "use strict";
 
 // ---------------------------------------------------------------------------
-// DATOS REALES â Power BI "Dashboard Ventas" (AÃ±o 2026, Mes Junio)
+// DATOS REALES — Power BI "Dashboard Ventas" (Año 2026, Mes Junio)
 // Fuente: tabla de supervisor BARROS COELLO DIEGO SEBASTIAN, exportada y
-// leÃ­da directamente el dÃ­a del corte. DÃ­a/mes actuales fijados al corte.
+// leída directamente el día del corte. Día/mes actuales fijados al corte.
 // ---------------------------------------------------------------------------
 
 const _HOY = new Date();
 const DIA_ACTUAL = _HOY.getDate();
 const DIAS_MES = new Date(_HOY.getFullYear(), _HOY.getMonth() + 1, 0).getDate();
 const MES_NOMBRE = _HOY.toLocaleString('es-EC', { month: 'long' });
-const AÃO_ACTUAL = _HOY.getFullYear();
+const AÑO_ACTUAL = _HOY.getFullYear();
 const HORA_CORTE_EBA = "3:00pm";
 const DIA_LABORABLE = [1,2,3,4,5].includes(_HOY.getDay());
 const FECHA_HOY = `${String(_HOY.getDate()).padStart(2,"0")}/${String(_HOY.getMonth()+1).padStart(2,"0")}/${_HOY.getFullYear()}`;
 
-// Cobertura (CM016) y Cartera Vencida (CXC008) leÃ­das directamente de los
-// correos diarios que envÃ­a sac@soyoda.com a Diego Barros (CC Pamela
-// Cedillo, Oficial de CrÃ©dito). Corte: martes 30/06/2026 â ventas vÃ­a Power BI Report Server API.
-// â¡ AUTO-ACTUALIZADO desde Power BI â 2026-07-01 | Mes: Julio 2026
+// Cobertura (CM016) y Cartera Vencida (CXC008) leídas directamente de los
+// correos diarios que envía sac@soyoda.com a Diego Barros (CC Pamela
+// Cedillo, Oficial de Crédito). Corte: martes 30/06/2026 — ventas vía Power BI Report Server API.
+// ⚡ AUTO-ACTUALIZADO desde Power BI — 2026-07-01 | Mes: Julio 2026
 // Fuente ventas: http://186.5.72.155:7052/reports/powerbi/Ventas/Dashboard%20Ventas (tab Ventas, mes actual)
-// Fuente cobertura: CM016 Cumplimiento Cobertura â Periodo 202606 â Emitido 01-07-2026
-// Nota: cobertura julio llegarÃ¡ en 2-3 dÃ­as hÃ¡biles; mientras tanto se muestra el Ãºltimo dato disponible.
-const ASESORES = [
+// Fuente cobertura: CM016 Cumplimiento Cobertura — Periodo 202606 — Emitido 01-07-2026
+// Nota: cobertura julio llegará en 2-3 días hábiles; mientras tanto se muestra el último dato disponible.
+let ASESORES = [
   { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 0, presupuesto: 55000,
     baseCobertura: 40, cobVtas300: 13, cobVentasNegativo: 1, carteraVencida: 14990.31,
     clientesActivos: 49, clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992352056", historial: [] },
   { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 0, presupuesto: 60000,
     baseCobertura: 40, cobVtas300: 37, cobVentasNegativo: 1, carteraVencida: 9936.56,
     clientesActivos: 94, clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593967700975", historial: [] },
-  { id: "oswaldo", nombre: "Oswaldo PatiÃ±o", ventaReal: 405, presupuesto: 49000,
+  { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 405, presupuesto: 49000,
     baseCobertura: 40, cobVtas300: 30, cobVentasNegativo: 0, carteraVencida: 2095.05,
     clientesActivos: 59, clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992351546", historial: [] },
   { id: "edisson", nombre: "Edisson Taipe", ventaReal: 0, presupuesto: 42000,
@@ -652,91 +652,91 @@ const ASESORES = [
     clientesActivos: 14, clientesInactivos: 1, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593959761210", historial: [] },
 ];
 
-// CÃ³digos de acceso simples por asesor â NO es autenticaciÃ³n segura real,
+// Códigos de acceso simples por asesor — NO es autenticación segura real,
 // solo evita que un asesor vea por error el perfil de otro.
 const ACCESS_CODES = { walnis: "3812", jessica: "4926", oswaldo: "7253", edisson: "8367" };
 const CODE_JEFE_ZONAL = "080922";
 
 // ---------------------------------------------------------------------------
 // CARTERA DE CLIENTES ASIGNADOS POR ASESOR
-// Fuente: "Plan de ReorganizaciÃ³n Territorial - CaÃ±ar y El Oro.xlsx" (Diego,
-// jun/2026). Incluye solo clientes con decisiÃ³n "Mantener" (cartera vigente
-// asignada a cada asesor tras la redistribuciÃ³n). "total" = cartera completa
+// Fuente: "Plan de Reorganización Territorial - Cañar y El Oro.xlsx" (Diego,
+// jun/2026). Incluye solo clientes con decisión "Mantener" (cartera vigente
+// asignada a cada asesor tras la redistribución). "total" = cartera completa
 // del asesor; "top" = top 20 clientes ordenados por Cupo (cupo promedio de
-// compra) de mayor a menor. c=cliente, cupo=cupo, va=ventas aÃ±o, cat=categorÃ­a,
+// compra) de mayor a menor. c=cliente, cupo=cupo, va=ventas año, cat=categoría,
 // est=estado (ACTIVO/INACTIVO).
-// PENDIENTE (automatizaciÃ³n futura): comparar estos clientes asignados contra
-// los clientes que realmente compraron segÃºn Power BI, para detectar cartera
+// PENDIENTE (automatización futura): comparar estos clientes asignados contra
+// los clientes que realmente compraron según Power BI, para detectar cartera
 // asignada sin actividad de compra.
 // ---------------------------------------------------------------------------
-const CARTERA_CLIENTES = {"walnis":{"total":27,"top":[{"c":"FERREARMIJOS S.A.","cupo":5000,"va":35393.84,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RESIMAR CIA.LTDA.","cupo":5000,"va":20942.37,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"FERRELOAYZA S.A.","cupo":3500,"va":23194.44,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"AGUILAR RUIZ ANGEL ARNELIO","cupo":3000,"va":3553.32,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"JARRIN ARMIJOS JIMMY ANTONIO","cupo":3000,"va":2890.5,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ESPINOZA TINOCO JIM DARWIN","cupo":2500,"va":18142.19,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"BELTRAN GOMEZ DIANA ISABEL","cupo":2000,"va":14246.19,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SUMINDTORO S.A.S.","cupo":2000,"va":11241.62,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SINCHI SIAVICHAY JOSE RODRIGO","cupo":2000,"va":7106.74,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ARMIJOS CARRION BYRON JASMANY","cupo":2000,"va":4581.69,"cat":"Control","est":"ACTIVO"},{"c":"TIGRE RIVAS CARLOS ESTUARDO","cupo":2000,"va":4240.4,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"COELSA CIA .LTDA.","cupo":2000,"va":1746.86,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"AGUILAR REYES MARCOS ANTONIO","cupo":1500,"va":14025.02,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARDENAS ESPINOZA CHARLES PATRICIO","cupo":1000,"va":7042.98,"cat":"Control","est":"ACTIVO"},{"c":"ESTRADA FLORES LUZ MARIA","cupo":1000,"va":3635.59,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GONZALEZ MALDONADO VICTOR AMARILDO","cupo":1000,"va":3255.33,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MACAS REMACHE ANGEL MOISES","cupo":1000,"va":2356,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GUAMAN TIBANTA PEDRO PASCUAL","cupo":1000,"va":1553.67,"cat":"Muy Bueno","est":"INACTIVO"},{"c":"CHACON CHACON MARCO EDUARDO","cupo":500,"va":2017.75,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"BARZALLO VALVERDE CLARA MARIA","cupo":500,"va":1876.65,"cat":"Muy Bueno","est":"ACTIVO"}]},"jessica":{"total":80,"top":[{"c":"LANDETA QUIMI NITZA LEANE","cupo":6500,"va":6102.19,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ROMAN MENDOZA CARLOS EDUARDO","cupo":4000,"va":3267.9,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"VITE VASQUEZ GABRIELA DEL ROCIO","cupo":4000,"va":2001.52,"cat":"Control","est":"ACTIVO"},{"c":"VITE VASQUEZ YOLANDA DEL CARMEN","cupo":4000,"va":1674.03,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MEGAUNIMAC CIA.LTDA.","cupo":3500,"va":40289.56,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"PEÃALOZA ZAMBRANO SERGIO JASMANY","cupo":3500,"va":3016.99,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"JORGE JARAMILLO E HIJOS OROCENTRO C.LTDA.","cupo":3000,"va":10444.03,"cat":"Control","est":"ACTIVO"},{"c":"ALVARADO CRESPO ERIKA GABRIELA","cupo":3000,"va":5537.63,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CASADELMINERO CIA. LTDA","cupo":3000,"va":4184.08,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"PEÃALOZA CUENCA JHAYRO EDUARDO","cupo":2500,"va":3106.81,"cat":"Control","est":"ACTIVO"},{"c":"CHICAIZA MOROCHO SEGUNDO MARCELO","cupo":2500,"va":524.46,"cat":"Bueno","est":"INACTIVO"},{"c":"RAMON QUEZADA MANUEL BOLIVAR","cupo":2000,"va":10349.43,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"FERRIASERRIOSOLANO S. A. S","cupo":2000,"va":8725.36,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RAMIREZ TORRES BISMARK LENIN","cupo":2000,"va":4853.8,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MALLA RAMIREZ FABRICIO NATAN","cupo":2000,"va":4070.06,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CHICAIZA MOROCHO JOSE ANDRES","cupo":2000,"va":1184.08,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"FERRETERIA MATUTE S.A.S.","cupo":2000,"va":1121.34,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ILLINGWORTH VILLA ARNOLD ENRIQUE","cupo":2000,"va":1065.21,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARRION ZARI CARMITA KARINA","cupo":1500,"va":7098.49,"cat":"Control","est":"ACTIVO"},{"c":"VALAREZO ESPINOZA SILVIA JUDITH","cupo":1500,"va":5468.87,"cat":"Muy Bueno","est":"ACTIVO"}]},"oswaldo":{"total":32,"top":[{"c":"OCHOA UGUÃA RAMIRO RIGOBERTO","cupo":3500,"va":2696.3,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SALAZAR SANCHEZ ELOY OSWALDO","cupo":3000,"va":5124.63,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SARAGURO RAMIREZ WILSON BOLIVAR","cupo":2500,"va":10572.06,"cat":"Bueno","est":"ACTIVO"},{"c":"DIMACSAORO S.A.","cupo":2500,"va":6979.89,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"DISTROM S.A.","cupo":2000,"va":12331.71,"cat":"Control","est":"ACTIVO"},{"c":"GALLARDO RAMIA CARLOS ENRIQUE","cupo":2000,"va":11652.41,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"OCAMPO ALVAREZ DULIA MARIELA","cupo":2000,"va":7901.78,"cat":"Control","est":"ACTIVO"},{"c":"MAQUINSUR MAQUINAS Y SUMINISTROS INDUSTRIALES DEL SUR CIA. LTDA.","cupo":2000,"va":5636.59,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GONZAGA LOAIZA MARCO AUGUSTO","cupo":2000,"va":5590.09,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MENDOZA CONDOLO CARMEN FABIOLA","cupo":2000,"va":4959.08,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ROMERO CASTILLO JOSE RICARDO","cupo":2000,"va":4544.7,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GODOS TORRES SANTOS IVAN","cupo":2000,"va":2742.2,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ROGEL JIMBO MILVIO SANTIAGO","cupo":2000,"va":2356.39,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SALGADO MINUCHE JORGE ALBERTO","cupo":2000,"va":1540.91,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARANGUI ARMIJOS LUIS FRANCISCO","cupo":1500,"va":5197.66,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"TORRES RAMIREZ JORGE LUIS","cupo":1000,"va":6681.97,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RAMIREZ ROMERO CHRISTHIAN JAVIER","cupo":1000,"va":5824.42,"cat":"Control","est":"ACTIVO"},{"c":"DICOLSAREPUESTOS CIA.LTDA.","cupo":1000,"va":5468.96,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARANGUI HIDALGO ASTRID CAROLINA","cupo":1000,"va":5243.87,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GUAYCHA RIVERA CARLOS ALBERTO","cupo":1000,"va":4956.21,"cat":"Control","est":"ACTIVO"}]},"edisson":{"total":12,"top":[{"c":"AREVALO RUIZ CARLOS ARCESIO","cupo":5000,"va":540.34,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SALINAS HUERTA SAMUEL DAVID","cupo":3000,"va":19007.31,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SIMBAINA ZAMORA MANUEL JESUS","cupo":1000,"va":7589.35,"cat":"Bueno","est":"ACTIVO"},{"c":"COMERCIALECOSUIZA CIA.LTDA.","cupo":1000,"va":5881.48,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RODRIGUEZ MOLINA BYRONE ENRIQUE","cupo":1000,"va":2261.42,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MENDIETA MENDEZ JAVIER ESTEBAN","cupo":1000,"va":1054.4,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"COMERCIALIZADORA MEGA MARKET CALLE E HIJOS CIA LTDA","cupo":1000,"va":0,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"DISTRIBUIDORA MOLINA DISMOLINA CIA. LTDA","cupo":1000,"va":0,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"PATIÃO PINO EDISON EDUARDO","cupo":1000,"va":0,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"HUERTA MUÃOZ NANCY ELIZABETH","cupo":500,"va":7728.84,"cat":"Control","est":"ACTIVO"},{"c":"MUYULEMA GUARACA MARIA ALEXANDRA","cupo":500,"va":800.28,"cat":"Muy Bueno","est":"INACTIVO"},{"c":"SUQUI MUELA SEGUNDO JUAN ANTONIO","cupo":500,"va":614.63,"cat":"Control","est":"ACTIVO"}]}};
+const CARTERA_CLIENTES = {"walnis":{"total":27,"top":[{"c":"FERREARMIJOS S.A.","cupo":5000,"va":35393.84,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RESIMAR CIA.LTDA.","cupo":5000,"va":20942.37,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"FERRELOAYZA S.A.","cupo":3500,"va":23194.44,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"AGUILAR RUIZ ANGEL ARNELIO","cupo":3000,"va":3553.32,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"JARRIN ARMIJOS JIMMY ANTONIO","cupo":3000,"va":2890.5,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ESPINOZA TINOCO JIM DARWIN","cupo":2500,"va":18142.19,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"BELTRAN GOMEZ DIANA ISABEL","cupo":2000,"va":14246.19,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SUMINDTORO S.A.S.","cupo":2000,"va":11241.62,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SINCHI SIAVICHAY JOSE RODRIGO","cupo":2000,"va":7106.74,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ARMIJOS CARRION BYRON JASMANY","cupo":2000,"va":4581.69,"cat":"Control","est":"ACTIVO"},{"c":"TIGRE RIVAS CARLOS ESTUARDO","cupo":2000,"va":4240.4,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"COELSA CIA .LTDA.","cupo":2000,"va":1746.86,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"AGUILAR REYES MARCOS ANTONIO","cupo":1500,"va":14025.02,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARDENAS ESPINOZA CHARLES PATRICIO","cupo":1000,"va":7042.98,"cat":"Control","est":"ACTIVO"},{"c":"ESTRADA FLORES LUZ MARIA","cupo":1000,"va":3635.59,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GONZALEZ MALDONADO VICTOR AMARILDO","cupo":1000,"va":3255.33,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MACAS REMACHE ANGEL MOISES","cupo":1000,"va":2356,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GUAMAN TIBANTA PEDRO PASCUAL","cupo":1000,"va":1553.67,"cat":"Muy Bueno","est":"INACTIVO"},{"c":"CHACON CHACON MARCO EDUARDO","cupo":500,"va":2017.75,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"BARZALLO VALVERDE CLARA MARIA","cupo":500,"va":1876.65,"cat":"Muy Bueno","est":"ACTIVO"}]},"jessica":{"total":80,"top":[{"c":"LANDETA QUIMI NITZA LEANE","cupo":6500,"va":6102.19,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ROMAN MENDOZA CARLOS EDUARDO","cupo":4000,"va":3267.9,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"VITE VASQUEZ GABRIELA DEL ROCIO","cupo":4000,"va":2001.52,"cat":"Control","est":"ACTIVO"},{"c":"VITE VASQUEZ YOLANDA DEL CARMEN","cupo":4000,"va":1674.03,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MEGAUNIMAC CIA.LTDA.","cupo":3500,"va":40289.56,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"PEÑALOZA ZAMBRANO SERGIO JASMANY","cupo":3500,"va":3016.99,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"JORGE JARAMILLO E HIJOS OROCENTRO C.LTDA.","cupo":3000,"va":10444.03,"cat":"Control","est":"ACTIVO"},{"c":"ALVARADO CRESPO ERIKA GABRIELA","cupo":3000,"va":5537.63,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CASADELMINERO CIA. LTDA","cupo":3000,"va":4184.08,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"PEÑALOZA CUENCA JHAYRO EDUARDO","cupo":2500,"va":3106.81,"cat":"Control","est":"ACTIVO"},{"c":"CHICAIZA MOROCHO SEGUNDO MARCELO","cupo":2500,"va":524.46,"cat":"Bueno","est":"INACTIVO"},{"c":"RAMON QUEZADA MANUEL BOLIVAR","cupo":2000,"va":10349.43,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"FERRIASERRIOSOLANO S. A. S","cupo":2000,"va":8725.36,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RAMIREZ TORRES BISMARK LENIN","cupo":2000,"va":4853.8,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MALLA RAMIREZ FABRICIO NATAN","cupo":2000,"va":4070.06,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CHICAIZA MOROCHO JOSE ANDRES","cupo":2000,"va":1184.08,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"FERRETERIA MATUTE S.A.S.","cupo":2000,"va":1121.34,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ILLINGWORTH VILLA ARNOLD ENRIQUE","cupo":2000,"va":1065.21,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARRION ZARI CARMITA KARINA","cupo":1500,"va":7098.49,"cat":"Control","est":"ACTIVO"},{"c":"VALAREZO ESPINOZA SILVIA JUDITH","cupo":1500,"va":5468.87,"cat":"Muy Bueno","est":"ACTIVO"}]},"oswaldo":{"total":32,"top":[{"c":"OCHOA UGUÑA RAMIRO RIGOBERTO","cupo":3500,"va":2696.3,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SALAZAR SANCHEZ ELOY OSWALDO","cupo":3000,"va":5124.63,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SARAGURO RAMIREZ WILSON BOLIVAR","cupo":2500,"va":10572.06,"cat":"Bueno","est":"ACTIVO"},{"c":"DIMACSAORO S.A.","cupo":2500,"va":6979.89,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"DISTROM S.A.","cupo":2000,"va":12331.71,"cat":"Control","est":"ACTIVO"},{"c":"GALLARDO RAMIA CARLOS ENRIQUE","cupo":2000,"va":11652.41,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"OCAMPO ALVAREZ DULIA MARIELA","cupo":2000,"va":7901.78,"cat":"Control","est":"ACTIVO"},{"c":"MAQUINSUR MAQUINAS Y SUMINISTROS INDUSTRIALES DEL SUR CIA. LTDA.","cupo":2000,"va":5636.59,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GONZAGA LOAIZA MARCO AUGUSTO","cupo":2000,"va":5590.09,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MENDOZA CONDOLO CARMEN FABIOLA","cupo":2000,"va":4959.08,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ROMERO CASTILLO JOSE RICARDO","cupo":2000,"va":4544.7,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GODOS TORRES SANTOS IVAN","cupo":2000,"va":2742.2,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"ROGEL JIMBO MILVIO SANTIAGO","cupo":2000,"va":2356.39,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SALGADO MINUCHE JORGE ALBERTO","cupo":2000,"va":1540.91,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARANGUI ARMIJOS LUIS FRANCISCO","cupo":1500,"va":5197.66,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"TORRES RAMIREZ JORGE LUIS","cupo":1000,"va":6681.97,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RAMIREZ ROMERO CHRISTHIAN JAVIER","cupo":1000,"va":5824.42,"cat":"Control","est":"ACTIVO"},{"c":"DICOLSAREPUESTOS CIA.LTDA.","cupo":1000,"va":5468.96,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"CARANGUI HIDALGO ASTRID CAROLINA","cupo":1000,"va":5243.87,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"GUAYCHA RIVERA CARLOS ALBERTO","cupo":1000,"va":4956.21,"cat":"Control","est":"ACTIVO"}]},"edisson":{"total":12,"top":[{"c":"AREVALO RUIZ CARLOS ARCESIO","cupo":5000,"va":540.34,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SALINAS HUERTA SAMUEL DAVID","cupo":3000,"va":19007.31,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"SIMBAINA ZAMORA MANUEL JESUS","cupo":1000,"va":7589.35,"cat":"Bueno","est":"ACTIVO"},{"c":"COMERCIALECOSUIZA CIA.LTDA.","cupo":1000,"va":5881.48,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"RODRIGUEZ MOLINA BYRONE ENRIQUE","cupo":1000,"va":2261.42,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"MENDIETA MENDEZ JAVIER ESTEBAN","cupo":1000,"va":1054.4,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"COMERCIALIZADORA MEGA MARKET CALLE E HIJOS CIA LTDA","cupo":1000,"va":0,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"DISTRIBUIDORA MOLINA DISMOLINA CIA. LTDA","cupo":1000,"va":0,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"PATIÑO PINO EDISON EDUARDO","cupo":1000,"va":0,"cat":"Muy Bueno","est":"ACTIVO"},{"c":"HUERTA MUÑOZ NANCY ELIZABETH","cupo":500,"va":7728.84,"cat":"Control","est":"ACTIVO"},{"c":"MUYULEMA GUARACA MARIA ALEXANDRA","cupo":500,"va":800.28,"cat":"Muy Bueno","est":"INACTIVO"},{"c":"SUQUI MUELA SEGUNDO JUAN ANTONIO","cupo":500,"va":614.63,"cat":"Control","est":"ACTIVO"}]}};
 
 // ---------------------------------------------------------------------------
-// CONTACTOS DE WHATSAPP â ÃREAS RESPONSABLES Y JEFE ZONAL
-// No se usan nÃºmeros de telÃ©fono: son los nombres reales de los contactos en
+// CONTACTOS DE WHATSAPP — ÁREAS RESPONSABLES Y JEFE ZONAL
+// No se usan números de teléfono: son los nombres reales de los contactos en
 // el WhatsApp de Diego Barros (Jefe Zonal). El asesor describe la necesidad
 // en el portal y el mensaje queda listo para copiar; Diego es quien lo
-// reenvÃ­a desde su propio WhatsApp Web (vÃ­a Claude in Chrome, con su
-// aprobaciÃ³n) al contacto correspondiente.
+// reenvía desde su propio WhatsApp Web (vía Claude in Chrome, con su
+// aprobación) al contacto correspondiente.
 // ---------------------------------------------------------------------------
 const CONTACTOS_AREAS = {
   "Cartera":    { nombre: "Base Cobranza Soyoda S.A.",      whatsapp: ["593959966355"] },
-  "LogÃ­stica":  { nombre: "Anny Toalla (Coord. LogÃ­stica)", whatsapp: ["593982332373"] },
+  "Logística":  { nombre: "Anny Toalla (Coord. Logística)", whatsapp: ["593982332373"] },
   "Pedidos":    { nombre: "Rudy Vargas y Madelein",         whatsapp: ["593994110617", "593994310966"] },
-  "Post venta": { nombre: "JesÃºs JadÃ¡n Soyoda",             whatsapp: ["593967003152"] },
+  "Post venta": { nombre: "Jesús Jadán Soyoda",             whatsapp: ["593967003152"] },
   "Otro":       { nombre: "Diego Barros (Jefe Zonal)",      whatsapp: ["593997921759"] },
 };
-const WHATSAPP_DIEGO = "593997921759"; // nÃºmero de Diego Barros (Jefe Zonal) para informes de cliente
+const WHATSAPP_DIEGO = "593997921759"; // número de Diego Barros (Jefe Zonal) para informes de cliente
 const EMAIL_DIEGO = "diegobarcoello@gmail.com"; // correo de Diego Barros para sugerencias de mejora
 
 // ---------------------------------------------------------------------------
-// BASE DE CONOCIMIENTO DEL ASISTENTE DE VENTAS (objeciones + lÃ­neas)
-// Respuestas predefinidas, sin conexiÃ³n a internet ni IA externa â pensadas
-// para mayoreo de ferreterÃ­a, llantas, motores fuera de borda y maquinaria
+// BASE DE CONOCIMIENTO DEL ASISTENTE DE VENTAS (objeciones + líneas)
+// Respuestas predefinidas, sin conexión a internet ni IA externa — pensadas
+// para mayoreo de ferretería, llantas, motores fuera de borda y maquinaria
 // pesada. Diego puede pedir que se agreguen/ajusten entradas en cualquier
 // momento.
 // ---------------------------------------------------------------------------
 const BASE_CONOCIMIENTO = [
-  { tema: "ObjeciÃ³n de precio", palabras: ["caro", "precio", "costoso", "barato", "mas economico", "mÃ¡s econÃ³mico", "competencia me da mejor precio"],
-    respuesta: "No defiendas el precio solo: compara el costo total â calidad, garantÃ­a, disponibilidad de stock, soporte postventa y plazo de crÃ©dito que ofrecemos. PregÃºntale quÃ© pasarÃ­a si su proveedor actual le falla con el stock. Si insiste, evalÃºa si aplica una condiciÃ³n especial (consulta cupo/plazo con tu jefe zonal)." },
+  { tema: "Objeción de precio", palabras: ["caro", "precio", "costoso", "barato", "mas economico", "más económico", "competencia me da mejor precio"],
+    respuesta: "No defiendas el precio solo: compara el costo total — calidad, garantía, disponibilidad de stock, soporte postventa y plazo de crédito que ofrecemos. Pregúntale qué pasaría si su proveedor actual le falla con el stock. Si insiste, evalúa si aplica una condición especial (consulta cupo/plazo con tu jefe zonal)." },
   { tema: "Ya tiene proveedor / le compra a otro distribuidor", palabras: ["ya tengo proveedor", "otro distribuidor", "ya le compro", "tengo mi proveedor", "ya compro a"],
-    respuesta: "No le pidas que abandone a su proveedor actual de una vez. PropÃ³nle ser su 'segundo proveedor' o probar con un pedido pequeÃ±o de las lÃ­neas de mayor rotaciÃ³n, para que compare calidad, tiempos de entrega y respaldo sin arriesgar su relaciÃ³n actual." },
+    respuesta: "No le pidas que abandone a su proveedor actual de una vez. Propónle ser su 'segundo proveedor' o probar con un pedido pequeño de las líneas de mayor rotación, para que compare calidad, tiempos de entrega y respaldo sin arriesgar su relación actual." },
   { tema: "No tiene espacio / ya tiene mucho inventario", palabras: ["no tengo espacio", "mucho inventario", "no necesito stock", "ya tengo inventario", "bodega llena"],
-    respuesta: "EnfÃ³cate en productos de alta rotaciÃ³n, no en volumen. Ofrece reposiciÃ³n programada (pedidos mÃ¡s pequeÃ±os y frecuentes) en vez de un solo pedido grande, asÃ­ no necesita mÃ¡s espacio de bodega." },
+    respuesta: "Enfócate en productos de alta rotación, no en volumen. Ofrece reposición programada (pedidos más pequeños y frecuentes) en vez de un solo pedido grande, así no necesita más espacio de bodega." },
   { tema: "No tiene liquidez / no puede pagar de contado", palabras: ["no tengo liquidez", "sin flujo de caja", "no puedo pagar", "sin presupuesto", "sin dinero", "no tengo efectivo"],
-    respuesta: "Usa el crÃ©dito como herramienta: ajusta la condiciÃ³n de pago a su ciclo real de cobro (30/60/90 dÃ­as). Si ya es cliente y tiene buen historial, puedes evaluar con tu jefe zonal un aumento de plazo o cupo (usa el Informe de Cliente del portal)." },
-  { tema: "Quiere ver o probar el producto primero", palabras: ["ver el producto", "probar antes", "muestra", "catalogo", "catÃ¡logo", "necesito verlo"],
-    respuesta: "Lleva una muestra fÃ­sica o el catÃ¡logo actualizado. Si no es posible en el momento, ofrece un pedido de prueba pequeÃ±o y comparte referencias de clientes similares en su zona que ya trabajan con nosotros." },
+    respuesta: "Usa el crédito como herramienta: ajusta la condición de pago a su ciclo real de cobro (30/60/90 días). Si ya es cliente y tiene buen historial, puedes evaluar con tu jefe zonal un aumento de plazo o cupo (usa el Informe de Cliente del portal)." },
+  { tema: "Quiere ver o probar el producto primero", palabras: ["ver el producto", "probar antes", "muestra", "catalogo", "catálogo", "necesito verlo"],
+    respuesta: "Lleva una muestra física o el catálogo actualizado. Si no es posible en el momento, ofrece un pedido de prueba pequeño y comparte referencias de clientes similares en su zona que ya trabajan con nosotros." },
   { tema: "Dice que no hay demanda / el cliente final no lo pide", palabras: ["no se vende", "no me lo pide", "no hay demanda", "nadie lo pide", "no se mueve"],
-    respuesta: "Muestra datos de rotaciÃ³n de esa lÃ­nea en negocios similares de la zona. PropÃ³n una exhibiciÃ³n o lanzamiento con apoyo (material POP, ubicaciÃ³n preferente) para generar demanda en su propio punto de venta." },
+    respuesta: "Muestra datos de rotación de esa línea en negocios similares de la zona. Propón una exhibición o lanzamiento con apoyo (material POP, ubicación preferente) para generar demanda en su propio punto de venta." },
   { tema: "Dice que el margen es muy bajo", palabras: ["margen bajo", "no me deja margen", "no es rentable", "poco margen"],
-    respuesta: "Explica el margen del mix completo, no de un solo producto: el volumen y la rotaciÃ³n compensan un margen unitario mÃ¡s ajustado. Si aplica, menciona incentivos por volumen o lÃ­neas complementarias de mejor margen." },
-  { tema: "Tuvo un problema de calidad o garantÃ­a antes", palabras: ["problema de calidad", "garantia", "garantÃ­a", "producto malo", "devolucion", "devoluciÃ³n", "me fallo", "me fallÃ³"],
-    respuesta: "Reconoce el problema sin minimizarlo, explica la polÃ­tica de garantÃ­a y el respaldo directo (incluyendo escalar a tu jefe zonal si reincide), y si puedes, comparte quÃ© cambiÃ³ desde entonces. La honestidad genera mÃ¡s confianza que justificar el error." },
-  { tema: "El plazo de crÃ©dito le parece corto", palabras: ["plazo corto", "necesito mas plazo", "necesito mÃ¡s plazo", "poco credito", "poco crÃ©dito", "plazo de pago"],
-    respuesta: "Explica las opciones de crÃ©dito disponibles (30/60/90/120 dÃ­as) segÃºn su perfil e historial de pago. Si es un cliente con buen comportamiento, puedes iniciar un Informe de Cliente desde el portal para solicitar aumento de plazo o cupo." },
-  { tema: "No conoce o no confÃ­a en la marca", palabras: ["no conozco la marca", "no confio", "no confÃ­o", "marca nueva", "desconocida", "no la conozco"],
-    respuesta: "Presenta la trayectoria y presencia de Soyoda en el mercado, comparte testimonios de clientes de su mismo sector y refuerza el respaldo tÃ©cnico y de garantÃ­a detrÃ¡s del producto." },
-  { tema: "Quiere que lo visiten mÃ¡s seguido", palabras: ["no me visitan", "poca visita", "no viene seguido", "visitas"],
-    respuesta: "CompromÃ©tete con una frecuencia de visita concreta (dÃ­a y horario aproximado) y dÃ©jale tu contacto directo para urgencias entre visitas. Cumplir ese compromiso es lo que mÃ¡s construye confianza." },
-  { tema: "No quiere mÃ¡s proveedores/marcas", palabras: ["muchas marcas", "complicado", "no quiero mas proveedores", "no quiero mÃ¡s proveedores", "ya tengo muchos proveedores"],
-    respuesta: "Simplifica: un solo asesor de contacto, un solo pedido consolidado, una sola entrega. Empieza ofreciendo solo la lÃ­nea de mayor rotaciÃ³n para bajar la barrera de entrada, y amplÃ­a despuÃ©s." },
-  { tema: "Quiere mÃ¡s crÃ©dito o cupo", palabras: ["mas credito", "mÃ¡s crÃ©dito", "mas cupo", "mÃ¡s cupo", "aumentar cupo", "ampliar cupo", "necesito mas cupo", "necesito mÃ¡s cupo", "subir el cupo"],
-    respuesta: "No prometas el aumento en el momento: explica que se evalÃºa con historial de pago y comportamiento de cartera. Si el cliente tiene buen historial, levanta el 'Informe Comercial de Cliente' del portal (Aumento de Cupo y/o Plazo) para que tu jefe zonal lo gestione formalmente con crÃ©dito." },
+    respuesta: "Explica el margen del mix completo, no de un solo producto: el volumen y la rotación compensan un margen unitario más ajustado. Si aplica, menciona incentivos por volumen o líneas complementarias de mejor margen." },
+  { tema: "Tuvo un problema de calidad o garantía antes", palabras: ["problema de calidad", "garantia", "garantía", "producto malo", "devolucion", "devolución", "me fallo", "me falló"],
+    respuesta: "Reconoce el problema sin minimizarlo, explica la política de garantía y el respaldo directo (incluyendo escalar a tu jefe zonal si reincide), y si puedes, comparte qué cambió desde entonces. La honestidad genera más confianza que justificar el error." },
+  { tema: "El plazo de crédito le parece corto", palabras: ["plazo corto", "necesito mas plazo", "necesito más plazo", "poco credito", "poco crédito", "plazo de pago"],
+    respuesta: "Explica las opciones de crédito disponibles (30/60/90/120 días) según su perfil e historial de pago. Si es un cliente con buen comportamiento, puedes iniciar un Informe de Cliente desde el portal para solicitar aumento de plazo o cupo." },
+  { tema: "No conoce o no confía en la marca", palabras: ["no conozco la marca", "no confio", "no confío", "marca nueva", "desconocida", "no la conozco"],
+    respuesta: "Presenta la trayectoria y presencia de Soyoda en el mercado, comparte testimonios de clientes de su mismo sector y refuerza el respaldo técnico y de garantía detrás del producto." },
+  { tema: "Quiere que lo visiten más seguido", palabras: ["no me visitan", "poca visita", "no viene seguido", "visitas"],
+    respuesta: "Comprométete con una frecuencia de visita concreta (día y horario aproximado) y déjale tu contacto directo para urgencias entre visitas. Cumplir ese compromiso es lo que más construye confianza." },
+  { tema: "No quiere más proveedores/marcas", palabras: ["muchas marcas", "complicado", "no quiero mas proveedores", "no quiero más proveedores", "ya tengo muchos proveedores"],
+    respuesta: "Simplifica: un solo asesor de contacto, un solo pedido consolidado, una sola entrega. Empieza ofreciendo solo la línea de mayor rotación para bajar la barrera de entrada, y amplía después." },
+  { tema: "Quiere más crédito o cupo", palabras: ["mas credito", "más crédito", "mas cupo", "más cupo", "aumentar cupo", "ampliar cupo", "necesito mas cupo", "necesito más cupo", "subir el cupo"],
+    respuesta: "No prometas el aumento en el momento: explica que se evalúa con historial de pago y comportamiento de cartera. Si el cliente tiene buen historial, levanta el 'Informe Comercial de Cliente' del portal (Aumento de Cupo y/o Plazo) para que tu jefe zonal lo gestione formalmente con crédito." },
   { tema: "Duda de la calidad del producto", palabras: ["calidad inferior", "mala calidad", "calidad mala", "no es buena calidad", "dudas de calidad", "calidad del producto", "es de mala calidad"],
-    respuesta: "No discutas la calidad en abstracto: ofrece comparar especificaciones tÃ©cnicas y certificaciones, comparte casos de clientes similares en su zona y, si aplica, ofrece una unidad de prueba pequeÃ±a antes del pedido completo." },
-  { tema: "Tiempo de entrega / logÃ­stica lenta", palabras: ["tiempo de entrega", "demora en entregar", "logistica lenta", "logÃ­stica lenta", "se demora en llegar", "tarda en llegar", "no llega a tiempo", "tiempo de logistica", "tiempo de logÃ­stica"],
-    respuesta: "SÃ© concreto con el tiempo real de entrega segÃºn su zona (no prometas plazos que no puedes cumplir). Si la ruta de reparto no pasa seguido por su zona, ofrece coordinar una fecha fija de entrega o consolidar su pedido con otro cliente cercano para acelerarlo." },
-  { tema: "LÃ­nea FerreterÃ­a", palabras: ["ferreteria", "ferreterÃ­a", "linea ferreteria", "lÃ­nea ferreterÃ­a"],
-    respuesta: "FerreterÃ­a: lÃ­nea de herramientas, materiales de construcciÃ³n y productos para mayoristas/distribuidores del sector. Para el catÃ¡logo y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
-  { tema: "LÃ­nea Maquinaria", palabras: ["maquinaria pesada", "excavadora", "retroexcavadora", "compactadora", "maquinaria"],
-    respuesta: "Maquinaria: lÃ­nea para construcciÃ³n, agro e industria. Para catÃ¡logo, modelos y precios vigentes, consulta el material oficial o a tu jefe zonal." },
-  { tema: "LÃ­nea Electro Menor", palabras: ["electro menor", "electrodomestico", "electrodomÃ©stico", "electrodomesticos", "electrodomÃ©sticos", "linea electro", "lÃ­nea electro"],
-    respuesta: "Electro Menor: lÃ­nea de electrodomÃ©sticos menores para distribuidores y retail. Para catÃ¡logo y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
-  { tema: "LÃ­nea Robots KENNON", palabras: ["kennon", "robot de cocina", "robots de cocina", "robot kennon", "robots kennon"],
-    respuesta: "Robots KENNON: lÃ­nea de robots de cocina. Para catÃ¡logo, modelos y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
-  { tema: "LÃ­nea Consumo Masivo", palabras: ["consumo masivo", "masivo", "linea consumo", "lÃ­nea consumo"],
-    respuesta: "Consumo Masivo: lÃ­nea de productos de alta rotaciÃ³n para tiendas y distribuidores. Para catÃ¡logo y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
+    respuesta: "No discutas la calidad en abstracto: ofrece comparar especificaciones técnicas y certificaciones, comparte casos de clientes similares en su zona y, si aplica, ofrece una unidad de prueba pequeña antes del pedido completo." },
+  { tema: "Tiempo de entrega / logística lenta", palabras: ["tiempo de entrega", "demora en entregar", "logistica lenta", "logística lenta", "se demora en llegar", "tarda en llegar", "no llega a tiempo", "tiempo de logistica", "tiempo de logística"],
+    respuesta: "Sé concreto con el tiempo real de entrega según su zona (no prometas plazos que no puedes cumplir). Si la ruta de reparto no pasa seguido por su zona, ofrece coordinar una fecha fija de entrega o consolidar su pedido con otro cliente cercano para acelerarlo." },
+  { tema: "Línea Ferretería", palabras: ["ferreteria", "ferretería", "linea ferreteria", "línea ferretería"],
+    respuesta: "Ferretería: línea de herramientas, materiales de construcción y productos para mayoristas/distribuidores del sector. Para el catálogo y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
+  { tema: "Línea Maquinaria", palabras: ["maquinaria pesada", "excavadora", "retroexcavadora", "compactadora", "maquinaria"],
+    respuesta: "Maquinaria: línea para construcción, agro e industria. Para catálogo, modelos y precios vigentes, consulta el material oficial o a tu jefe zonal." },
+  { tema: "Línea Electro Menor", palabras: ["electro menor", "electrodomestico", "electrodoméstico", "electrodomesticos", "electrodomésticos", "linea electro", "línea electro"],
+    respuesta: "Electro Menor: línea de electrodomésticos menores para distribuidores y retail. Para catálogo y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
+  { tema: "Línea Robots KENNON", palabras: ["kennon", "robot de cocina", "robots de cocina", "robot kennon", "robots kennon"],
+    respuesta: "Robots KENNON: línea de robots de cocina. Para catálogo, modelos y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
+  { tema: "Línea Consumo Masivo", palabras: ["consumo masivo", "masivo", "linea consumo", "línea consumo"],
+    respuesta: "Consumo Masivo: línea de productos de alta rotación para tiendas y distribuidores. Para catálogo y precios vigentes, consulta el material oficial o pregunta a tu jefe zonal." },
 ];
 
 function respuestaBot(pregunta) {
@@ -747,8 +747,8 @@ function respuestaBot(pregunta) {
     for (const p of item.palabras) { if (q.includes(p.toLowerCase())) score++; }
     if (score > mejorScore) { mejorScore = score; mejor = item; }
   }
-  if (mejor) return `ð ${mejor.tema}\n\n${mejor.respuesta}`;
-  return "No tengo una respuesta exacta para eso todavÃ­a. PregÃºntame sobre objeciones (precio, crÃ©dito/cupo, competencia, stock, garantÃ­a, calidad, tiempo de entrega, confianza en la marca) o sobre nuestras lÃ­neas: FerreterÃ­a, Maquinaria, Electro Menor, Robots KENNON, Consumo Masivo. Si es un caso muy puntual, consÃºltalo directo con tu jefe zonal.";
+  if (mejor) return `📌 ${mejor.tema}\n\n${mejor.respuesta}`;
+  return "No tengo una respuesta exacta para eso todavía. Pregúntame sobre objeciones (precio, crédito/cupo, competencia, stock, garantía, calidad, tiempo de entrega, confianza en la marca) o sobre nuestras líneas: Ferretería, Maquinaria, Electro Menor, Robots KENNON, Consumo Masivo. Si es un caso muy puntual, consúltalo directo con tu jefe zonal.";
 }
 
 // ---------------------------------------------------------------------------
@@ -756,16 +756,16 @@ function respuestaBot(pregunta) {
 // Tomadas de la hoja "desplegables" de la plantilla Excel oficial de Soyoda
 // (Informe Comercial de Cliente para Requerimientos de Ventas).
 // ---------------------------------------------------------------------------
-const OPC_PROVINCIA = ["Azuay","Bolivar","CaÃ±ar","Carchi","Chimborazo","Cotopaxi","El Oro","Esmeraldas","GalÃ¡pagos","Guayas","Imbabura","Loja","Los Rios","Manabi","Morona Santiago","Napo","Orellana","Pastaza","Pichincha","Santa Elena","Santo Domingo","Sucumbios","Tungurahua","Zamora Chinchipe"];
-const OPC_DIVISION = ["FerreterÃ­a","Llantas","Motores Fuera de Borda","Maquinaria Pesada"];
-const OPC_REQUERIMIENTO = ["Cliente Nuevo","ActualizaciÃ³n por ReactivaciÃ³n Cliente","Aumento de Cupo y/o Plazo","Cambio CondiciÃ³n de Pago","Tour de Compras o Especiales","Cambio de RUC","RUC adicional (VinculaciÃ³n)"];
+const OPC_PROVINCIA = ["Azuay","Bolivar","Cañar","Carchi","Chimborazo","Cotopaxi","El Oro","Esmeraldas","Galápagos","Guayas","Imbabura","Loja","Los Rios","Manabi","Morona Santiago","Napo","Orellana","Pastaza","Pichincha","Santa Elena","Santo Domingo","Sucumbios","Tungurahua","Zamora Chinchipe"];
+const OPC_DIVISION = ["Ferretería","Llantas","Motores Fuera de Borda","Maquinaria Pesada"];
+const OPC_REQUERIMIENTO = ["Cliente Nuevo","Actualización por Reactivación Cliente","Aumento de Cupo y/o Plazo","Cambio Condición de Pago","Tour de Compras o Especiales","Cambio de RUC","RUC adicional (Vinculación)"];
 const OPC_TIPO_NEGOCIO = ["Minorista","Mayorista","Distribuidor","Importador","Autoservicio","Grandes Tiendas"];
-const OPC_CONDICION_CREDITO = ["DocumentaciÃ³n","Vencimiento","Sin Chequera","Pre-Pago","Otros y Promociones","Especial Largo Plazo"];
-const OPC_PLAZO_CREDITO = ["CrÃ©dito 30 dÃ­as","CrÃ©dito 45 dÃ­as","CrÃ©dito 30 - 60 dÃ­as","CrÃ©dito 60 dÃ­as","CrÃ©dito 30 - 60 - 90 dÃ­as","CrÃ©dito 30 - 60 - 90-120 dÃ­as"];
-const OPC_MEDIO_PAGO = ["Cheques","Transferencia","DepÃ³sito"];
+const OPC_CONDICION_CREDITO = ["Documentación","Vencimiento","Sin Chequera","Pre-Pago","Otros y Promociones","Especial Largo Plazo"];
+const OPC_PLAZO_CREDITO = ["Crédito 30 días","Crédito 45 días","Crédito 30 - 60 días","Crédito 60 días","Crédito 30 - 60 - 90 días","Crédito 30 - 60 - 90-120 días"];
+const OPC_MEDIO_PAGO = ["Cheques","Transferencia","Depósito"];
 
 // ---------------------------------------------------------------------------
-// HELPERS DE CÃLCULO Y COLOR
+// HELPERS DE CÁLCULO Y COLOR
 // ---------------------------------------------------------------------------
 function pct(num, den) { if (!den) return 0; return (num / den) * 100; }
 function colorCumplimiento(v) { if (v < 50) return "red"; if (v < 70) return "yellow"; return "green"; }
@@ -785,7 +785,7 @@ function computeMetrics(a) {
   const reds = [cCumpl, cCob, cInact, cCV].filter((c) => c === "red").length;
   const yellows = [cCumpl, cCob, cInact, cCV].filter((c) => c === "yellow").length;
   let estado = "En meta", estadoColor = "green";
-  if (reds > 0) { estado = "CrÃ­tico"; estadoColor = "red"; }
+  if (reds > 0) { estado = "Crítico"; estadoColor = "red"; }
   else if (yellows > 0) { estado = "Alerta"; estadoColor = "yellow"; }
   return { pctCumplimiento, coberturaCalculada, pctCobertura, pctInactivos, cCumpl, cCob, cInact, cCV, estado, estadoColor };
 }
@@ -803,7 +803,7 @@ const TOTAL_ESPERADO_HOY = ASESORES_M.reduce((s, a) => s + a.esperadoHoy, 0);
 const PCT_CUMPLIMIENTO_ZONA = pct(TOTAL_VENTA, TOTAL_META);
 const PCT_COBERTURA_ZONA = pct(TOTAL_COBERTURA_CALCULADA, TOTAL_BASE_COBERTURA);
 const DESFASE_HOY = TOTAL_INGRESADO_HOY - TOTAL_ESPERADO_HOY;
-const ASESORES_CRITICOS = ASESORES_M.filter((a) => a.m.estado === "CrÃ­tico");
+const ASESORES_CRITICOS = ASESORES_M.filter((a) => a.m.estado === "Crítico");
 const PROPORCION_DIA = DIA_ACTUAL / DIAS_MES;
 
 const BAR_DATA = ASESORES_M.map((a) => ({
@@ -821,8 +821,8 @@ const LINE_DATA = Array.from({ length: DIA_ACTUAL }, (_, i) => {
 });
 
 // ---------------------------------------------------------------------------
-// DATA DE GRÃFICOS POR ASESOR (portal individual) â misma lÃ³gica de
-// proyecciÃ³n que LINE_DATA de zona, pero escalada a la venta real y al
+// DATA DE GRÁFICOS POR ASESOR (portal individual) — misma lógica de
+// proyección que LINE_DATA de zona, pero escalada a la venta real y al
 // presupuesto propios de cada asesor.
 // ---------------------------------------------------------------------------
 function lineDataAsesor(a) {
@@ -861,13 +861,13 @@ function accionesPara(a) {
   }
   if (a.m.cCob !== "green") {
     const pendientes = Math.max(0, a.baseCobertura - a.m.coberturaCalculada);
-    acciones.push(`Cerrar al menos ${Math.min(8, pendientes)} ventas adicionales â¥$300 hoy para subir tu cobertura (base ${a.baseCobertura}).`);
+    acciones.push(`Cerrar al menos ${Math.min(8, pendientes)} ventas adicionales ≥$300 hoy para subir tu cobertura (base ${a.baseCobertura}).`);
   }
   if (a.m.cCV !== "green") {
-    acciones.push(`Gestionar el cobro de cartera vencida (${money(a.carteraVencida)}) priorizando los documentos mÃ¡s antiguos junto a la Oficial de CrÃ©dito.`);
+    acciones.push(`Gestionar el cobro de cartera vencida (${money(a.carteraVencida)}) priorizando los documentos más antiguos junto a la Oficial de Crédito.`);
   }
   if (a.m.cInact !== "green") {
-    acciones.push(`Contactar a los ${a.clientesInactivos} clientes inactivos prioritarios y ofrecer condiciÃ³n de reactivaciÃ³n.`);
+    acciones.push(`Contactar a los ${a.clientesInactivos} clientes inactivos prioritarios y ofrecer condición de reactivación.`);
   }
   if (acciones.length === 0) {
     acciones.push("Mantener el ritmo actual y enfocar el excedente en aumentar el ticket promedio de tus mejores clientes.");
@@ -876,7 +876,7 @@ function accionesPara(a) {
 }
 
 function tonoPara(a) {
-  if (a.m.estado === "CrÃ­tico") return "Necesitamos un cambio de ritmo hoy mismo. ConfÃ­o en que puedes revertir esto con foco y disciplina.";
+  if (a.m.estado === "Crítico") return "Necesitamos un cambio de ritmo hoy mismo. Confío en que puedes revertir esto con foco y disciplina.";
   if (a.m.estado === "Alerta") return "Vas en el camino, pero hay que apretar el acelerador para cerrar el mes en verde.";
   return "Buen trabajo hasta ahora. Sigamos empujando para terminar el mes por encima de la meta.";
 }
@@ -886,12 +886,12 @@ function mensajeWhatsApp(a) {
   const metaProporcionalReal = Math.round(a.presupuesto * PROPORCION_DIA);
   const desfase = a.ventaReal - metaProporcionalReal;
   const desfaseTxt = `${desfase >= 0 ? "+" : ""}${money(desfase)}`;
-  return `Hola ${a.nombre.split(" ")[0]} ð
+  return `Hola ${a.nombre.split(" ")[0]} 👋
 
-Corte al dÃ­a ${DIA_ACTUAL}:
+Corte al día ${DIA_ACTUAL}:
 - Venta: ${money(a.ventaReal)} de ${money(a.presupuesto)} meta (${pct1(a.m.pctCumplimiento)})
 - Desfase acumulado del mes (vs. presupuesto real, ${money(metaProporcionalReal)} esperado a la fecha): ${desfaseTxt}
-- Cobertura: ${a.m.coberturaCalculada}/${a.baseCobertura} (Vtasâ¥$300: ${a.cobVtas300}, neg: ${a.cobVentasNegativo}) â ${pct1(a.m.pctCobertura)}
+- Cobertura: ${a.m.coberturaCalculada}/${a.baseCobertura} (Vtas≥$300: ${a.cobVtas300}, neg: ${a.cobVentasNegativo}) → ${pct1(a.m.pctCobertura)}
 - Cartera vencida: ${money(a.carteraVencida)}
 - Clientes inactivos: ${a.clientesInactivos} (${pct1(a.m.pctInactivos)})
 
@@ -900,49 +900,49 @@ ${tonoPara(a)}
 Acciones para hoy:
 ${acciones}
 
-Vamos con todo, ${a.nombre.split(" ")[0]}. ConfÃ­o en tu trabajo. â Diego`;
+Vamos con todo, ${a.nombre.split(" ")[0]}. Confío en tu trabajo. — Diego`;
 }
 
 function reporteEBATexto() {
   if (!DIA_LABORABLE) {
-    return `Reporte EBA Web â Zona Austro â corte ${HORA_CORTE_EBA}
+    return `Reporte EBA Web — Zona Austro — corte ${HORA_CORTE_EBA}
 
 Hoy no hay avance diario que reportar: eBA Web solo registra actividad
-comercial de lunes a viernes, y el corte de este reporte cae en un dÃ­a
+comercial de lunes a viernes, y el corte de este reporte cae en un día
 no laborable.
 
 Acumulado del mes (Power BI, real): ${money(TOTAL_VENTA)} de ${money(TOTAL_META)} (${pct1(PCT_CUMPLIMIENTO_ZONA)}).
 
-AcciÃ³n: en producciÃ³n, este reporte se generarÃ¡ automÃ¡ticamente cada dÃ­a
-hÃ¡bil leyendo el "Informe de Cumplimiento Vendedor" de eBA Web.`;
+Acción: en producción, este reporte se generará automáticamente cada día
+hábil leyendo el "Informe de Cumplimiento Vendedor" de eBA Web.`;
   }
   const filas = ASESORES_M.map((a) => {
     const desfase = a.ingresadoHoy - a.esperadoHoy;
     return `- ${a.nombre}: ${money(a.ingresadoHoy)} ingresado / ${money(a.esperadoHoy)} esperado (${desfase >= 0 ? "+" : ""}${money(desfase)})`;
   }).join("\n");
-  return `Reporte EBA Web â Zona Austro â corte ${HORA_CORTE_EBA}
+  return `Reporte EBA Web — Zona Austro — corte ${HORA_CORTE_EBA}
 
-Ingreso del dÃ­a: ${money(TOTAL_INGRESADO_HOY)} de ${money(TOTAL_ESPERADO_HOY)} esperado a esta hora.
+Ingreso del día: ${money(TOTAL_INGRESADO_HOY)} de ${money(TOTAL_ESPERADO_HOY)} esperado a esta hora.
 Desfase acumulado: ${DESFASE_HOY >= 0 ? "+" : ""}${money(DESFASE_HOY)}
 
 Por asesor:
 ${filas}
 
-AcciÃ³n: ${DESFASE_HOY < 0 ? "reforzar cierre de pedidos en la tarde para recuperar el desfase antes del corte de 5pm." : "mantener el ritmo, zona adelantada respecto al esperado."}`;
+Acción: ${DESFASE_HOY < 0 ? "reforzar cierre de pedidos en la tarde para recuperar el desfase antes del corte de 5pm." : "mantener el ritmo, zona adelantada respecto al esperado."}`;
 }
 
 const FRASES_MOTIVACION = [
-  "Cada cliente que visitamos hoy es una oportunidad de demostrar por quÃ© Soyoda es su mejor proveedor. La constancia de hoy es el resultado de fin de mes.",
-  "No se trata de vender mÃ¡s rÃ¡pido, sino de visitar mejor: cartera cubierta y bien atendida es la base de un cumplimiento sostenido.",
-  "Los nÃºmeros de hoy se construyen con las visitas de hoy. Prioricen a los clientes inactivos: ahÃ­ estÃ¡ la venta que todavÃ­a no hemos cerrado.",
-  "Un buen dÃ­a empieza con foco: salgan con su ruta clara, su meta clara y la actitud de cerrar cada visita con un compromiso concreto.",
+  "Cada cliente que visitamos hoy es una oportunidad de demostrar por qué Soyoda es su mejor proveedor. La constancia de hoy es el resultado de fin de mes.",
+  "No se trata de vender más rápido, sino de visitar mejor: cartera cubierta y bien atendida es la base de un cumplimiento sostenido.",
+  "Los números de hoy se construyen con las visitas de hoy. Prioricen a los clientes inactivos: ahí está la venta que todavía no hemos cerrado.",
+  "Un buen día empieza con foco: salgan con su ruta clara, su meta clara y la actitud de cerrar cada visita con un compromiso concreto.",
 ];
 function fraseDelDia() { return FRASES_MOTIVACION[DIA_ACTUAL % FRASES_MOTIVACION.length]; }
 
-// Meta diaria fija exigida por la compaÃ±Ã­a: $5,000 por asesor cada dÃ­a.
+// Meta diaria fija exigida por la compañía: $5,000 por asesor cada día.
 // Se muestra como referencia informativa en el mensaje, pero el DESFASE
 // (atraso/adelanto) se calcula contra el presupuesto REAL de cada asesor,
-// prorrateado a los dÃ­as transcurridos del mes â no contra $5,000 x dÃ­as.
+// prorrateado a los días transcurridos del mes — no contra $5,000 x días.
 const META_DIARIA_FIJA_ASESOR = 5000;
 
 function mensajeBuenosDias() {
@@ -953,14 +953,14 @@ function mensajeBuenosDias() {
     const desfaseTxt = `${desfase >= 0 ? "+" : ""}${money(desfase)}`;
     return `- ${a.nombre.split(" ")[0]}: meta de hoy ${money(META_DIARIA_FIJA_ASESOR)} | desfase acumulado del mes (vs. presupuesto real, ${money(metaProporcionalReal)} esperado a la fecha): ${desfaseTxt}`;
   }).join("\n");
-  return `Â¡Buenos dÃ­as Zona Austro! âï¸
+  return `¡Buenos días Zona Austro! ☀️
 
 ${fraseDelDia()}
 
 Meta de hoy (zona, $5,000 por asesor): ${money(metaDiariaZonaFija)}
 
 Desglose por asesor (meta diaria de $5,000 como referencia + desfase acumulado
-del mes a la fecha contra el presupuesto REAL prorrateado â negativo es atraso,
+del mes a la fecha contra el presupuesto REAL prorrateado — negativo es atraso,
 positivo es adelanto):
 ${filas}
 
@@ -968,7 +968,7 @@ Recuerden: cobertura de cartera + clientes reactivados + ticket promedio son
 las tres palancas que mueven el cumplimiento. No solo es vender, es visitar
 bien y a quien corresponde.
 
-A romperla hoy, equipo ðª â Diego`;
+A romperla hoy, equipo 💪 — Diego`;
 }
 
 function resumen7pm() {
@@ -976,20 +976,20 @@ function resumen7pm() {
     `- ${a.nombre}: cumplimiento ${pct1(a.m.pctCumplimiento)}, cobertura ${pct1(a.m.pctCobertura)}, inactivos ${pct1(a.m.pctInactivos)}`
   ).join("\n");
   const acciones = ASESORES_CRITICOS.map((a, i) => `${i + 1}. ${accionesPara(a)[0]}`).join("\n");
-  return `Resumen ejecutivo â Zona Austro â 7:00pm
+  return `Resumen ejecutivo — Zona Austro — 7:00pm
 
-ð Acumulado mes: ${money(TOTAL_VENTA)} de ${money(TOTAL_META)} (${pct1(PCT_CUMPLIMIENTO_ZONA)}) | Cobertura zona: ${pct1(PCT_COBERTURA_ZONA)}
-ð° Cartera vencida zona: ${money(TOTAL_CARTERA_VENCIDA)}
+📊 Acumulado mes: ${money(TOTAL_VENTA)} de ${money(TOTAL_META)} (${pct1(PCT_CUMPLIMIENTO_ZONA)}) | Cobertura zona: ${pct1(PCT_COBERTURA_ZONA)}
+💰 Cartera vencida zona: ${money(TOTAL_CARTERA_VENCIDA)}
 
-ð´ Alertas crÃ­ticas (${ASESORES_CRITICOS.length}):
+🔴 Alertas críticas (${ASESORES_CRITICOS.length}):
 ${criticos || "Ninguna hoy."}
 
-â Acciones para maÃ±ana:
-${acciones || "Sin acciones crÃ­ticas pendientes."}`;
+✅ Acciones para mañana:
+${acciones || "Sin acciones críticas pendientes."}`;
 }
 
 // ---------------------------------------------------------------------------
-// GRÃFICOS SVG (sin dependencias externas)
+// GRÁFICOS SVG (sin dependencias externas)
 // ---------------------------------------------------------------------------
 function moneyShort(n) {
   const abs = Math.abs(n);
@@ -1079,9 +1079,9 @@ function svgLineChart(data, lines, opts) {
 }
 
 // ---------------------------------------------------------------------------
-// INTERACTIVIDAD DE GRÃFICOS â tooltip flotante + clic para ver detalle.
+// INTERACTIVIDAD DE GRÁFICOS — tooltip flotante + clic para ver detalle.
 // Delegado a nivel documento: funciona sin re-enganchar listeners en cada
-// render (los grÃ¡ficos se regeneran como HTML cada vez que cambia el estado).
+// render (los gráficos se regeneran como HTML cada vez que cambia el estado).
 // ---------------------------------------------------------------------------
 function buildChartTipHtml(el) {
   const title = el.getAttribute("data-tip-title") || "";
@@ -1117,8 +1117,8 @@ function abrirDetalleDia(dia, real, meta, label) {
   const etiqueta = label && label !== "zona" ? esc(label) : "zona";
   const html = cmpBar("Real acumulado", r, max, diff >= 0 ? "green" : "red", money(r))
     + cmpBar("Meta acumulada", m, max, "", money(m))
-    + `<p class="cmp-note">Diferencia a este dÃ­a: ${diff >= 0 ? "+" : ""}${esc(money(diff))}${diff >= 0 ? " ð vas adelante de la meta" : " â hay que acelerar el ritmo"}</p>`;
-  openModal(`ð DÃ­a ${esc(String(dia))} â acumulado ${etiqueta}`, html);
+    + `<p class="cmp-note">Diferencia a este día: ${diff >= 0 ? "+" : ""}${esc(money(diff))}${diff >= 0 ? " 🎉 vas adelante de la meta" : " — hay que acelerar el ritmo"}</p>`;
+  openModal(`📈 Día ${esc(String(dia))} — acumulado ${etiqueta}`, html);
 }
 
 document.addEventListener("mouseover", (e) => {
@@ -1152,7 +1152,7 @@ document.addEventListener("click", (e) => {
 });
 
 // ---------------------------------------------------------------------------
-// PERSISTENCIA LOCAL (checklist diario, casos ganados) â guardado en este
+// PERSISTENCIA LOCAL (checklist diario, casos ganados) — guardado en este
 // navegador/dispositivo. No se sincroniza entre los celulares de los asesores
 // hasta conectar una base de datos compartida (igual que WhatsApp/Microsoft 365).
 // ---------------------------------------------------------------------------
@@ -1165,15 +1165,15 @@ function saveLocal(key, value) {
 function hoyKey() { return new Date().toISOString().slice(0, 10); }
 
 const CHECKLIST_ITEMS = [
-  "ObjeciÃ³n del cliente enfrentada y registrada",
-  "CatÃ¡logo o producto mostrado",
-  "PrÃ³ximo paso acordado con el cliente",
-  "Pedido o cotizaciÃ³n generada",
+  "Objeción del cliente enfrentada y registrada",
+  "Catálogo o producto mostrado",
+  "Próximo paso acordado con el cliente",
+  "Pedido o cotización generada",
   "Datos de contacto del cliente actualizados",
 ];
 
-// Racha de constancia: dÃ­as consecutivos (hasta ayer/hoy) en que el asesor
-// completÃ³ TODOS los puntos del checklist de cierre de visita.
+// Racha de constancia: días consecutivos (hasta ayer/hoy) en que el asesor
+// completó TODOS los puntos del checklist de cierre de visita.
 function calcularRacha(asesorId) {
   let racha = 0;
   for (let i = 0; i < 60; i++) {
@@ -1198,20 +1198,20 @@ const state = {
 };
 
 // ---------------------------------------------------------------------------
-// MENÃ DESPLEGABLE (estilo Chrome) â superior izquierdo, igual en dashboard
-// y portal. Cada opciÃ³n abre su contenido en una ventana modal.
+// MENÚ DESPLEGABLE (estilo Chrome) — superior izquierdo, igual en dashboard
+// y portal. Cada opción abre su contenido en una ventana modal.
 // ---------------------------------------------------------------------------
 function renderMenu(items) {
   const opts = items.map((it) =>
     `<button type="button" class="menu-item" data-menu-action="${esc(it.action)}">
-      <span class="menu-item-ic">${it.icon || "â¢"}</span>${esc(it.label)}
+      <span class="menu-item-ic">${it.icon || "•"}</span>${esc(it.label)}
     </button>`
   ).join("");
   return `
     <div class="menu-wrap">
-      <button type="button" class="menu-btn ${state.menuOpen ? "is-open" : ""}" id="menu-toggle-btn" aria-label="Abrir menÃº de opciones" aria-expanded="${state.menuOpen}">
+      <button type="button" class="menu-btn ${state.menuOpen ? "is-open" : ""}" id="menu-toggle-btn" aria-label="Abrir menú de opciones" aria-expanded="${state.menuOpen}">
         <span class="menu-btn-icon"><span></span><span></span><span></span></span>
-        <span class="menu-btn-label">MenÃº</span>
+        <span class="menu-btn-label">Menú</span>
       </button>
       <div class="menu-dropdown ${state.menuOpen ? "open" : ""}" id="menu-dropdown">
         <div class="menu-dropdown-title">Opciones</div>
@@ -1257,8 +1257,8 @@ function enviarPorWhatsApp(numero, mensaje) {
   return { ok: false };
 }
 
-// mailto: no permite adjuntar archivos por seguridad del navegador â solo
-// abre un borrador con destinatario, asunto y cuerpo ya escritos. El envÃ­o
+// mailto: no permite adjuntar archivos por seguridad del navegador — solo
+// abre un borrador con destinatario, asunto y cuerpo ya escritos. El envío
 // final (y adjuntar archivos a mano si aplica) lo confirma la persona.
 function enviarPorCorreo(destino, asunto, mensaje) {
   window.location.href = `mailto:${destino}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(mensaje)}`;
@@ -1268,21 +1268,21 @@ function informeClienteTexto(asesor, d) {
   const archivosTxt = (d.archivos && d.archivos.length)
     ? d.archivos.join(", ")
     : "Ninguno adjuntado en el portal.";
-  return `INFORME COMERCIAL DE CLIENTE â REQUERIMIENTO DE VENTAS
-Asesor: ${asesor.nombre} Â· Zona Austro Â· Supervisor: Diego Barros
-Fecha: ${d.fecha} Â· Provincia: ${d.provincia} Â· Sub-zona: ${d.subzona}
-DivisiÃ³n comercial: ${d.division} Â· Requerimiento: ${d.requerimiento}
+  return `INFORME COMERCIAL DE CLIENTE — REQUERIMIENTO DE VENTAS
+Asesor: ${asesor.nombre} · Zona Austro · Supervisor: Diego Barros
+Fecha: ${d.fecha} · Provincia: ${d.provincia} · Sub-zona: ${d.subzona}
+División comercial: ${d.division} · Requerimiento: ${d.requerimiento}
 
 CLIENTE
-RUC: ${d.ruc} Â· RazÃ³n social: ${d.razonSocial} Â· Nombre comercial: ${d.nombreComercial}
+RUC: ${d.ruc} · Razón social: ${d.razonSocial} · Nombre comercial: ${d.nombreComercial}
 Contacto: ${d.contacto} (${d.telContacto})
 
 Comentarios del asesor:
 ${d.comentarios}
 
-ARCHIVOS ADJUNTOS (RUC, cÃ©dula, solicitud, fotos, etc.):
+ARCHIVOS ADJUNTOS (RUC, cédula, solicitud, fotos, etc.):
 ${archivosTxt}
-â ï¸ Recordatorio: estos archivos NO se adjuntan solos al mensaje â el asesor debe
+⚠️ Recordatorio: estos archivos NO se adjuntan solos al mensaje — el asesor debe
 adjuntarlos manualmente en el chat de WhatsApp o en el correo antes de enviar.`;
 }
 
@@ -1290,22 +1290,22 @@ function badge(color, text) { return `<span class="badge c-${color}">${esc(text)
 function metric(color, value, suffix) { return `<span class="metric c-${color}">${esc(value)}${suffix ? esc(suffix) : ""}</span>`; }
 
 const VIDEOS_CAPACITACION = [
-  { titulo: "CÃ³mo vender cualquier producto", desc: "Recomendado para repasar antes de visitas, en reuniones de equipo o como refuerzo para vendedores nuevos.", src: "videos/Capacitacion_Como_Vender_Cualquier_Producto.mp4" },
-  { titulo: "La clave para vender: escuchar y preguntar", desc: "TÃ©cnica de escucha activa y preguntas para entender mejor la necesidad del cliente.", src: "videos/Capacitacion_Clave_Escuchar_Preguntar.mp4" },
-  { titulo: "TÃ©cnica de ventas contraintuitiva", desc: "Estrategia poco convencional para cambiar el enfoque de la conversaciÃ³n de venta.", src: "videos/Capacitacion_Tecnica_Contraintuitiva.mp4" },
-  { titulo: "El mejor ejemplo de llamada en frÃ­o", desc: "Ejemplo prÃ¡ctico de cÃ³mo abrir y manejar una llamada en frÃ­o con un prospecto.", src: "videos/Capacitacion_Ejemplo_Llamada_Frio.mp4" },
-  { titulo: "TÃ©cnica de ventas para persuadir", desc: "Recursos de persuasiÃ³n aplicables en visita o en llamada con el cliente.", src: "videos/Capacitacion_Tecnica_Persuadir.mp4" },
+  { titulo: "Cómo vender cualquier producto", desc: "Recomendado para repasar antes de visitas, en reuniones de equipo o como refuerzo para vendedores nuevos.", src: "videos/Capacitacion_Como_Vender_Cualquier_Producto.mp4" },
+  { titulo: "La clave para vender: escuchar y preguntar", desc: "Técnica de escucha activa y preguntas para entender mejor la necesidad del cliente.", src: "videos/Capacitacion_Clave_Escuchar_Preguntar.mp4" },
+  { titulo: "Técnica de ventas contraintuitiva", desc: "Estrategia poco convencional para cambiar el enfoque de la conversación de venta.", src: "videos/Capacitacion_Tecnica_Contraintuitiva.mp4" },
+  { titulo: "El mejor ejemplo de llamada en frío", desc: "Ejemplo práctico de cómo abrir y manejar una llamada en frío con un prospecto.", src: "videos/Capacitacion_Ejemplo_Llamada_Frio.mp4" },
+  { titulo: "Técnica de ventas para persuadir", desc: "Recursos de persuasión aplicables en visita o en llamada con el cliente.", src: "videos/Capacitacion_Tecnica_Persuadir.mp4" },
 ];
 
 function contenidoCapacitacion() {
   const videosHtml = VIDEOS_CAPACITACION.map((v) => v.pendiente ? `
     <div class="cap-video-item" style="margin-bottom:18px;opacity:.55;">
-      <p class="hint" style="margin:0 0 8px;font-weight:700;color:var(--slate-700);">ð¬ ${esc(v.titulo)}</p>
+      <p class="hint" style="margin:0 0 8px;font-weight:700;color:var(--slate-700);">🎬 ${esc(v.titulo)}</p>
       <p class="hint" style="margin:0 0 10px;">${esc(v.desc)}</p>
-      <p class="hint" style="margin:0;">â³ Disponible prÃ³ximamente.</p>
+      <p class="hint" style="margin:0;">⏳ Disponible próximamente.</p>
     </div>` : `
     <div class="cap-video-item" style="margin-bottom:18px;">
-      <p class="hint" style="margin:0 0 8px;font-weight:700;color:var(--slate-700);">ð¬ ${esc(v.titulo)}</p>
+      <p class="hint" style="margin:0 0 8px;font-weight:700;color:var(--slate-700);">🎬 ${esc(v.titulo)}</p>
       <p class="hint" style="margin:0 0 10px;">${esc(v.desc)}</p>
       <video controls preload="metadata" style="width:100%;max-width:520px;border-radius:12px;display:block;background:#000;">
         <source src="${esc(v.src)}" type="video/mp4">
@@ -1318,18 +1318,18 @@ function contenidoCapacitacion() {
 function contenidoAccionesJefe() {
   return state.jefeUnlocked ? `
     <div class="actions-grid mb-20">
-      <button class="btn-action" data-action="modal-whatsapp">ð¬ Enviar seguimiento WhatsApp a asesores</button>
-      <button class="btn-action" data-action="modal-eba">ð Reporte EBA Web</button>
-      <button class="btn-action" data-action="modal-buenosdias">âï¸ Buenos dÃ­as equipo</button>
-      <button class="btn-action" data-action="modal-resumen7pm">ð Resumen 7pm a Diego</button>
+      <button class="btn-action" data-action="modal-whatsapp">💬 Enviar seguimiento WhatsApp a asesores</button>
+      <button class="btn-action" data-action="modal-eba">📊 Reporte EBA Web</button>
+      <button class="btn-action" data-action="modal-buenosdias">☀️ Buenos días equipo</button>
+      <button class="btn-action" data-action="modal-resumen7pm">🕖 Resumen 7pm a Diego</button>
     </div>
-    <button id="btn-relock" class="btn-unlock-toggle">ð Ocultar estas acciones de nuevo</button>
+    <button id="btn-relock" class="btn-unlock-toggle">🔒 Ocultar estas acciones de nuevo</button>
   ` : `
     <div class="lock-card">
-      <div class="lock-icon">ð</div>
-      <p class="hint" style="margin:0;">Estos botones solo los puede ver el Jefe Zonal. Ingresa el cÃ³digo de acceso para mostrarlos.</p>
+      <div class="lock-icon">🔒</div>
+      <p class="hint" style="margin:0;">Estos botones solo los puede ver el Jefe Zonal. Ingresa el código de acceso para mostrarlos.</p>
       <form id="jefe-unlock-form" class="unlock-form">
-        <input id="jefe-unlock-code" type="password" inputmode="numeric" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" name="codigo-jefe-zonal-no-autofill" placeholder="CÃ³digo" />
+        <input id="jefe-unlock-code" type="password" inputmode="numeric" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" name="codigo-jefe-zonal-no-autofill" placeholder="Código" />
         <button type="submit" class="btn-primary">Desbloquear</button>
       </form>
       ${state.jefeError ? `<p class="login-error">${esc(state.jefeError)}</p>` : ""}
@@ -1350,16 +1350,16 @@ function wireAccionesJefe() {
         state.jefeUnlocked = true;
         state.jefeError = "";
       } else {
-        state.jefeError = "CÃ³digo incorrecto. Estas acciones son solo para el Jefe Zonal.";
+        state.jefeError = "Código incorrecto. Estas acciones son solo para el Jefe Zonal.";
       }
-      openModal("ð Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe);
+      openModal("🔒 Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe);
     });
   }
   const btnRelock = document.getElementById("btn-relock");
   if (btnRelock) {
     btnRelock.addEventListener("click", () => {
       state.jefeUnlocked = false;
-      openModal("ð Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe);
+      openModal("🔒 Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe);
     });
   }
 }
@@ -1373,24 +1373,24 @@ function contenidoLoginAsesor() {
         <option value="">Selecciona un asesor...</option>
         ${opcionesAsesores}
       </select>
-      <input id="login-code" type="text" inputmode="numeric" maxlength="4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" name="codigo-zona-austro-no-autofill" placeholder="CÃ³digo de acceso (4 dÃ­gitos)" required />
-      <button type="submit" class="btn-primary">â Entrar</button>
+      <input id="login-code" type="text" inputmode="numeric" maxlength="4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" name="codigo-zona-austro-no-autofill" placeholder="Código de acceso (4 dígitos)" required />
+      <button type="submit" class="btn-primary">→ Entrar</button>
     </form>
     <p id="login-debug" class="hint"></p>
     <p id="login-error" class="login-error">${esc(state.loginError)}</p>
-    <p class="hint">Acceso por cÃ³digo simple â cada asesor tiene el suyo. No es autenticaciÃ³n segura real, solo evita confusiÃ³n entre perfiles.</p>`;
+    <p class="hint">Acceso por código simple — cada asesor tiene el suyo. No es autenticación segura real, solo evita confusión entre perfiles.</p>`;
 }
 
 function wireLoginAsesor() {
   const codeInput = document.getElementById("login-code");
   const debugEl = document.getElementById("login-debug");
   codeInput.addEventListener("input", () => {
-    // Solo dÃ­gitos, mÃ¡ximo 4 â evita que autocompletar del navegador
-    // meta letras/sÃ­mbolos o un valor guardado mÃ¡s largo en el campo.
+    // Solo dígitos, máximo 4 — evita que autocompletar del navegador
+    // meta letras/símbolos o un valor guardado más largo en el campo.
     const cleaned = codeInput.value.replace(/\D/g, "").slice(0, 4);
     if (cleaned !== codeInput.value) codeInput.value = cleaned;
     debugEl.textContent = codeInput.value
-      ? `Ingresaste ${codeInput.value.length} dÃ­gito(s): "${codeInput.value}"`
+      ? `Ingresaste ${codeInput.value.length} dígito(s): "${codeInput.value}"`
       : "";
   });
 
@@ -1406,7 +1406,7 @@ function wireLoginAsesor() {
       state.asesorId = sel;
       render();
     } else {
-      state.loginError = `CÃ³digo incorrecto para este asesor (escribiste "${code}"). Verifica con tu jefe zonal.`;
+      state.loginError = `Código incorrecto para este asesor (escribiste "${code}"). Verifica con tu jefe zonal.`;
       document.getElementById("login-error").textContent = state.loginError;
     }
   });
@@ -1414,12 +1414,12 @@ function wireLoginAsesor() {
 
 function contenidoBuzonSugerenciasDash() {
   return `
-    <p class="hint" style="margin:0 0 10px;">Para cualquier persona del equipo, sin necesidad de iniciar sesiÃ³n. Tu sugerencia se envÃ­a directo a Diego Barros (Jefe Zonal) â tÃº eliges el canal y confirmas el envÃ­o.</p>
+    <p class="hint" style="margin:0 0 10px;">Para cualquier persona del equipo, sin necesidad de iniciar sesión. Tu sugerencia se envía directo a Diego Barros (Jefe Zonal) — tú eliges el canal y confirmas el envío.</p>
     <form id="sug-form-dash">
-      <div class="field"><label>Tu sugerencia</label><textarea id="sug-texto-dash" rows="3" placeholder="Â¿QuÃ© mejorarÃ­as del Centro de Comando o de la operaciÃ³n de la zona?"></textarea></div>
+      <div class="field"><label>Tu sugerencia</label><textarea id="sug-texto-dash" rows="3" placeholder="¿Qué mejorarías del Centro de Comando o de la operación de la zona?"></textarea></div>
       <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
-        <button type="button" class="btn-primary" data-canal="whatsapp" id="sug-wa-dash">ð² Enviar por WhatsApp</button>
-        <button type="button" class="btn-primary" data-canal="correo" id="sug-mail-dash" style="background:var(--slate-600);">âï¸ Enviar por correo</button>
+        <button type="button" class="btn-primary" data-canal="whatsapp" id="sug-wa-dash">📲 Enviar por WhatsApp</button>
+        <button type="button" class="btn-primary" data-canal="correo" id="sug-mail-dash" style="background:var(--slate-600);">✉️ Enviar por correo</button>
       </div>
     </form>
     <div id="sug-confirm-dash"></div>`;
@@ -1430,15 +1430,15 @@ function wireBuzonSugerenciasDash() {
     const texto = document.getElementById("sug-texto-dash").value.trim();
     const confirmEl = document.getElementById("sug-confirm-dash");
     if (!texto) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
-    const mensaje = `Sugerencia de mejora â Centro de Comando Zona Austro\n(Enviada desde el dashboard principal, sin identificar asesor)\n\n${texto}`;
+    const mensaje = `Sugerencia de mejora — Centro de Comando Zona Austro\n(Enviada desde el dashboard principal, sin identificar asesor)\n\n${texto}`;
     if (canal === "whatsapp") {
       const r = enviarPorWhatsApp(WHATSAPP_DIEGO, mensaje);
       confirmEl.innerHTML = r.ok
-        ? `<p class="confirm-banner">â Se abriÃ³ WhatsApp con la sugerencia lista. Solo falta confirmar el envÃ­o.</p>`
-        : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">â ï¸ El nÃºmero de WhatsApp de Diego aÃºn no estÃ¡ configurado. CopiÃ© el mensaje al portapapeles.</p>`;
+        ? `<p class="confirm-banner">✅ Se abrió WhatsApp con la sugerencia lista. Solo falta confirmar el envío.</p>`
+        : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">⚠️ El número de WhatsApp de Diego aún no está configurado. Copié el mensaje al portapapeles.</p>`;
     } else {
-      enviarPorCorreo(EMAIL_DIEGO, "Sugerencia de mejora â Zona Austro", mensaje);
-      confirmEl.innerHTML = `<p class="confirm-banner">â Se abriÃ³ un borrador de correo a Diego con la sugerencia lista. Solo falta confirmar el envÃ­o.</p>`;
+      enviarPorCorreo(EMAIL_DIEGO, "Sugerencia de mejora — Zona Austro", mensaje);
+      confirmEl.innerHTML = `<p class="confirm-banner">✅ Se abrió un borrador de correo a Diego con la sugerencia lista. Solo falta confirmar el envío.</p>`;
     }
     document.getElementById("sug-texto-dash").value = "";
   }
@@ -1463,7 +1463,7 @@ function renderDashboard() {
       <td>${metric(a.m.cCob, `${a.m.coberturaCalculada}/${a.baseCobertura} clientes`, ` (${pct1(a.m.pctCobertura)})`)}</td>
       <td>${metric(a.m.cCV, money(a.carteraVencida))}</td>
       <td>${metric(a.m.cInact, String(a.clientesInactivos), ` (${pct1(a.m.pctInactivos)})`)}</td>
-      <td>${cart ? metric(cVendidos, `${vendidos}/${asignados}`, ` (${pct1(pctVendidos)})`) : "â"}</td>
+      <td>${cart ? metric(cVendidos, `${vendidos}/${asignados}`, ` (${pct1(pctVendidos)})`) : "—"}</td>
       <td>${badge(a.m.estadoColor, a.m.estado)}</td>
     </tr>`;
   }).join("");
@@ -1471,16 +1471,16 @@ function renderDashboard() {
   document.getElementById("app").innerHTML = `
     <div class="page">
       ${renderMenu([
-        { icon: "ð¥", label: "CapacitaciÃ³n rÃ¡pida", action: "capacitacion" },
-        { icon: "ð", label: "Acciones jefe zonal", action: "jefe" },
-        { icon: "ð¡", label: "BuzÃ³n de sugerencias", action: "sugerencias" },
+        { icon: "🎥", label: "Capacitación rápida", action: "capacitacion" },
+        { icon: "🔒", label: "Acciones jefe zonal", action: "jefe" },
+        { icon: "💡", label: "Buzón de sugerencias", action: "sugerencias" },
       ])}
       <div class="container">
         <div class="disclaimer">
-          Venta y presupuesto: datos reales de Power BI, SOLO ${MES_NOMBRE} ${AÃO_ACTUAL} (no acumulado del aÃ±o).
-          Cobertura y cartera vencida: datos reales de correos diarios sac@soyoda.com â CM016 y
-          CXC008 (corte ${FECHA_HOY}). EnvÃ­o por WhatsApp individual a asesores: activo con un clic.
-          Mensajes a grupos (Buenos dÃ­as / Resumen): se copian al portapapeles para pegar en WhatsApp.
+          Venta y presupuesto: datos reales de Power BI, SOLO ${MES_NOMBRE} ${AÑO_ACTUAL} (no acumulado del año).
+          Cobertura y cartera vencida: datos reales de correos diarios sac@soyoda.com — CM016 y
+          CXC008 (corte ${FECHA_HOY}). Envío por WhatsApp individual a asesores: activo con un clic.
+          Mensajes a grupos (Buenos días / Resumen): se copian al portapapeles para pegar en WhatsApp.
         </div>
 
         <div class="brand">
@@ -1498,7 +1498,7 @@ function renderDashboard() {
                 fill="none" stroke="url(#soyodaGrad)" stroke-width="6" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="brand-text"><b>Soyoda<sup>Â®</sup></b><span>Grupo Corporativo Soyoda S.A.</span></div>
+          <div class="brand-text"><b>Soyoda<sup>®</sup></b><span>Grupo Corporativo Soyoda S.A.</span></div>
         </div>
 
         <div class="header-card">
@@ -1511,61 +1511,61 @@ function renderDashboard() {
               <span style="font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px;">Zona Austro</span>
             </div>
             <h1>Centro de Comando Zona Austro</h1>
-            <p>Grupo Corporativo Soyoda S.A. Â· Jefe Zonal: Diego Barros Â· dÃ­a ${DIA_ACTUAL} de ${DIAS_MES}</p>
+            <p>Grupo Corporativo Soyoda S.A. · Jefe Zonal: Diego Barros · día ${DIA_ACTUAL} de ${DIAS_MES}</p>
             <div class="header-pills">
-              <span class="hpill">ð DÃ­a ${DIA_ACTUAL}/${DIAS_MES}</span>
-              <span class="hpill">ð Datos reales (Power BI + correos SAC)</span>
-              <span class="hpill">â ï¸ ${ASESORES_CRITICOS.length} en alerta</span>
+              <span class="hpill">📅 Día ${DIA_ACTUAL}/${DIAS_MES}</span>
+              <span class="hpill">📊 Datos reales (Power BI + correos SAC)</span>
+              <span class="hpill">⚠️ ${ASESORES_CRITICOS.length} en alerta</span>
             </div>
           </div>
         </div>
 
         <div class="portal-cta">
           <div class="portal-cta-info">
-            <div class="portal-cta-icon">ð¥</div>
+            <div class="portal-cta-icon">👥</div>
             <div>
               <h3>Portal individual por asesor</h3>
-              <p>Cada asesor entra con su cÃ³digo personal para ver sus metas, checklist, catÃ¡logos, casos ganados y mÃ¡s</p>
+              <p>Cada asesor entra con su código personal para ver sus metas, checklist, catálogos, casos ganados y más</p>
             </div>
           </div>
-          <button type="button" class="btn-portal-cta" id="btn-portal-cta">Entrar al portal â</button>
+          <button type="button" class="btn-portal-cta" id="btn-portal-cta">Entrar al portal →</button>
         </div>
 
         <div class="grid grid-5 mb-20">
           <div class="card card-sm card-clickable" data-kpi-zona="venta">
-            <div class="icon-badge blue">ð°</div>
+            <div class="icon-badge blue">💰</div>
             <p class="label-xs">Venta zona vs meta</p>
             <p class="val-lg">${esc(money(TOTAL_VENTA))}</p>
             <p class="val-sub">de ${esc(money(TOTAL_META))}</p>
             <div class="progress-track"><div class="progress-fill ${colorCumplimiento(PCT_CUMPLIMIENTO_ZONA)}" style="width:${Math.min(100, PCT_CUMPLIMIENTO_ZONA).toFixed(0)}%"></div></div>
-            <span class="tap-hint">ð ver por asesor</span>
+            <span class="tap-hint">🔍 ver por asesor</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-zona="cumplimiento">
-            <div class="icon-badge ${colorCumplimiento(PCT_CUMPLIMIENTO_ZONA)==='green'?'green':colorCumplimiento(PCT_CUMPLIMIENTO_ZONA)==='yellow'?'yellow':'red'}">ð¯</div>
+            <div class="icon-badge ${colorCumplimiento(PCT_CUMPLIMIENTO_ZONA)==='green'?'green':colorCumplimiento(PCT_CUMPLIMIENTO_ZONA)==='yellow'?'yellow':'red'}">🎯</div>
             <p class="label-xs">% Cumplimiento zona</p>
             ${metric(colorCumplimiento(PCT_CUMPLIMIENTO_ZONA), pct1(PCT_CUMPLIMIENTO_ZONA))}
             <div class="progress-track"><div class="progress-fill ${colorCumplimiento(PCT_CUMPLIMIENTO_ZONA)}" style="width:${Math.min(100, PCT_CUMPLIMIENTO_ZONA).toFixed(0)}%"></div></div>
-            <span class="tap-hint">ð ver por asesor</span>
+            <span class="tap-hint">🔍 ver por asesor</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-zona="cobertura">
-            <div class="icon-badge ${colorCobertura(PCT_COBERTURA_ZONA)==='green'?'green':colorCobertura(PCT_COBERTURA_ZONA)==='yellow'?'yellow':'red'}">ð¡</div>
+            <div class="icon-badge ${colorCobertura(PCT_COBERTURA_ZONA)==='green'?'green':colorCobertura(PCT_COBERTURA_ZONA)==='yellow'?'yellow':'red'}">📡</div>
             <p class="label-xs">% Cobertura zona</p>
             ${metric(colorCobertura(PCT_COBERTURA_ZONA), pct1(PCT_COBERTURA_ZONA))}
             <div class="progress-track"><div class="progress-fill ${colorCobertura(PCT_COBERTURA_ZONA)}" style="width:${Math.min(100, PCT_COBERTURA_ZONA).toFixed(0)}%"></div></div>
-            <span class="tap-hint">ð ver por asesor</span>
+            <span class="tap-hint">🔍 ver por asesor</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-zona="cartera">
-            <div class="icon-badge red">ð§¾</div>
+            <div class="icon-badge red">🧾</div>
             <p class="label-xs">Cartera vencida zona</p>
             ${metric(colorCarteraVencida(TOTAL_CARTERA_VENCIDA), money(TOTAL_CARTERA_VENCIDA))}
-            <span class="tap-hint">ð ver por asesor</span>
+            <span class="tap-hint">🔍 ver por asesor</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-zona="alertas">
-            <div class="icon-badge red">ð¨</div>
-            <p class="label-xs">Alertas crÃ­ticas</p>
-            <p class="val-lg" style="color:var(--red-600)">â ï¸ ${ASESORES_CRITICOS.length}</p>
+            <div class="icon-badge red">🚨</div>
+            <p class="label-xs">Alertas críticas</p>
+            <p class="val-lg" style="color:var(--red-600)">⚠️ ${ASESORES_CRITICOS.length}</p>
             <p class="val-sub">${esc(criticosNombres)}</p>
-            <span class="tap-hint">ð ver detalle</span>
+            <span class="tap-hint">🔍 ver detalle</span>
           </div>
         </div>
 
@@ -1582,16 +1582,16 @@ function renderDashboard() {
         <div class="grid grid-2 mb-20">
           <div class="card">
             <h3 class="section-title">Venta real vs meta proporcional (por asesor)</h3>
-            <p class="chart-card-hint">ð¡ Pasa el cursor sobre una barra o haz clic para ver el detalle del asesor</p>
+            <p class="chart-card-hint">💡 Pasa el cursor sobre una barra o haz clic para ver el detalle del asesor</p>
             ${svgBarChart(BAR_DATA, [
               { key: "ventaReal", name: "Venta real", color: "#1d4ed8" },
               { key: "metaProporcional", name: "Meta proporcional", color: "#94a3b8" },
             ], { kpi: "venta" })}
           </div>
           <div class="card">
-            <h3 class="section-title">Acumulado zona: dÃ­a a dÃ­a vs meta proporcional</h3>
-            <p class="chart-card-hint">ð¡ Pasa el cursor sobre un punto o haz clic para ver el detalle del dÃ­a</p>
-            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por dÃ­a (eso se actualizarÃ¡ manualmente cada dÃ­a con los datos de eBA Web).</p>
+            <h3 class="section-title">Acumulado zona: día a día vs meta proporcional</h3>
+            <p class="chart-card-hint">💡 Pasa el cursor sobre un punto o haz clic para ver el detalle del día</p>
+            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por día (eso se actualizará manualmente cada día con los datos de eBA Web).</p>
             ${svgLineChart(LINE_DATA, [
               { key: "realAcumulado", name: "Real acumulado", color: "#1d4ed8" },
               { key: "metaAcumulada", name: "Meta acumulada", color: "#94a3b8", dash: "4 4" },
@@ -1607,13 +1607,13 @@ function renderDashboard() {
   });
 
   document.getElementById("btn-portal-cta").addEventListener("click", () => {
-    openModal("ð¥ Portal individual por asesor", contenidoLoginAsesor(), wireLoginAsesor);
+    openModal("👥 Portal individual por asesor", contenidoLoginAsesor(), wireLoginAsesor);
   });
 
   wireMenu({
-    capacitacion: () => openModal("ð¥ CapacitaciÃ³n rÃ¡pida para el equipo", contenidoCapacitacion()),
-    jefe: () => openModal("ð Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe),
-    sugerencias: () => openModal("ð¡ BuzÃ³n de sugerencias de mejora", contenidoBuzonSugerenciasDash(), wireBuzonSugerenciasDash),
+    capacitacion: () => openModal("🎥 Capacitación rápida para el equipo", contenidoCapacitacion()),
+    jefe: () => openModal("🔒 Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe),
+    sugerencias: () => openModal("💡 Buzón de sugerencias de mejora", contenidoBuzonSugerenciasDash(), wireBuzonSugerenciasDash),
   });
 }
 
@@ -1622,8 +1622,8 @@ function handleAction(action) {
     const blocks = ASESORES_M.map((a, idx) => {
       const btnLabel = a.nombre.split(" ")[0];
       const btn = a.whatsapp
-        ? `<button class="btn-primary" style="margin-top:8px;font-size:12px;" data-wa-idx="${idx}">ð² Enviar a ${esc(btnLabel)}</button>`
-        : `<button class="btn-primary" style="margin-top:8px;font-size:12px;background:var(--amber-500);" data-copy-idx="${idx}">ð Copiar mensaje de ${esc(btnLabel)}</button>`;
+        ? `<button class="btn-primary" style="margin-top:8px;font-size:12px;" data-wa-idx="${idx}">📲 Enviar a ${esc(btnLabel)}</button>`
+        : `<button class="btn-primary" style="margin-top:8px;font-size:12px;background:var(--amber-500);" data-copy-idx="${idx}">📋 Copiar mensaje de ${esc(btnLabel)}</button>`;
       return `<div class="wa-block"><p>${esc(a.nombre)}</p><pre>${esc(mensajeWhatsApp(a))}</pre>${btn}</div>`;
     }).join("");
     openModal("Seguimiento WhatsApp a asesores", blocks, () => {
@@ -1637,40 +1637,40 @@ function handleAction(action) {
         btn.addEventListener("click", () => {
           const a = ASESORES_M[+btn.dataset.copyIdx];
           navigator.clipboard.writeText(mensajeWhatsApp(a));
-          btn.textContent = "â Copiado";
+          btn.textContent = "✅ Copiado";
         });
       });
     });
   } else if (action === "modal-eba") {
     const msg = reporteEBATexto();
     openModal("Reporte EBA Web",
-      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-eba-copy">ð Copiar reporte</button><p style="font-size:12px;color:var(--amber-700);margin-top:6px;">Pega este mensaje en el grupo WhatsApp Zona Austro.</p><div id="confirm-eba"></div>`,
+      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-eba-copy">📋 Copiar reporte</button><p style="font-size:12px;color:var(--amber-700);margin-top:6px;">Pega este mensaje en el grupo WhatsApp Zona Austro.</p><div id="confirm-eba"></div>`,
       () => {
         document.getElementById("btn-eba-copy").addEventListener("click", () => {
           navigator.clipboard.writeText(msg);
-          document.getElementById("confirm-eba").innerHTML = `<p class="confirm-banner">â Reporte copiado. PÃ©galo en el grupo WhatsApp.</p>`;
+          document.getElementById("confirm-eba").innerHTML = `<p class="confirm-banner">✅ Reporte copiado. Pégalo en el grupo WhatsApp.</p>`;
         });
       });
   } else if (action === "modal-buenosdias") {
     const msg = mensajeBuenosDias();
-    openModal("Buenos dÃ­as equipo",
-      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-bd-copy">ð Copiar mensaje</button><p style="font-size:12px;color:var(--amber-700);margin-top:6px;">Pega este mensaje en el grupo WhatsApp Zona Austro.</p><div id="confirm-bd"></div>`,
+    openModal("Buenos días equipo",
+      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-bd-copy">📋 Copiar mensaje</button><p style="font-size:12px;color:var(--amber-700);margin-top:6px;">Pega este mensaje en el grupo WhatsApp Zona Austro.</p><div id="confirm-bd"></div>`,
       () => {
         document.getElementById("btn-bd-copy").addEventListener("click", () => {
           navigator.clipboard.writeText(msg);
-          document.getElementById("confirm-bd").innerHTML = `<p class="confirm-banner">â Mensaje copiado. PÃ©galo en el grupo WhatsApp.</p>`;
+          document.getElementById("confirm-bd").innerHTML = `<p class="confirm-banner">✅ Mensaje copiado. Pégalo en el grupo WhatsApp.</p>`;
         });
       });
   } else if (action === "modal-resumen7pm") {
     const msg = resumen7pm();
     openModal("Resumen 7pm a Diego",
-      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-res7-wa">ð² Enviar a mi WhatsApp</button><div id="confirm-res7"></div>`,
+      `<pre>${esc(msg)}</pre><button class="btn-primary" style="margin-top:10px;" id="btn-res7-wa">📲 Enviar a mi WhatsApp</button><div id="confirm-res7"></div>`,
       () => {
         document.getElementById("btn-res7-wa").addEventListener("click", () => {
           const r = enviarPorWhatsApp(WHATSAPP_DIEGO, msg);
           document.getElementById("confirm-res7").innerHTML = r
-            ? `<p class="confirm-banner">â Se abriÃ³ WhatsApp con el resumen listo. Solo confirma el envÃ­o.</p>`
-            : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">â ï¸ No se pudo abrir WhatsApp. Revisa que el nÃºmero estÃ© configurado.</p>`;
+            ? `<p class="confirm-banner">✅ Se abrió WhatsApp con el resumen listo. Solo confirma el envío.</p>`
+            : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">⚠️ No se pudo abrir WhatsApp. Revisa que el número esté configurado.</p>`;
         });
       });
   }
@@ -1680,7 +1680,7 @@ function openModal(title, bodyHtml, afterRender) {
   document.getElementById("modal-root").innerHTML = `
     <div class="modal-overlay" id="modal-overlay">
       <div class="modal-box">
-        <div class="modal-head"><h3>${esc(title)}</h3><button class="modal-close" id="modal-close-btn">â</button></div>
+        <div class="modal-head"><h3>${esc(title)}</h3><button class="modal-close" id="modal-close-btn">✕</button></div>
         <div class="modal-body">${bodyHtml}</div>
       </div>
     </div>`;
@@ -1693,7 +1693,7 @@ function openModal(title, bodyHtml, afterRender) {
 function closeModal() { document.getElementById("modal-root").innerHTML = ""; }
 
 // ---------------------------------------------------------------------------
-// COMPARATIVOS POR KPI (portal individual) â clic en una tarjeta de KPI
+// COMPARATIVOS POR KPI (portal individual) — clic en una tarjeta de KPI
 // abre un modal con barras comparativas (real vs. meta/umbral).
 // ---------------------------------------------------------------------------
 function cmpBar(label, value, max, color, displayValue) {
@@ -1710,22 +1710,22 @@ function tablaMetasAsesor(a) {
   const desfase = a.ventaReal - metaProp;
   const filas = [
     {
-      kpi: "venta", icon: "ð°", nombre: "Venta vs meta",
+      kpi: "venta", icon: "💰", nombre: "Venta vs meta",
       real: money(a.ventaReal), meta: money(a.presupuesto), color: a.m.cCumpl,
-      detalle: `${desfase >= 0 ? "+" : ""}${money(desfase)} vs. meta al dÃ­a ${DIA_ACTUAL}`,
+      detalle: `${desfase >= 0 ? "+" : ""}${money(desfase)} vs. meta al día ${DIA_ACTUAL}`,
     },
     {
-      kpi: "cobertura", icon: "ð¡", nombre: "Cobertura",
+      kpi: "cobertura", icon: "📡", nombre: "Cobertura",
       real: `${a.m.coberturaCalculada}/${a.baseCobertura}`, meta: pct1(a.m.pctCobertura), color: a.m.cCob,
-      detalle: "Clientes con compra â¥$300/mes",
+      detalle: "Clientes con compra ≥$300/mes",
     },
     {
-      kpi: "cartera", icon: "ð§¾", nombre: "Cartera vencida",
-      real: money(a.carteraVencida), meta: "â¤ $5,000", color: a.m.cCV,
-      detalle: "Umbral de alerta / crÃ­tico",
+      kpi: "cartera", icon: "🧾", nombre: "Cartera vencida",
+      real: money(a.carteraVencida), meta: "≤ $5,000", color: a.m.cCV,
+      detalle: "Umbral de alerta / crítico",
     },
     {
-      kpi: "inactivos", icon: "ð¥", nombre: "Clientes inactivos",
+      kpi: "inactivos", icon: "👥", nombre: "Clientes inactivos",
       real: String(a.clientesInactivos), meta: `${pct1(a.m.pctInactivos)} de la cartera`, color: a.m.cInact,
       detalle: `de ${a.baseCobertura} asignados`,
     },
@@ -1735,7 +1735,7 @@ function tablaMetasAsesor(a) {
       <td>${f.icon} ${esc(f.nombre)}</td>
       <td>${esc(f.real)}</td>
       <td>${esc(f.meta)}</td>
-      <td>${badge(f.color, f.color === "green" ? "En meta" : f.color === "yellow" ? "Alerta" : "CrÃ­tico")}</td>
+      <td>${badge(f.color, f.color === "green" ? "En meta" : f.color === "yellow" ? "Alerta" : "Crítico")}</td>
       <td class="val-sub">${esc(f.detalle)}</td>
     </tr>`).join("");
   return `
@@ -1755,73 +1755,73 @@ function abrirComparativoKPI(tipo, a) {
     const metaProp = Math.round(a.presupuesto * PROPORCION_DIA);
     const max = Math.max(a.ventaReal, a.presupuesto, metaProp);
     const desfase = a.ventaReal - metaProp;
-    title = `ð° Venta real â ${nombre}`;
+    title = `💰 Venta real — ${nombre}`;
     html = cmpBar("Venta real (acumulado del mes)", a.ventaReal, max, a.m.cCumpl, money(a.ventaReal))
-      + cmpBar(`Meta proporcional al dÃ­a ${DIA_ACTUAL}`, metaProp, max, "yellow", money(metaProp))
+      + cmpBar(`Meta proporcional al día ${DIA_ACTUAL}`, metaProp, max, "yellow", money(metaProp))
       + cmpBar("Meta total del mes", a.presupuesto, max, "green", money(a.presupuesto))
       + `<p class="cmp-note">Desfase vs. meta proporcional a la fecha: <strong>${desfase >= 0 ? "+" : ""}${esc(money(desfase))}</strong></p>`;
   } else if (tipo === "cumplimiento") {
-    title = `ð¯ % Cumplimiento â ${nombre}`;
+    title = `🎯 % Cumplimiento — ${nombre}`;
     html = cmpBar("Cumplimiento actual", Math.min(100, a.m.pctCumplimiento), 100, a.m.cCumpl, pct1(a.m.pctCumplimiento))
       + cmpBar("Meta de zona", 100, 100, "green", "100%")
-      + `<p class="cmp-note">ð¢ â¥70% del presupuesto &nbsp; ð¡ 50â69% &nbsp; ð´ &lt;50%</p>`;
+      + `<p class="cmp-note">🟢 ≥70% del presupuesto &nbsp; 🟡 50–69% &nbsp; 🔴 &lt;50%</p>`;
   } else if (tipo === "cobertura") {
-    title = `ð¡ Cobertura (CM016) â ${nombre}`;
+    title = `📡 Cobertura (CM016) — ${nombre}`;
     html = cmpBar("Cobertura real (neta)", a.m.coberturaCalculada, a.baseCobertura, a.m.cCob, `${a.m.coberturaCalculada}/${a.baseCobertura}`)
-      + cmpBar("Ventas â¥$300 (antes de restar negativas)", a.cobVtas300, a.baseCobertura, "", String(a.cobVtas300))
+      + cmpBar("Ventas ≥$300 (antes de restar negativas)", a.cobVtas300, a.baseCobertura, "", String(a.cobVtas300))
       + cmpBar("Ventas negativas (se restan)", a.cobVentasNegativo, a.baseCobertura, "red", String(a.cobVentasNegativo))
-      + `<p class="cmp-note">Meta base: ${a.baseCobertura} clientes con compra â¥$300/mes. ð¢ â¥60% &nbsp; ð¡ 40â59% &nbsp; ð´ &lt;40%</p>`;
+      + `<p class="cmp-note">Meta base: ${a.baseCobertura} clientes con compra ≥$300/mes. 🟢 ≥60% &nbsp; 🟡 40–59% &nbsp; 🔴 &lt;40%</p>`;
   } else if (tipo === "cartera") {
     const max = Math.max(a.carteraVencida, 10000);
-    title = `ð§¾ Cartera vencida (CXC008) â ${nombre}`;
+    title = `🧾 Cartera vencida (CXC008) — ${nombre}`;
     html = cmpBar("Cartera vencida actual", a.carteraVencida, max, a.m.cCV, money(a.carteraVencida))
       + cmpBar("Umbral de alerta", 5000, max, "yellow", money(5000))
-      + cmpBar("Umbral crÃ­tico", 10000, max, "red", money(10000))
-      + `<p class="cmp-note">ð¢ &lt;$5,000 &nbsp; ð¡ $5,000â$10,000 &nbsp; ð´ &gt;$10,000</p>`;
+      + cmpBar("Umbral crítico", 10000, max, "red", money(10000))
+      + `<p class="cmp-note">🟢 &lt;$5,000 &nbsp; 🟡 $5,000–$10,000 &nbsp; 🔴 &gt;$10,000</p>`;
   } else if (tipo === "inactivos") {
-    title = `ð¥ Clientes inactivos â ${nombre}`;
+    title = `👥 Clientes inactivos — ${nombre}`;
     html = cmpBar("Clientes inactivos", a.clientesInactivos, a.baseCobertura, a.m.cInact, `${a.clientesInactivos} (${pct1(a.m.pctInactivos)})`)
       + cmpBar("Cartera asignada (base)", a.baseCobertura, a.baseCobertura, "green", String(a.baseCobertura))
-      + `<p class="cmp-note">ð¢ â¤10% de la cartera &nbsp; ð¡ 11â20% &nbsp; ð´ &gt;20% inactiva. Prioriza recuperar primero a los de mayor compra histÃ³rica.</p>`;
+      + `<p class="cmp-note">🟢 ≤10% de la cartera &nbsp; 🟡 11–20% &nbsp; 🔴 &gt;20% inactiva. Prioriza recuperar primero a los de mayor compra histórica.</p>`;
   }
 
   openModal(title, html);
 }
 
 // ---------------------------------------------------------------------------
-// COMPARATIVOS POR KPI DE ZONA (dashboard principal) â clic en una tarjeta
-// de la fila superior abre el desglose por asesor de esa mÃ©trica.
+// COMPARATIVOS POR KPI DE ZONA (dashboard principal) — clic en una tarjeta
+// de la fila superior abre el desglose por asesor de esa métrica.
 // ---------------------------------------------------------------------------
 function abrirComparativoZona(tipo) {
   let title = "", html = "";
 
   if (tipo === "venta") {
-    title = "ð° Venta vs meta â por asesor";
+    title = "💰 Venta vs meta — por asesor";
     const max = Math.max(1, ...ASESORES_M.map((a) => Math.max(a.ventaReal, a.presupuesto)));
     html = ASESORES_M.map((a) =>
       cmpBar(a.nombre.split(" ")[0], a.ventaReal, max, a.m.cCumpl, `${money(a.ventaReal)} de ${money(a.presupuesto)}`)
     ).join("") + `<p class="cmp-note">Total zona: ${esc(money(TOTAL_VENTA))} de ${esc(money(TOTAL_META))} (${esc(pct1(PCT_CUMPLIMIENTO_ZONA))})</p>`;
   } else if (tipo === "cumplimiento") {
-    title = "ð¯ % Cumplimiento â por asesor";
+    title = "🎯 % Cumplimiento — por asesor";
     html = ASESORES_M.map((a) =>
       cmpBar(a.nombre.split(" ")[0], Math.min(100, a.m.pctCumplimiento), 100, a.m.cCumpl, pct1(a.m.pctCumplimiento))
     ).join("") + cmpBar("Meta de zona", 100, 100, "green", "100%")
       + `<p class="cmp-note">Cumplimiento de zona: ${esc(pct1(PCT_CUMPLIMIENTO_ZONA))}</p>`;
   } else if (tipo === "cobertura") {
-    title = "ð¡ % Cobertura â por asesor";
+    title = "📡 % Cobertura — por asesor";
     html = ASESORES_M.map((a) =>
       cmpBar(a.nombre.split(" ")[0], Math.min(100, a.m.pctCobertura), 100, a.m.cCob, `${a.m.coberturaCalculada}/${a.baseCobertura} (${pct1(a.m.pctCobertura)})`)
     ).join("") + `<p class="cmp-note">Cobertura de zona: ${esc(pct1(PCT_COBERTURA_ZONA))}</p>`;
   } else if (tipo === "cartera") {
-    title = "ð§¾ Cartera vencida â por asesor";
+    title = "🧾 Cartera vencida — por asesor";
     const max = Math.max(10000, ...ASESORES_M.map((a) => a.carteraVencida));
     html = ASESORES_M.map((a) =>
       cmpBar(a.nombre.split(" ")[0], a.carteraVencida, max, a.m.cCV, money(a.carteraVencida))
-    ).join("") + `<p class="cmp-note">Total zona: ${esc(money(TOTAL_CARTERA_VENCIDA))} Â· ð¢ &lt;$5,000 &nbsp; ð¡ $5,000â$10,000 &nbsp; ð´ &gt;$10,000</p>`;
+    ).join("") + `<p class="cmp-note">Total zona: ${esc(money(TOTAL_CARTERA_VENCIDA))} · 🟢 &lt;$5,000 &nbsp; 🟡 $5,000–$10,000 &nbsp; 🔴 &gt;$10,000</p>`;
   } else if (tipo === "alertas") {
-    title = `ð¨ Alertas crÃ­ticas (${ASESORES_CRITICOS.length})`;
+    title = `🚨 Alertas críticas (${ASESORES_CRITICOS.length})`;
     if (ASESORES_CRITICOS.length === 0) {
-      html = `<p class="cmp-note">Ninguna alerta crÃ­tica hoy. ð</p>`;
+      html = `<p class="cmp-note">Ninguna alerta crítica hoy. 🎉</p>`;
     } else {
       html = ASESORES_CRITICOS.map((a) => {
         const motivos = [];
@@ -1830,7 +1830,7 @@ function abrirComparativoZona(tipo) {
         if (a.m.cCV === "red") motivos.push("cartera vencida");
         if (a.m.cInact === "red") motivos.push("clientes inactivos");
         return `<div class="cmp-row">
-          <div class="cmp-label"><span>${esc(a.nombre)}</span>${badge("red", "CrÃ­tico")}</div>
+          <div class="cmp-label"><span>${esc(a.nombre)}</span>${badge("red", "Crítico")}</div>
           <p class="cmp-note" style="margin-top:0;">Motivo(s): ${esc(motivos.join(", ") || "ver detalle en la tabla principal")}.</p>
         </div>`;
       }).join("");
@@ -1843,7 +1843,7 @@ function abrirComparativoZona(tipo) {
 function tablaTopClientes(id) {
   const cart = CARTERA_CLIENTES[id];
   if (!cart || !cart.top || cart.top.length === 0) {
-    return `<p class="cmp-note">Sin datos de cartera para este asesor todavÃ­a.</p>`;
+    return `<p class="cmp-note">Sin datos de cartera para este asesor todavía.</p>`;
   }
   const filas = cart.top.map((c, i) => `
     <tr>
@@ -1855,10 +1855,10 @@ function tablaTopClientes(id) {
       <td>${c.est === "ACTIVO" ? badge("green", "Activo") : badge("red", "Inactivo")}</td>
     </tr>`).join("");
   return `
-    <p class="cmp-note" style="margin-bottom:10px;">Top 20 de ${cart.total} clientes asignados Â· ordenado por cupo promedio de compra (mayor a menor). Fuente: Plan de ReorganizaciÃ³n Territorial.</p>
+    <p class="cmp-note" style="margin-bottom:10px;">Top 20 de ${cart.total} clientes asignados · ordenado por cupo promedio de compra (mayor a menor). Fuente: Plan de Reorganización Territorial.</p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>#</th><th>Cliente</th><th>Cupo</th><th>Ventas aÃ±o</th><th>CategorÃ­a</th><th>Estado</th></tr></thead>
+        <thead><tr><th>#</th><th>Cliente</th><th>Cupo</th><th>Ventas año</th><th>Categoría</th><th>Estado</th></tr></thead>
         <tbody>${filas}</tbody>
       </table>
     </div>`;
@@ -1867,58 +1867,58 @@ function tablaTopClientes(id) {
 function abrirTopClientes(id) {
   const a = ASESORES_M.find((x) => x.id === id);
   const nombre = a ? a.nombre : id;
-  openModal(`ð Top 20 clientes â ${nombre}`, tablaTopClientes(id));
+  openModal(`📋 Top 20 clientes — ${nombre}`, tablaTopClientes(id));
 }
 
-// ----- CatÃ¡logos de productos -----
-// Los catÃ¡logos pequeÃ±os (â¤10 MB) viven en la carpeta /catalogos del propio
+// ----- Catálogos de productos -----
+// Los catálogos pequeños (≤10 MB) viven en la carpeta /catalogos del propio
 // repo de GitHub y se enlazan con ruta relativa. Los medianos/grandes, mientras
 // no se suban, quedan marcados como pendientes (sin enlace roto) hasta que
 // Diego comparta el link de OneDrive o se complete la subida a GitHub.
-// Mismo catÃ¡logo para los 4 asesores.
+// Mismo catálogo para los 4 asesores.
 const CATALOGOS_PRODUCTOS = [
-  { nombre: "CatÃ¡logo Total 2025-2026", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/Cat%C3%A1logo%20TOTAL%202025-2026%20low.pdf?csf=1&web=1&e=oUU7dC", mb: 261 },
-  { nombre: "Master FerreterÃ­a", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/MASTER%20CATALOGO%20FERRETERIA.pdf?csf=1&web=1&e=OkvTWU", mb: 1010 },
+  { nombre: "Catálogo Total 2025-2026", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/Cat%C3%A1logo%20TOTAL%202025-2026%20low.pdf?csf=1&web=1&e=oUU7dC", mb: 261 },
+  { nombre: "Master Ferretería", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/MASTER%20CATALOGO%20FERRETERIA.pdf?csf=1&web=1&e=OkvTWU", mb: 1010 },
   { nombre: "Master Consumo 2025", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/MASTER%20CATALOGO%20CONSUMO-2025-1.pdf?csf=1&web=1&e=55eBn7", mb: 206 },
   { nombre: "Wadfow 2025", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/CATALOGO%20WADFOW%202025.pdf?csf=1&web=1&e=7nG0Ql", mb: 252 },
   { nombre: "CMT 2025", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/CAT%C3%81LOGO%20CMT%202025.pdf?csf=1&web=1&e=tIKw4G", mb: 66 },
   { nombre: "Decakila 2025", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/CATALOGO%20DECAKILA%202025.pdf?csf=1&web=1&e=shhgeB", mb: 68 },
-  { nombre: "Hogar â Top Portafolio (nov 2024)", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/CATALOGO%20DIVISION%20HOGAR%20TOP%20PORTAFOLIO%20NOVIEMBRE%202024.pdf?csf=1&web=1&e=1bowfH", mb: 44 },
+  { nombre: "Hogar — Top Portafolio (nov 2024)", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/CATALOGO%20DIVISION%20HOGAR%20TOP%20PORTAFOLIO%20NOVIEMBRE%202024.pdf?csf=1&web=1&e=1bowfH", mb: 44 },
   { nombre: "Pro Lighting 2025", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/PRO%20LIGHTING%202025%20CP.pdf?csf=1&web=1&e=wlKkgJ", mb: 59 },
   { nombre: "Pro Lighting (adicional)", archivo: "catalogos/Pro_Lighting_Adicional.pdf", mb: 6 },
-  { nombre: "Mascotas â Petking 2025", archivo: "catalogos/CATALOGO MASCOTAS - PETKING 2025.pdf", mb: 16 },
+  { nombre: "Mascotas — Petking 2025", archivo: "catalogos/CATALOGO MASCOTAS - PETKING 2025.pdf", mb: 16 },
   { nombre: "Accesorios de pintura 2025", archivo: "https://soyodaecuador-my.sharepoint.com/:b:/r/personal/dbarros_soyoda_com/Documents/Escritorio/SOYODA%20TRABAJO/CATALOGOS/Accesorios%20de%20pintura%202025.pdf?csf=1&web=1&e=FcLCKv", mb: 31 },
-  { nombre: "ConstrucciÃ³n (enero 2025)", archivo: "catalogos/CATALOGO DE CONSTRUCCION ENERO 2025.pdf", mb: 12 },
-  { nombre: "LÃ­nea IluminaciÃ³n (enero 2023)", archivo: "catalogos/Catalogo LINEA ILUMINACION ENERo 2023.pdf", mb: 12 },
-  { nombre: "Aquarame GriferÃ­a 2024", archivo: "catalogos/Catalogo_Aquarame_Griferia_2024.pdf", mb: 6 },
-  { nombre: "AgrÃ­cola 2025", archivo: "catalogos/Catalogo_Agricola_2025.pdf", mb: 4 },
-  { nombre: "CatÃ¡logo de Crecer", archivo: "catalogos/Catalogo_de_Crecer.pdf", mb: 7 },
-  { nombre: "Puertas metÃ¡licas 2025", archivo: "catalogos/Puertas_Metalicas_2025.pdf", mb: 8 },
+  { nombre: "Construcción (enero 2025)", archivo: "catalogos/CATALOGO DE CONSTRUCCION ENERO 2025.pdf", mb: 12 },
+  { nombre: "Línea Iluminación (enero 2023)", archivo: "catalogos/Catalogo LINEA ILUMINACION ENERo 2023.pdf", mb: 12 },
+  { nombre: "Aquarame Grifería 2024", archivo: "catalogos/Catalogo_Aquarame_Griferia_2024.pdf", mb: 6 },
+  { nombre: "Agrícola 2025", archivo: "catalogos/Catalogo_Agricola_2025.pdf", mb: 4 },
+  { nombre: "Catálogo de Crecer", archivo: "catalogos/Catalogo_de_Crecer.pdf", mb: 7 },
+  { nombre: "Puertas metálicas 2025", archivo: "catalogos/Puertas_Metalicas_2025.pdf", mb: 8 },
   { nombre: "Pernos Soyoda", archivo: "catalogos/Catalogo_Pernos_Soyoda.pdf", mb: 2 },
-  { nombre: "Wall Panel â PresentaciÃ³n", archivo: "catalogos/Wall_Panel_Presentacion.pdf", mb: 1 },
+  { nombre: "Wall Panel — Presentación", archivo: "catalogos/Wall_Panel_Presentacion.pdf", mb: 1 },
 ];
 
 function renderCatalogos() {
   const items = CATALOGOS_PRODUCTOS.map((c) => c.pendiente ? `
     <span class="cat-item" style="opacity:.55; cursor:default;">
-      <span class="cat-ico">ð</span>
+      <span class="cat-ico">📄</span>
       <span class="cat-info">
         <b>${esc(c.nombre)}</b>
-        <small>${c.mb >= 1000 ? (c.mb / 1000).toFixed(1) + " GB" : c.mb + " MB"} Â· prÃ³ximamente</small>
+        <small>${c.mb >= 1000 ? (c.mb / 1000).toFixed(1) + " GB" : c.mb + " MB"} · próximamente</small>
       </span>
-      <span class="cat-go">â³</span>
+      <span class="cat-go">⏳</span>
     </span>` : `
     <a class="cat-item" href="${esc(c.archivo)}" target="_blank" rel="noopener">
-      <span class="cat-ico">ð</span>
+      <span class="cat-ico">📄</span>
       <span class="cat-info">
         <b>${esc(c.nombre)}</b>
-        <small>${c.mb >= 1000 ? (c.mb / 1000).toFixed(1) + " GB" : c.mb + " MB"} Â· PDF</small>
+        <small>${c.mb >= 1000 ? (c.mb / 1000).toFixed(1) + " GB" : c.mb + " MB"} · PDF</small>
       </span>
-      <span class="cat-go">Abrir â</span>
+      <span class="cat-go">Abrir →</span>
     </a>`).join("");
   const disponibles = CATALOGOS_PRODUCTOS.filter((c) => !c.pendiente).length;
   return `
-    <p class="hint" style="margin:0 0 10px;">${disponibles} de ${CATALOGOS_PRODUCTOS.length} catÃ¡logos disponibles. Se abren en una pestaÃ±a nueva. Los marcados "prÃ³ximamente" se estÃ¡n subiendo.</p>
+    <p class="hint" style="margin:0 0 10px;">${disponibles} de ${CATALOGOS_PRODUCTOS.length} catálogos disponibles. Se abren en una pestaña nueva. Los marcados "próximamente" se están subiendo.</p>
     <div class="cat-grid">${items}</div>`;
 }
 
@@ -1932,8 +1932,8 @@ function contenidoCarteraClientes(a) {
     <p class="hint" style="margin:0 0 10px;">Top 20 de ${cart ? cart.total : 0} clientes asignados.</p>
     <button class="btn-primary" id="btn-top-clientes">Ver tabla completa</button>
     ${enControl.length ? `<div class="alerta-control">
-      <b>â ï¸ ${enControl.length} cliente(s) en categorÃ­a "Control" â prioridad de seguimiento antes de que pasen a inactivos</b>
-      <ul>${enControl.map((c) => `<li>${esc(c.c)} Â· cupo ${money(c.cupo)} Â· ventas aÃ±o ${money(c.va)}</li>`).join("")}</ul>
+      <b>⚠️ ${enControl.length} cliente(s) en categoría "Control" — prioridad de seguimiento antes de que pasen a inactivos</b>
+      <ul>${enControl.map((c) => `<li>${esc(c.c)} · cupo ${money(c.cupo)} · ventas año ${money(c.va)}</li>`).join("")}</ul>
     </div>` : ""}`;
 }
 function wireCarteraClientes(a) {
@@ -1942,8 +1942,8 @@ function wireCarteraClientes(a) {
 
 function contenidoChecklist(a) {
   return `
-    <p class="hint" style="margin:0 0 10px;">MÃ¡rcalo al terminar cada visita. Te ayuda a no saltarte pasos y a Diego a ver constancia real del equipo.</p>
-    <span class="streak-badge">ð¥ Racha actual: ${calcularRacha(a.id)} dÃ­a(s) completos</span>
+    <p class="hint" style="margin:0 0 10px;">Márcalo al terminar cada visita. Te ayuda a no saltarte pasos y a Diego a ver constancia real del equipo.</p>
+    <span class="streak-badge">🔥 Racha actual: ${calcularRacha(a.id)} día(s) completos</span>
     <div id="checklist-list">
       ${CHECKLIST_ITEMS.map((item, i) => {
         const key = `${a.id}_${hoyKey()}`;
@@ -1963,12 +1963,12 @@ function wireChecklist(a) {
     state.checklists[key] = valores;
     saveLocal("soyoda_checklists", state.checklists);
     const completo = valores.every((v) => v);
-    openModal("â Checklist de cierre de visita â hoy", contenidoChecklist(a), () => wireChecklist(a));
+    openModal("✅ Checklist de cierre de visita — hoy", contenidoChecklist(a), () => wireChecklist(a));
     const confirmEl = document.getElementById("checklist-confirm");
     if (confirmEl) {
       confirmEl.innerHTML = completo
-        ? `<p class="confirm-banner">â Checklist completo guardado. Â¡Suma a tu racha!</p>`
-        : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">â ï¸ Guardado, pero faltan puntos por marcar â complÃ©talos para que cuente en tu racha.</p>`;
+        ? `<p class="confirm-banner">✅ Checklist completo guardado. ¡Suma a tu racha!</p>`
+        : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">⚠️ Guardado, pero faltan puntos por marcar — complétalos para que cuente en tu racha.</p>`;
     }
   });
 }
@@ -1978,29 +1978,29 @@ function contenidoChat(a) {
     <div class="chat-panel">
       <div class="chat-panel-head">
         <div class="chat-panel-who">
-          <div class="chat-bot-avatar">ð¤</div>
-          <div><b>Asistente de ventas</b><small>Objeciones, lÃ­neas y respuestas sugeridas</small></div>
+          <div class="chat-bot-avatar">🤖</div>
+          <div><b>Asistente de ventas</b><small>Objeciones, líneas y respuestas sugeridas</small></div>
         </div>
-        <div class="chat-status"><span class="chat-dot"></span>En lÃ­nea</div>
+        <div class="chat-status"><span class="chat-dot"></span>En línea</div>
       </div>
       <div class="chips">
-        <span class="chip" data-chip="El cliente dice que estÃ¡ muy caro">ð¸ EstÃ¡ muy caro</span>
-        <span class="chip" data-chip="Ya tiene proveedor y le compra a otro distribuidor">ð¤ Ya tiene proveedor</span>
-        <span class="chip" data-chip="El cliente quiere mÃ¡s crÃ©dito o cupo">ð³ MÃ¡s crÃ©dito/cupo</span>
-        <span class="chip" data-chip="Tuvo un problema de calidad o garantÃ­a antes">â ï¸ Problema de calidad</span>
-        <span class="chip chip-linea" data-chip="LÃ­nea FerreterÃ­a">ð ï¸ FerreterÃ­a</span>
-        <span class="chip chip-linea" data-chip="LÃ­nea Maquinaria">ð Maquinaria</span>
-        <span class="chip chip-linea" data-chip="LÃ­nea Electro Menor">ð Electro Menor</span>
-        <span class="chip chip-linea" data-chip="LÃ­nea Robots KENNON">ð¤ Robots KENNON</span>
-        <span class="chip chip-linea" data-chip="LÃ­nea Consumo Masivo">ð Consumo Masivo</span>
+        <span class="chip" data-chip="El cliente dice que está muy caro">💸 Está muy caro</span>
+        <span class="chip" data-chip="Ya tiene proveedor y le compra a otro distribuidor">🤝 Ya tiene proveedor</span>
+        <span class="chip" data-chip="El cliente quiere más crédito o cupo">💳 Más crédito/cupo</span>
+        <span class="chip" data-chip="Tuvo un problema de calidad o garantía antes">⚠️ Problema de calidad</span>
+        <span class="chip chip-linea" data-chip="Línea Ferretería">🛠️ Ferretería</span>
+        <span class="chip chip-linea" data-chip="Línea Maquinaria">🚜 Maquinaria</span>
+        <span class="chip chip-linea" data-chip="Línea Electro Menor">🔌 Electro Menor</span>
+        <span class="chip chip-linea" data-chip="Línea Robots KENNON">🤖 Robots KENNON</span>
+        <span class="chip chip-linea" data-chip="Línea Consumo Masivo">🛒 Consumo Masivo</span>
       </div>
       <div class="chat-box">
         ${state.chatHistory.length === 0
-          ? `<p class="chat-empty">AÃºn no hay mensajes. Escribe una objeciÃ³n del cliente o toca un chip para comenzar.</p>`
+          ? `<p class="chat-empty">Aún no hay mensajes. Escribe una objeción del cliente o toca un chip para comenzar.</p>`
           : state.chatHistory.map((m) => `<div class="chat-msg ${m.from === "user" ? "user" : "bot"}">${esc(m.text)}</div>`).join("")}
       </div>
       <form class="chat-form" id="chat-form">
-        <input type="text" id="chat-input" placeholder="Ej: el cliente dice que estÃ¡ muy caro..." />
+        <input type="text" id="chat-input" placeholder="Ej: el cliente dice que está muy caro..." />
         <button type="submit" class="btn-primary">Enviar</button>
       </form>
     </div>`;
@@ -2013,7 +2013,7 @@ function wireChat(a) {
     if (!txt) return;
     state.chatHistory.push({ from: "user", text: txt });
     state.chatHistory.push({ from: "bot", text: respuestaBot(txt) });
-    openModal("ð¤ Asistente de ventas", contenidoChat(a), () => wireChat(a));
+    openModal("🤖 Asistente de ventas", contenidoChat(a), () => wireChat(a));
     const box = document.querySelector(".chat-box");
     if (box) box.scrollTop = box.scrollHeight;
     const newInput = document.getElementById("chat-input");
@@ -2024,7 +2024,7 @@ function wireChat(a) {
       const txt = chip.getAttribute("data-chip");
       state.chatHistory.push({ from: "user", text: txt });
       state.chatHistory.push({ from: "bot", text: respuestaBot(txt) });
-      openModal("ð¤ Asistente de ventas", contenidoChat(a), () => wireChat(a));
+      openModal("🤖 Asistente de ventas", contenidoChat(a), () => wireChat(a));
       const box = document.querySelector(".chat-box");
       if (box) box.scrollTop = box.scrollHeight;
     });
@@ -2033,12 +2033,12 @@ function wireChat(a) {
 
 function contenidoNecesidad(a) {
   return `
-    <p class="hint" style="margin:0 0 10px;">Selecciona el Ã¡rea y describe la necesidad.</p>
+    <p class="hint" style="margin:0 0 10px;">Selecciona el área y describe la necesidad.</p>
     <div class="form-grid">
-      <div class="field"><label>Ãrea</label>
+      <div class="field"><label>Área</label>
         <select id="necesidad-area">
           <option value="Cartera">Cartera</option>
-          <option value="LogÃ­stica">LogÃ­stica</option>
+          <option value="Logística">Logística</option>
           <option value="Pedidos">Pedidos</option>
           <option value="Post venta">Post venta</option>
           <option value="Otro">Otro</option>
@@ -2046,7 +2046,7 @@ function contenidoNecesidad(a) {
       </div>
       <div class="field"><label>Necesidad</label><textarea id="necesidad-desc" placeholder="Describe la necesidad..."></textarea></div>
     </div>
-    <button class="btn-primary" style="margin-top:12px;" id="btn-enviar-necesidad">ð² Enviar por WhatsApp</button>
+    <button class="btn-primary" style="margin-top:12px;" id="btn-enviar-necesidad">📲 Enviar por WhatsApp</button>
     <div id="necesidad-confirm"></div>`;
 }
 function wireNecesidad(a) {
@@ -2056,29 +2056,29 @@ function wireNecesidad(a) {
     const confirmEl = document.getElementById("necesidad-confirm");
     if (!desc) { confirmEl.innerHTML = `<p class="login-error">Describe la necesidad antes de enviar.</p>`; return; }
     const info = CONTACTOS_AREAS[area] || CONTACTOS_AREAS["Otro"];
-    const msg = `ð¨ *Necesidad â Soyoda Zona Austro*\n\n*Asesor:* ${a.nombre}\n*Ãrea:* ${area}\n*DescripciÃ³n:* ${desc}\n\n_(Copia enviada a Diego Barros, Jefe Zonal)_`;
-    const msgDiego = `ð¨ *Copia necesidad reportada*\n\n*Asesor:* ${a.nombre} â *${area}* (${info.nombre})\n*DescripciÃ³n:* ${desc}`;
-    // Abrir WA para cada nÃºmero del Ã¡rea con pequeÃ±o delay entre ventanas
+    const msg = `📨 *Necesidad — Soyoda Zona Austro*\n\n*Asesor:* ${a.nombre}\n*Área:* ${area}\n*Descripción:* ${desc}\n\n_(Copia enviada a Diego Barros, Jefe Zonal)_`;
+    const msgDiego = `📨 *Copia necesidad reportada*\n\n*Asesor:* ${a.nombre} → *${area}* (${info.nombre})\n*Descripción:* ${desc}`;
+    // Abrir WA para cada número del área con pequeño delay entre ventanas
     info.whatsapp.forEach((num, idx) => {
       setTimeout(() => enviarPorWhatsApp(num, msg), idx * 900);
     });
-    // Copia a Diego (si el Ã¡rea no es "Otro", que ya es Diego)
+    // Copia a Diego (si el área no es "Otro", que ya es Diego)
     if (area !== "Otro") {
       setTimeout(() => enviarPorWhatsApp(WHATSAPP_DIEGO, msgDiego), info.whatsapp.length * 900);
     }
-    confirmEl.innerHTML = `<p class="confirm-banner">â WhatsApp abierto con <b>${esc(info.nombre)}</b>${area !== "Otro" ? " + copia a Diego Barros" : ""}. Confirma el envÃ­o en cada ventana.</p>`;
+    confirmEl.innerHTML = `<p class="confirm-banner">✅ WhatsApp abierto con <b>${esc(info.nombre)}</b>${area !== "Otro" ? " + copia a Diego Barros" : ""}. Confirma el envío en cada ventana.</p>`;
     document.getElementById("necesidad-desc").value = "";
   });
 }
 
 function contenidoCasosGanados() {
   return `
-    <p class="hint" style="margin:0 0 10px;">Comparte un caso corto que te funcionÃ³ (objeciÃ³n superada, cliente reactivado, venta cerrada). Se guarda en este dispositivo y lo pueden leer los demÃ¡s asesores que lo abran aquÃ­.</p>
+    <p class="hint" style="margin:0 0 10px;">Comparte un caso corto que te funcionó (objeción superada, cliente reactivado, venta cerrada). Se guarda en este dispositivo y lo pueden leer los demás asesores que lo abran aquí.</p>
     ${state.casosGanados.length === 0
-      ? `<p class="hint">AÃºn no hay casos publicados. Â¡SÃ© el primero!</p>`
-      : state.casosGanados.slice().reverse().slice(0, 8).map((c) => `<div class="hist-item"><b>${esc(c.asesor)}</b> Â· ${esc(c.fecha)}<br>${esc(c.texto)}</div>`).join("")}
+      ? `<p class="hint">Aún no hay casos publicados. ¡Sé el primero!</p>`
+      : state.casosGanados.slice().reverse().slice(0, 8).map((c) => `<div class="hist-item"><b>${esc(c.asesor)}</b> · ${esc(c.fecha)}<br>${esc(c.texto)}</div>`).join("")}
     <div class="caso-form" style="margin-top:10px;">
-      <div class="field"><label>Tu caso ganado</label><textarea id="caso-texto" rows="2" placeholder="Ej: cliente decÃ­a que estaba muy caro, le mostrÃ© el catÃ¡logo de FerreterÃ­a y comparamos garantÃ­a... cerrÃ³ pedido de $450."></textarea></div>
+      <div class="field"><label>Tu caso ganado</label><textarea id="caso-texto" rows="2" placeholder="Ej: cliente decía que estaba muy caro, le mostré el catálogo de Ferretería y comparamos garantía... cerró pedido de $450."></textarea></div>
       <button class="btn-primary" style="margin-top:8px;" id="btn-caso-publicar">Publicar caso</button>
     </div>`;
 }
@@ -2088,7 +2088,7 @@ function wireCasosGanados(a) {
     if (!txt) return;
     state.casosGanados.push({ asesor: a.nombre.split(" ")[0], texto: txt, fecha: new Date().toLocaleDateString("es-EC") });
     saveLocal("soyoda_casos", state.casosGanados);
-    openModal("ð Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a));
+    openModal("🏆 Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a));
   });
 }
 
@@ -2099,10 +2099,10 @@ function contenidoInforme(a) {
         <div class="inf-section-title"><span class="num">1</span>Datos del cliente</div>
         <div class="form-grid">
           <div class="field"><label>RUC</label><input type="text" id="ic-ruc" /></div>
-          <div class="field"><label>RazÃ³n social</label><input type="text" id="ic-razon" /></div>
+          <div class="field"><label>Razón social</label><input type="text" id="ic-razon" /></div>
           <div class="field"><label>Nombre comercial</label><input type="text" id="ic-comercial" /></div>
           <div class="field"><label>Contacto</label><input type="text" id="ic-contacto" /></div>
-          <div class="field"><label>TelÃ©fono de contacto</label><input type="text" id="ic-tel" /></div>
+          <div class="field"><label>Teléfono de contacto</label><input type="text" id="ic-tel" /></div>
         </div>
       </div>
       <div class="inf-section">
@@ -2110,7 +2110,7 @@ function contenidoInforme(a) {
         <div class="form-grid">
           <div class="field"><label>Provincia</label><select id="ic-provincia">${OPC_PROVINCIA.map((p) => `<option value="${esc(p)}">${esc(p)}</option>`).join("")}</select></div>
           <div class="field"><label>Sub-zona</label><input type="text" id="ic-subzona" /></div>
-          <div class="field"><label>DivisiÃ³n comercial</label><select id="ic-division">${OPC_DIVISION.map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("")}</select></div>
+          <div class="field"><label>División comercial</label><select id="ic-division">${OPC_DIVISION.map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("")}</select></div>
           <div class="field"><label>Requerimiento</label><select id="ic-requerimiento">${OPC_REQUERIMIENTO.map((r) => `<option value="${esc(r)}">${esc(r)}</option>`).join("")}</select></div>
         </div>
       </div>
@@ -2119,12 +2119,12 @@ function contenidoInforme(a) {
         <textarea id="ic-comentarios" placeholder="Detalle del requerimiento..."></textarea>
       </div>
       <div class="inf-section">
-        <div class="inf-section-title"><span class="num">4</span>Archivos adjuntos (RUC, cÃ©dula, solicitud, fotos)</div>
+        <div class="inf-section-title"><span class="num">4</span>Archivos adjuntos (RUC, cédula, solicitud, fotos)</div>
         <div class="upload-zone"><input type="file" id="ic-archivos" multiple /></div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
-        <button class="btn-primary" id="btn-informe-wa">ð² Enviar por WhatsApp</button>
-        <button class="btn-primary" id="btn-informe-mail" style="background:var(--slate-600);">âï¸ Enviar por correo</button>
+        <button class="btn-primary" id="btn-informe-wa">📲 Enviar por WhatsApp</button>
+        <button class="btn-primary" id="btn-informe-mail" style="background:var(--slate-600);">✉️ Enviar por correo</button>
       </div>
       <div id="informe-confirm"></div>
     </div>`;
@@ -2151,18 +2151,18 @@ function wireInforme(a) {
   document.getElementById("btn-informe-wa").addEventListener("click", () => {
     const d = leerDatosInforme();
     const confirmEl = document.getElementById("informe-confirm");
-    if (!d.razonSocial) { confirmEl.innerHTML = `<p class="login-error">Ingresa al menos la razÃ³n social del cliente.</p>`; return; }
+    if (!d.razonSocial) { confirmEl.innerHTML = `<p class="login-error">Ingresa al menos la razón social del cliente.</p>`; return; }
     const r = enviarPorWhatsApp(WHATSAPP_DIEGO, informeClienteTexto(a, d));
     confirmEl.innerHTML = r.ok
-      ? `<p class="confirm-banner">â Se abriÃ³ WhatsApp con el informe listo. Recuerda adjuntar los archivos manualmente.</p>`
-      : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">â ï¸ El nÃºmero de WhatsApp de Diego aÃºn no estÃ¡ configurado. CopiÃ© el informe al portapapeles.</p>`;
+      ? `<p class="confirm-banner">✅ Se abrió WhatsApp con el informe listo. Recuerda adjuntar los archivos manualmente.</p>`
+      : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">⚠️ El número de WhatsApp de Diego aún no está configurado. Copié el informe al portapapeles.</p>`;
   });
   document.getElementById("btn-informe-mail").addEventListener("click", () => {
     const d = leerDatosInforme();
     const confirmEl = document.getElementById("informe-confirm");
-    if (!d.razonSocial) { confirmEl.innerHTML = `<p class="login-error">Ingresa al menos la razÃ³n social del cliente.</p>`; return; }
-    enviarPorCorreo(EMAIL_DIEGO, `Informe comercial â ${d.razonSocial}`, informeClienteTexto(a, d));
-    confirmEl.innerHTML = `<p class="confirm-banner">â Se abriÃ³ un borrador de correo con el informe listo. Recuerda adjuntar los archivos manualmente.</p>`;
+    if (!d.razonSocial) { confirmEl.innerHTML = `<p class="login-error">Ingresa al menos la razón social del cliente.</p>`; return; }
+    enviarPorCorreo(EMAIL_DIEGO, `Informe comercial — ${d.razonSocial}`, informeClienteTexto(a, d));
+    confirmEl.innerHTML = `<p class="confirm-banner">✅ Se abrió un borrador de correo con el informe listo. Recuerda adjuntar los archivos manualmente.</p>`;
   });
 }
 
@@ -2171,8 +2171,8 @@ function contenidoSugerenciasPortal() {
     <p class="hint" style="margin:0 0 10px;">Comparte una idea o mejora para el equipo o el sistema. Llega directo a Diego Barros.</p>
     <div class="field"><textarea id="sug-texto-portal" placeholder="Tu sugerencia..."></textarea></div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-      <button class="btn-primary" id="sug-wa-portal">ð² Enviar por WhatsApp</button>
-      <button class="btn-primary" id="sug-mail-portal" style="background:var(--slate-600);">âï¸ Enviar por correo</button>
+      <button class="btn-primary" id="sug-wa-portal">📲 Enviar por WhatsApp</button>
+      <button class="btn-primary" id="sug-mail-portal" style="background:var(--slate-600);">✉️ Enviar por correo</button>
     </div>
     <div id="sug-confirm-portal"></div>`;
 }
@@ -2181,18 +2181,18 @@ function wireSugerenciasPortal(a) {
     const txt = document.getElementById("sug-texto-portal").value.trim();
     const confirmEl = document.getElementById("sug-confirm-portal");
     if (!txt) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
-    const r = enviarPorWhatsApp(WHATSAPP_DIEGO, `ð¡ Sugerencia de ${a.nombre}:\n${txt}`);
+    const r = enviarPorWhatsApp(WHATSAPP_DIEGO, `💡 Sugerencia de ${a.nombre}:\n${txt}`);
     confirmEl.innerHTML = r.ok
-      ? `<p class="confirm-banner">â Se abriÃ³ WhatsApp con la sugerencia lista.</p>`
-      : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">â ï¸ El nÃºmero de WhatsApp de Diego aÃºn no estÃ¡ configurado. CopiÃ© el mensaje al portapapeles.</p>`;
+      ? `<p class="confirm-banner">✅ Se abrió WhatsApp con la sugerencia lista.</p>`
+      : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">⚠️ El número de WhatsApp de Diego aún no está configurado. Copié el mensaje al portapapeles.</p>`;
     document.getElementById("sug-texto-portal").value = "";
   });
   document.getElementById("sug-mail-portal").addEventListener("click", () => {
     const txt = document.getElementById("sug-texto-portal").value.trim();
     const confirmEl = document.getElementById("sug-confirm-portal");
     if (!txt) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
-    enviarPorCorreo(EMAIL_DIEGO, `Sugerencia de mejora â ${a.nombre}`, txt);
-    confirmEl.innerHTML = `<p class="confirm-banner">â Se abriÃ³ un borrador de correo con la sugerencia lista.</p>`;
+    enviarPorCorreo(EMAIL_DIEGO, `Sugerencia de mejora — ${a.nombre}`, txt);
+    confirmEl.innerHTML = `<p class="confirm-banner">✅ Se abrió un borrador de correo con la sugerencia lista.</p>`;
     document.getElementById("sug-texto-portal").value = "";
   });
 }
@@ -2203,7 +2203,7 @@ function renderPortal() {
     document.getElementById("app").innerHTML = `
       <div class="page"><div class="container">
         <p>Asesor no encontrado.</p>
-        <button class="btn-link" id="btn-volver-dash">â Volver al dashboard</button>
+        <button class="btn-link" id="btn-volver-dash">← Volver al dashboard</button>
       </div></div>`;
     document.getElementById("btn-volver-dash").addEventListener("click", () => { state.asesorId = null; render(); });
     return;
@@ -2216,17 +2216,17 @@ function renderPortal() {
   document.getElementById("app").innerHTML = `
     <div class="page">
       ${renderMenu([
-        { icon: "ð", label: "Cartera de clientes", action: "cartera" },
-        { icon: "â", label: "Checklist de cierre de visita", action: "checklist" },
-        { icon: "ð", label: "CatÃ¡logos de productos", action: "catalogos" },
-        { icon: "ð¤", label: "Asistente de ventas", action: "chat" },
-        { icon: "ð¨", label: "Enviar necesidad a un Ã¡rea", action: "necesidad" },
-        { icon: "ð", label: "Casos ganados del equipo", action: "casos" },
-        { icon: "ð§¾", label: "Informe comercial de cliente", action: "informe" },
-        { icon: "ð¡", label: "BuzÃ³n de sugerencias", action: "sugerencias" },
+        { icon: "📋", label: "Cartera de clientes", action: "cartera" },
+        { icon: "✅", label: "Checklist de cierre de visita", action: "checklist" },
+        { icon: "📚", label: "Catálogos de productos", action: "catalogos" },
+        { icon: "🤖", label: "Asistente de ventas", action: "chat" },
+        { icon: "📨", label: "Enviar necesidad a un área", action: "necesidad" },
+        { icon: "🏆", label: "Casos ganados del equipo", action: "casos" },
+        { icon: "🧾", label: "Informe comercial de cliente", action: "informe" },
+        { icon: "💡", label: "Buzón de sugerencias", action: "sugerencias" },
       ])}
       <div class="container">
-        <button class="btn-link" id="btn-volver-dash">â Volver al dashboard</button>
+        <button class="btn-link" id="btn-volver-dash">← Volver al dashboard</button>
 
         <div class="header-card">
           <div class="header-stripe"><span class="r"></span><span class="b"></span><span class="g"></span></div>
@@ -2236,63 +2236,63 @@ function renderPortal() {
                 <div class="avatar">${esc(inicial)}</div>
                 <div>
                   <h2>${esc(a.nombre)}</h2>
-                  <p class="sub">Portal individual del asesor Â· Zona Austro</p>
+                  <p class="sub">Portal individual del asesor · Zona Austro</p>
                 </div>
               </div>
             </div>
             <div class="header-pills">
-              <span class="hpill">ð DÃ­a ${DIA_ACTUAL}/${DIAS_MES}</span>
-              <span class="hpill">ð Datos reales (Power BI + correos SAC)</span>
+              <span class="hpill">📅 Día ${DIA_ACTUAL}/${DIAS_MES}</span>
+              <span class="hpill">📊 Datos reales (Power BI + correos SAC)</span>
             </div>
           </div>
         </div>
 
         <div class="grid grid-5 mb-20">
           <div class="card card-sm card-clickable" data-kpi-portal="venta">
-            <div class="icon-badge blue">ð°</div>
+            <div class="icon-badge blue">💰</div>
             <p class="label-xs">Venta real (mes)</p>
             <p class="val-lg">${esc(money(a.ventaReal))}</p>
             <p class="val-sub">de ${esc(money(a.presupuesto))}</p>
-            <span class="tap-hint">ð ver detalle</span>
+            <span class="tap-hint">🔍 ver detalle</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-portal="cumplimiento">
-            <div class="icon-badge ${a.m.cCumpl}">ð¯</div>
+            <div class="icon-badge ${a.m.cCumpl}">🎯</div>
             <p class="label-xs">% Cumplimiento</p>
             ${metric(a.m.cCumpl, pct1(a.m.pctCumplimiento))}
             <p class="val-sub">Desfase: ${desfase >= 0 ? "+" : ""}${esc(money(desfase))}</p>
-            <span class="tap-hint">ð ver detalle</span>
+            <span class="tap-hint">🔍 ver detalle</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-portal="cobertura">
-            <div class="icon-badge ${a.m.cCob}">ð¡</div>
+            <div class="icon-badge ${a.m.cCob}">📡</div>
             <p class="label-xs">Cobertura (CM016)</p>
             ${metric(a.m.cCob, `${a.m.coberturaCalculada}/${a.baseCobertura}`, ` (${pct1(a.m.pctCobertura)})`)}
-            <span class="tap-hint">ð ver detalle</span>
+            <span class="tap-hint">🔍 ver detalle</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-portal="cartera">
-            <div class="icon-badge ${a.m.cCV}">ð§¾</div>
+            <div class="icon-badge ${a.m.cCV}">🧾</div>
             <p class="label-xs">Cartera vencida</p>
             ${metric(a.m.cCV, money(a.carteraVencida))}
-            <span class="tap-hint">ð ver detalle</span>
+            <span class="tap-hint">🔍 ver detalle</span>
           </div>
           <div class="card card-sm card-clickable" data-kpi-portal="inactivos">
-            <div class="icon-badge ${a.m.cInact}">ð¥</div>
+            <div class="icon-badge ${a.m.cInact}">👥</div>
             <p class="label-xs">Clientes inactivos</p>
             ${metric(a.m.cInact, String(a.clientesInactivos), ` (${pct1(a.m.pctInactivos)})`)}
             <p class="val-sub">de ${a.baseCobertura} asignados</p>
-            <span class="tap-hint">ð ver detalle</span>
+            <span class="tap-hint">🔍 ver detalle</span>
           </div>
         </div>
 
         <div class="card mb-20">
-          <h3 class="section-title">Resumen de metas â ${esc(a.nombre.split(" ")[0])}</h3>
-          <p class="chart-card-hint">ð¡ Haz clic en una fila para ver el detalle comparativo</p>
+          <h3 class="section-title">Resumen de metas — ${esc(a.nombre.split(" ")[0])}</h3>
+          <p class="chart-card-hint">💡 Haz clic en una fila para ver el detalle comparativo</p>
           ${tablaMetasAsesor(a)}
         </div>
 
         <div class="grid grid-2 mb-20">
           <div class="card">
-            <h3 class="section-title">Venta real vs meta â ${esc(a.nombre.split(" ")[0])}</h3>
-            <p class="chart-card-hint">ð¡ Pasa el cursor sobre una barra o haz clic para ver el detalle</p>
+            <h3 class="section-title">Venta real vs meta — ${esc(a.nombre.split(" ")[0])}</h3>
+            <p class="chart-card-hint">💡 Pasa el cursor sobre una barra o haz clic para ver el detalle</p>
             ${svgBarChart(barDataAsesor(a), [
               { key: "ventaReal", name: "Venta real", color: "#1d4ed8" },
               { key: "metaProporcional", name: "Meta proporcional", color: "#94a3b8" },
@@ -2300,9 +2300,9 @@ function renderPortal() {
             ], { kpi: "venta", scope: "asesor", asesorId: a.id })}
           </div>
           <div class="card">
-            <h3 class="section-title">Acumulado del mes: dÃ­a a dÃ­a vs meta proporcional</h3>
-            <p class="chart-card-hint">ð¡ Pasa el cursor sobre un punto o haz clic para ver el detalle del dÃ­a</p>
-            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por dÃ­a (eso se actualizarÃ¡ manualmente cada dÃ­a con los datos de eBA Web).</p>
+            <h3 class="section-title">Acumulado del mes: día a día vs meta proporcional</h3>
+            <p class="chart-card-hint">💡 Pasa el cursor sobre un punto o haz clic para ver el detalle del día</p>
+            <p class="val-sub" style="margin-bottom:8px;">Curva estimada a partir del acumulado real del mes; no son ventas reales por día (eso se actualizará manualmente cada día con los datos de eBA Web).</p>
             ${svgLineChart(lineDataAsesor(a), [
               { key: "realAcumulado", name: "Real acumulado", color: "#1d4ed8" },
               { key: "metaAcumulada", name: "Meta acumulada", color: "#94a3b8", dash: "4 4" },
@@ -2323,14 +2323,14 @@ function renderPortal() {
   });
 
   wireMenu({
-    cartera: () => openModal("ð Cartera de clientes", contenidoCarteraClientes(a), () => wireCarteraClientes(a)),
-    checklist: () => openModal("â Checklist de cierre de visita â hoy", contenidoChecklist(a), () => wireChecklist(a)),
-    catalogos: () => openModal("ð CatÃ¡logos de productos", renderCatalogos()),
-    chat: () => openModal("ð¤ Asistente de ventas", contenidoChat(a), () => wireChat(a)),
-    necesidad: () => openModal("ð¨ Enviar necesidad a un Ã¡rea", contenidoNecesidad(a), () => wireNecesidad(a)),
-    casos: () => openModal("ð Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a)),
-    informe: () => openModal("ð§¾ Informe comercial de cliente", contenidoInforme(a), () => wireInforme(a)),
-    sugerencias: () => openModal("ð¡ BuzÃ³n de sugerencias", contenidoSugerenciasPortal(), () => wireSugerenciasPortal(a)),
+    cartera: () => openModal("📋 Cartera de clientes", contenidoCarteraClientes(a), () => wireCarteraClientes(a)),
+    checklist: () => openModal("✅ Checklist de cierre de visita — hoy", contenidoChecklist(a), () => wireChecklist(a)),
+    catalogos: () => openModal("📚 Catálogos de productos", renderCatalogos()),
+    chat: () => openModal("🤖 Asistente de ventas", contenidoChat(a), () => wireChat(a)),
+    necesidad: () => openModal("📨 Enviar necesidad a un área", contenidoNecesidad(a), () => wireNecesidad(a)),
+    casos: () => openModal("🏆 Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a)),
+    informe: () => openModal("🧾 Informe comercial de cliente", contenidoInforme(a), () => wireInforme(a)),
+    sugerencias: () => openModal("💡 Buzón de sugerencias", contenidoSugerenciasPortal(), () => wireSugerenciasPortal(a)),
   });
 }
 
@@ -2351,38 +2351,38 @@ function render() {
 (async function initApp() {
   const SB_URL = 'https://bciqhwodnhlhtjuwyogj.supabase.co';
   const SB_KEY = 'sb_publishable_-5bZIXmpLHPWy6R1DtpbuA_CXGs141B';
-  document.getElementById('app').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:80vh;flex-direction:column;gap:14px"><div style="width:44px;height:44px;border:4px solid #e2e8f0;border-top-color:#004475;border-radius:50%;animation:spin .8s linear infinite"></div><p style="color:#64748b;font-size:14px;margin:0">Cargando datos Zona Austro…</p></div>';
+  document.getElementById('app').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:80vh;flex-direction:column;gap:14px"><div style="width:44px;height:44px;border:4px solid #e2e8f0;border-top-color:#004475;border-radius:50%;animation:spin .8s linear infinite"></div><p style="color:#64748b;font-size:14px;margin:0">Cargando datos Zona Austro...</p></div>';
   try {
     const { createClient } = window.supabase;
     const sb = createClient(SB_URL, SB_KEY);
     const { data, error } = await sb.from('asesores').select('*').order('nombre');
     if (error) throw error;
     ASESORES = data.map(a => ({ id:a.id, nombre:a.nombre, ventaReal:parseFloat(a.ventareal)||0, presupuesto:parseFloat(a.presupuesto)||0, baseCobertura:parseInt(a.basecobertura)||40, cobVtas300:parseInt(a.cobvtas300)||0, cobVentasNegativo:parseInt(a.cobventasnegativo)||0, carteraVencida:parseFloat(a.carteravencida)||0, clientesActivos:parseInt(a.clientesactivos)||0, clientesInactivos:parseInt(a.clientesinactivos)||0, ingresadoHoy:parseFloat(a.ingresadohoy)||0, esperadoHoy:parseFloat(a.esperadohoy)||0, whatsapp:a.whatsapp||'', historial:[] }));
+    console.log('Supabase OK — asesores:', ASESORES.length);
   } catch (err) {
-    console.warn('Supabase no disponible:', err.message);
-    ASESORES = [{id:"walnis",nombre:"Walnis Cabrera",ventaReal:0,presupuesto:55000,baseCobertura:40,cobVtas300:13,cobVentasNegativo:1,carteraVencida:14990.31,clientesActivos:49,clientesInactivos:7,ingresadoHoy:0,esperadoHoy:0,whatsapp:"593992352056",historial:[]},{id:"jessica",nombre:"Jessica Campoverde",ventaReal:0,presupuesto:60000,baseCobertura:40,cobVtas300:37,cobVentasNegativo:1,carteraVencida:9936.56,clientesActivos:94,clientesInactivos:4,ingresadoHoy:0,esperadoHoy:0,whatsapp:"593967700975",historial:[]},{id:"oswaldo",nombre:"Oswaldo Patiño",ventaReal:405,presupuesto:49000,baseCobertura:40,cobVtas300:30,cobVentasNegativo:0,carteraVencida:2095.05,clientesActivos:59,clientesInactivos:0,ingresadoHoy:0,esperadoHoy:0,whatsapp:"593992351546",historial:[]},{id:"edisson",nombre:"Edisson Taipe",ventaReal:0,presupuesto:42000,baseCobertura:40,cobVtas300:4,cobVentasNegativo:0,carteraVencida:12389.88,clientesActivos:14,clientesInactivos:1,ingresadoHoy:0,esperadoHoy:0,whatsapp:"593959761210",historial:[]}];
+    console.warn('Supabase no disponible, usando datos del HTML:', err.message);
   }
   render();
 })();
 
 // ---------------------------------------------------------------------------
-// CHATBOT FLOTANTE â robot con frases motivacionales + IA via Cloudflare Worker
+// CHATBOT FLOTANTE — robot con frases motivacionales + IA via Cloudflare Worker
 // ---------------------------------------------------------------------------
 const CB_WORKER_URL = "https://soyoda-claude.diegobarcoello.workers.dev";
 
 const CB_FRASES = [
-  "ðª Â¡Cada visita cuenta â haz que la de hoy cierre!",
-  "ð¯ Un cliente atendido bien hoy es una venta segura maÃ±ana.",
-  "ð¥ El equipo Austro no para. Â¡A por los nÃºmeros!",
-  "ð La constancia vence al talento cuando el talento no es constante.",
-  "ð Â¿CÃ³mo vas hoy? Consulta lo que necesites aquÃ­.",
-  "ð¡ Un buen vendedor escucha mÃ¡s de lo que habla.",
-  "ð¤ La confianza se construye visita a visita.",
-  "â¡ Si cierras una venta difÃ­cil hoy, maÃ±ana serÃ¡ mÃ¡s fÃ¡cil.",
-  "ð Los mejores vendedores no nacen â se construyen dÃ­a a dÃ­a.",
-  "ð¦ Stock disponible, precio justo, relaciÃ³n sÃ³lida: esa es la fÃ³rmula.",
-  "ð Â¡El mes no termina hasta que suena el Ãºltimo pitazo!",
-  "ð¬ Â¿Tienes alguna duda o consulta? Estoy aquÃ­ para ayudarte.",
+  "💪 ¡Cada visita cuenta — haz que la de hoy cierre!",
+  "🎯 Un cliente atendido bien hoy es una venta segura mañana.",
+  "🔥 El equipo Austro no para. ¡A por los números!",
+  "🌟 La constancia vence al talento cuando el talento no es constante.",
+  "📈 ¿Cómo vas hoy? Consulta lo que necesites aquí.",
+  "💡 Un buen vendedor escucha más de lo que habla.",
+  "🤝 La confianza se construye visita a visita.",
+  "⚡ Si cierras una venta difícil hoy, mañana será más fácil.",
+  "🏆 Los mejores vendedores no nacen — se construyen día a día.",
+  "📦 Stock disponible, precio justo, relación sólida: esa es la fórmula.",
+  "🚀 ¡El mes no termina hasta que suena el último pitazo!",
+  "💬 ¿Tienes alguna duda o consulta? Estoy aquí para ayudarte.",
 ];
 
 const CB_SVG_BOT = `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2416,27 +2416,27 @@ function initChatbot() {
   root.innerHTML = `
     <div class="cb-wrap" id="cb-fab">
       <div class="cb-btn-row">
-        <span class="cb-name-tag">Ari Â· IA</span>
+        <span class="cb-name-tag">Ari · IA</span>
         <div class="cb-btn-outer">
           <div class="cb-pulse"></div>
-          <button class="cb-btn" id="cb-btn" title="Ari â Asistente IA Soyoda" aria-label="Abrir asistente Ari" aria-haspopup="dialog">${CB_SVG_BOT}</button>
+          <button class="cb-btn" id="cb-btn" title="Ari — Asistente IA Soyoda" aria-label="Abrir asistente Ari" aria-haspopup="dialog">${CB_SVG_BOT}</button>
         </div>
       </div>
       <div class="cb-bubble" id="cb-bubble">${CB_FRASES[0]}</div>
     </div>
-    <div class="cb-panel hidden" id="cb-panel" role="dialog" aria-label="Asistente Ari â Chat IA Soyoda" aria-modal="true">
+    <div class="cb-panel hidden" id="cb-panel" role="dialog" aria-label="Asistente Ari — Chat IA Soyoda" aria-modal="true">
       <div class="cb-header">
         <div class="cb-avatar">${CB_SVG_HEADER}</div>
-        <div class="cb-hinfo"><b>Ari Â· Asistente Soyoda</b><span>IA Â· Zona Austro Â· En lÃ­nea</span></div>
+        <div class="cb-hinfo"><b>Ari · Asistente Soyoda</b><span>IA · Zona Austro · En línea</span></div>
         <div class="cb-online"></div>
-        <button class="cb-close" id="cb-close" aria-label="Cerrar asistente Ari">â</button>
+        <button class="cb-close" id="cb-close" aria-label="Cerrar asistente Ari">✕</button>
       </div>
       <div class="cb-messages" id="cb-messages">
-        <div class="cb-msg bot">Â¡Hola! Soy <b>Ari</b>, el asistente IA de Soyoda ð¤<br>Puedo ayudarte con ventas, cartera, productos o procesos del equipo. Â¿En quÃ© te ayudo?</div>
+        <div class="cb-msg bot">¡Hola! Soy <b>Ari</b>, el asistente IA de Soyoda 🤖<br>Puedo ayudarte con ventas, cartera, productos o procesos del equipo. ¿En qué te ayudo?</div>
       </div>
       <div class="cb-input-row">
-        <input class="cb-input" id="cb-input" placeholder="PregÃºntale a Ari..." autocomplete="off"/>
-        <button class="cb-send" id="cb-send" aria-label="Enviar mensaje a Ari">â¤</button>
+        <input class="cb-input" id="cb-input" placeholder="Pregúntale a Ari..." autocomplete="off"/>
+        <button class="cb-send" id="cb-send" aria-label="Enviar mensaje a Ari">➤</button>
       </div>
     </div>`;
 
@@ -2451,7 +2451,7 @@ function initChatbot() {
     bubbleTimer = setTimeout(() => { if (b && !panelOpen) b.style.display = "none"; }, 14000);
   };
 
-  // Ocultar burbuja inicial despuÃ©s de 14s (ya empieza visible)
+  // Ocultar burbuja inicial después de 14s (ya empieza visible)
   bubbleTimer = setTimeout(() => {
     const b = document.getElementById("cb-bubble");
     if (b && !panelOpen) b.style.display = "none";
@@ -2492,7 +2492,7 @@ function initChatbot() {
 
     const typing = document.createElement("div");
     typing.className = "cb-msg typing";
-    typing.textContent = "Ari estÃ¡ escribiendo...";
+    typing.textContent = "Ari está escribiendo...";
     msgs.appendChild(typing);
     msgs.scrollTop = msgs.scrollHeight;
 
@@ -2505,13 +2505,13 @@ function initChatbot() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             messages: [{ role: "user", content: text }],
-            context: "Eres Ari, el asistente IA de Soyoda S.A., empresa distribuidora ecuatoriana de ferreterÃ­a, llantas, motores y maquinaria. Ayudas al equipo comercial de la Zona Austro (Cuenca, Ecuador). Responde en espaÃ±ol, de forma breve y directa, mÃ¡ximo 3 pÃ¡rrafos."
+            context: "Eres Ari, el asistente IA de Soyoda S.A., empresa distribuidora ecuatoriana de ferretería, llantas, motores y maquinaria. Ayudas al equipo comercial de la Zona Austro (Cuenca, Ecuador). Responde en español, de forma breve y directa, máximo 3 párrafos."
           })
         });
         const data = await res.json();
         respuesta = data.response || data.content || "No pude obtener respuesta. Intenta de nuevo.";
       } catch (e) {
-        respuesta = "â ï¸ Sin conexiÃ³n con la IA. Intenta de nuevo en un momento.";
+        respuesta = "⚠️ Sin conexión con la IA. Intenta de nuevo en un momento.";
       }
     } else {
       await new Promise(r => setTimeout(r, 700));
@@ -2532,25 +2532,25 @@ function initChatbot() {
 
 function cbRespuestaLocal(texto) {
   const t = texto.toLowerCase();
-  if (/cobertura|visita|cliente/.test(t)) return "La cobertura mÃ­nima esperada es 40 clientes activos por asesor. Si un cliente lleva mÃ¡s de 30 dÃ­as sin compra, entra como inactivo. El objetivo es visitarlo esta semana con una propuesta concreta.";
-  if (/cartera|vencid|cobro|deuda/.test(t)) return "La cartera vencida debe gestionarse semanalmente. Prioriza clientes con mÃ¡s de 60 dÃ­as. Coordina con el Ã¡rea de Cartera (Base Cobranza) antes de visitar al cliente.";
-  if (/pedido|orden|stock|inventario/.test(t)) return "Para pedidos urgentes o con problemas de stock, reporta la necesidad al Ã¡rea de Pedidos (Rudy Vargas / Madelein) directamente desde tu portal en la secciÃ³n 'Enviar necesidad a un Ã¡rea'.";
-  if (/precio|descuento|oferta/.test(t)) return "No defiendas el precio solo: compara costo total â calidad, garantÃ­a, disponibilidad y plazo de crÃ©dito. Si el cliente insiste, consulta con tu jefe zonal antes de ofrecer condiciÃ³n especial.";
-  if (/meta|presupuesto|cumplimiento/.test(t)) return "El cumplimiento de presupuesto se evalÃºa diariamente. Si estÃ¡s por debajo del 50% a mitad de mes, activa el plan de recuperaciÃ³n: clientes top, cobranza pendiente y nuevas oportunidades.";
-  if (/motiva|Ã¡nimo|desÃ¡nimo|cansado/.test(t)) return "Â¡Arriba el Ã¡nimo! Cada llamada que no cierra te acerca a la que sÃ­ cierra. Los mejores meses del equipo siempre empezaron con un mal lunes. TÃº puedes. ðª";
-  if (/producto|catÃ¡logo|lÃ­nea|marca/.test(t)) return "Los catÃ¡logos de productos estÃ¡n disponibles en tu portal en la secciÃ³n 'CatÃ¡logos'. Si necesitas informaciÃ³n especÃ­fica de una lÃ­nea, consÃºltame o revisa directamente el catÃ¡logo en PDF.";
-  if (/inactivo|recuperar|reactivar/.test(t)) return "Para reactivar un cliente inactivo: 1) LlÃ¡malo con una novedad de producto relevante. 2) Ofrece revisiÃ³n de inventario sin compromiso. 3) Si tiene cartera vencida, coordina primero con cobranza antes de visitar.";
-  if (/gracias|perfecto|ok|listo/.test(t)) return "Â¡Con gusto! Si necesitas algo mÃ¡s, aquÃ­ estoy. ð¤";
-  if (/hola|buenos|saludos/.test(t)) return "Â¡Hola! Â¿En quÃ© te puedo ayudar hoy? Puedo orientarte sobre ventas, cobertura, cartera, productos o cualquier proceso del equipo.";
-  return "Entendido. Para esa consulta te recomiendo hablar directamente con Diego Barros (Jefe Zonal) o reportar la situaciÃ³n por WhatsApp. Una vez conectado el asistente IA completo podrÃ© responderte con mÃ¡s detalle.";
+  if (/cobertura|visita|cliente/.test(t)) return "La cobertura mínima esperada es 40 clientes activos por asesor. Si un cliente lleva más de 30 días sin compra, entra como inactivo. El objetivo es visitarlo esta semana con una propuesta concreta.";
+  if (/cartera|vencid|cobro|deuda/.test(t)) return "La cartera vencida debe gestionarse semanalmente. Prioriza clientes con más de 60 días. Coordina con el área de Cartera (Base Cobranza) antes de visitar al cliente.";
+  if (/pedido|orden|stock|inventario/.test(t)) return "Para pedidos urgentes o con problemas de stock, reporta la necesidad al área de Pedidos (Rudy Vargas / Madelein) directamente desde tu portal en la sección 'Enviar necesidad a un área'.";
+  if (/precio|descuento|oferta/.test(t)) return "No defiendas el precio solo: compara costo total — calidad, garantía, disponibilidad y plazo de crédito. Si el cliente insiste, consulta con tu jefe zonal antes de ofrecer condición especial.";
+  if (/meta|presupuesto|cumplimiento/.test(t)) return "El cumplimiento de presupuesto se evalúa diariamente. Si estás por debajo del 50% a mitad de mes, activa el plan de recuperación: clientes top, cobranza pendiente y nuevas oportunidades.";
+  if (/motiva|ánimo|desánimo|cansado/.test(t)) return "¡Arriba el ánimo! Cada llamada que no cierra te acerca a la que sí cierra. Los mejores meses del equipo siempre empezaron con un mal lunes. Tú puedes. 💪";
+  if (/producto|catálogo|línea|marca/.test(t)) return "Los catálogos de productos están disponibles en tu portal en la sección 'Catálogos'. Si necesitas información específica de una línea, consúltame o revisa directamente el catálogo en PDF.";
+  if (/inactivo|recuperar|reactivar/.test(t)) return "Para reactivar un cliente inactivo: 1) Llámalo con una novedad de producto relevante. 2) Ofrece revisión de inventario sin compromiso. 3) Si tiene cartera vencida, coordina primero con cobranza antes de visitar.";
+  if (/gracias|perfecto|ok|listo/.test(t)) return "¡Con gusto! Si necesitas algo más, aquí estoy. 🤝";
+  if (/hola|buenos|saludos/.test(t)) return "¡Hola! ¿En qué te puedo ayudar hoy? Puedo orientarte sobre ventas, cobertura, cartera, productos o cualquier proceso del equipo.";
+  return "Entendido. Para esa consulta te recomiendo hablar directamente con Diego Barros (Jefe Zonal) o reportar la situación por WhatsApp. Una vez conectado el asistente IA completo podré responderte con más detalle.";
 }
 
 // Inicializar chatbot al cargar
 initChatbot();
 
 // ---------------------------------------------------------------------------
-// PWA â registro del service worker (instalable + funciona sin internet
-// mostrando la Ãºltima versiÃ³n guardada)
+// PWA — registro del service worker (instalable + funciona sin internet
+// mostrando la última versión guardada)
 // ---------------------------------------------------------------------------
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
