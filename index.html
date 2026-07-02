@@ -565,6 +565,7 @@
 </div>
 
 <script>
+/* v:logout1 */
 (function() {
   var GATE_KEY='sz_auth_v2';
   var SB_URL='https://bciqhwodnhlhtjuwyogj.supabase.co';
@@ -574,16 +575,29 @@
   var pwEl=document.getElementById('gate-pwd');
   var btn=document.getElementById('gate-btn');
   var errEl=document.getElementById('gate-error');
-  var saved=sessionStorage.getItem(GATE_KEY);
-  if(saved){try{window.__USER_ROL=JSON.parse(saved);gate.classList.add('hidden');return;}catch(e){}}
-  document.body.style.overflow='hidden';
   function getSB(){
     if(window.supabase)return Promise.resolve(window.supabase.createClient(SB_URL,SB_ANON));
     return new Promise(function(res,rej){var s=document.createElement('script');
       s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
       s.onload=function(){res(window.supabase.createClient(SB_URL,SB_ANON));};s.onerror=rej;
-      document.head.appendChild(s);});
-  }
+      document.head.appendChild(s);});}
+  function showLogoutBar(email){
+    if(document.getElementById('logout-bar'))return;
+    var bar=document.createElement('div');
+    bar.id='logout-bar';
+    bar.style.cssText='position:fixed;top:0;right:0;z-index:9999;background:rgba(0,36,72,0.93);padding:5px 16px;display:flex;align-items:center;gap:10px;border-bottom-left-radius:8px;backdrop-filter:blur(4px);box-shadow:0 2px 12px rgba(0,0,0,0.4);';
+    bar.innerHTML='<span style="color:rgba(255,255,255,0.5);font-size:11px;font-family:inherit;">'+(email||'')+'</span>'
+      +'<button id="logout-btn" style="background:#c0392b;color:#fff;border:none;padding:4px 12px;border-radius:5px;font-size:11px;cursor:pointer;font-weight:700;font-family:inherit;">↩ Salir</button>';
+    document.body.appendChild(bar);
+    document.getElementById('logout-btn').addEventListener('click',async function(){
+      this.textContent='...';
+      try{var s=await getSB();await s.auth.signOut();}catch(e){}
+      sessionStorage.removeItem(GATE_KEY);
+      location.reload();
+    });}
+  var saved=sessionStorage.getItem(GATE_KEY);
+  if(saved){try{window.__USER_ROL=JSON.parse(saved);gate.classList.add('hidden');setTimeout(function(){showLogoutBar(window.__USER_ROL.email);},300);return;}catch(e){}}
+  document.body.style.overflow='hidden';
   async function tryAccess(){
     var email=emailEl.value.trim(),pw=pwEl.value;
     if(!email||!pw){errEl.textContent='Ingresa tu correo y contraseña.';return;}
@@ -597,15 +611,18 @@
       var ud={userId:ar.data.user.id,email:email,rol:rr.data.rol,asesor_id:rr.data.asesor_id};
       sessionStorage.setItem(GATE_KEY,JSON.stringify(ud));
       window.__USER_ROL=ud;
+      showLogoutBar(email);
       gate.style.transition='opacity .4s';gate.style.opacity='0';
       setTimeout(function(){
         gate.classList.add('hidden');document.body.style.overflow='';
         if(ud.rol==='asesor'&&ud.asesor_id){
           var t=function(){
-            if(typeof openModal==='function'&&typeof ASESORES!=='undefined'&&ASESORES.length>0){
-              var a=ASESORES.find(function(x){return x.id===ud.asesor_id;});
-              if(a)openModal(a);
-            }else{setTimeout(t,300);}
+            try{
+              if(typeof openModal==='function'&&typeof ASESORES!=='undefined'&&ASESORES.length>0){
+                var a=ASESORES.find(function(x){return x.id===ud.asesor_id;});
+                if(a)openModal(a);
+              }else{setTimeout(t,300);}
+            }catch(e){setTimeout(t,300);}
           };setTimeout(t,600);
         }
       },400);
@@ -2585,5 +2602,5 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 </body>
-<!-- v:fix2 -->
+<!-- v:logout1 -->
 </html>
