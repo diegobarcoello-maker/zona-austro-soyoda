@@ -412,68 +412,121 @@
   /* ── ACCESS GATE ─────────────────────────────────────────── */
   #access-gate {
     position: fixed; inset: 0; z-index: 99999;
-    background: linear-gradient(135deg, #0b1a3a 0%, #1a3a6b 60%, #0d2d5e 100%);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 0;
+    background: #003560;
+    display: flex; align-items: stretch; justify-content: center;
+    overflow: hidden;
   }
   #access-gate.hidden { display: none; }
-  .gate-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 20px;
-    padding: 48px 40px 40px;
-    width: min(380px, 90vw);
-    display: flex; flex-direction: column; align-items: center; gap: 20px;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-    backdrop-filter: blur(12px);
+
+  /* Panel izquierdo — imagen de fondo Soyoda */
+  .gate-left {
+    flex: 1; display: none;
+    background: url('https://www.soyoda.com/wp-content/uploads/2025/04/Colaboradores-Soyoda.png') center/cover no-repeat;
+    position: relative;
   }
-  .gate-logo {
-    font-size: 13px; font-weight: 700; letter-spacing: 3px;
-    color: rgba(255,255,255,0.4); text-transform: uppercase;
+  .gate-left::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(0,53,96,0.2) 0%, rgba(0,53,96,0.85) 100%);
   }
-  .gate-brand {
-    font-size: 26px; font-weight: 800; color: #fff;
-    text-align: center; line-height: 1.2;
+  @media(min-width:720px){ .gate-left { display: block; } }
+
+  /* Panel derecho — formulario */
+  .gate-right {
+    width: min(420px, 100vw);
+    background: #002a4a;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 48px 40px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.4);
   }
-  .gate-brand span { color: #60a5fa; }
+
+  /* Franja superior de color */
+  .gate-right::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #004475, #0077c8, #004475);
+  }
+
+  .gate-logo-img {
+    width: 160px; margin-bottom: 8px;
+    filter: brightness(0) invert(1);
+  }
+  .gate-tagline {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: #5ba3d9; font-weight: 600; margin-bottom: 32px;
+    text-align: center;
+  }
+  .gate-divider {
+    width: 40px; height: 2px; background: #004475;
+    margin-bottom: 32px; border-radius: 2px;
+  }
+  .gate-title {
+    font-size: 18px; font-weight: 700; color: #fff;
+    text-align: center; margin-bottom: 4px;
+  }
   .gate-sub {
-    font-size: 13px; color: rgba(255,255,255,0.5);
-    text-align: center; margin-top: -8px;
+    font-size: 12px; color: rgba(255,255,255,0.4);
+    text-align: center; margin-bottom: 28px;
+    letter-spacing: .5px;
   }
-  .gate-input-wrap { width: 100%; position: relative; }
+  .gate-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #5ba3d9;
+    align-self: flex-start; margin-bottom: 8px;
+    width: 100%;
+  }
+  .gate-input-wrap { width: 100%; margin-bottom: 16px; }
   .gate-input {
-    width: 100%; padding: 14px 18px; border-radius: 12px;
-    border: 1.5px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.08); color: #fff;
-    font-size: 22px; letter-spacing: 6px; text-align: center;
+    width: 100%; padding: 15px 20px; border-radius: 10px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.06); color: #fff;
+    font-size: 20px; letter-spacing: 8px; text-align: center;
     font-weight: 700; outline: none; box-sizing: border-box;
-    transition: border-color .2s;
+    transition: border-color .2s, background .2s;
   }
-  .gate-input::placeholder { letter-spacing: 2px; font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.3); }
-  .gate-input:focus { border-color: #60a5fa; }
+  .gate-input::placeholder {
+    letter-spacing: 1px; font-size: 13px; font-weight: 400;
+    color: rgba(255,255,255,0.25);
+  }
+  .gate-input:focus {
+    border-color: #0077c8;
+    background: rgba(0,119,200,0.08);
+  }
   .gate-input.shake {
     animation: gate-shake .4s ease;
     border-color: #f87171 !important;
+    background: rgba(248,113,113,0.06) !important;
   }
   @keyframes gate-shake {
-    0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 60%{transform:translateX(8px)} 80%{transform:translateX(-4px)}
+    0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)}
+    60%{transform:translateX(8px)} 80%{transform:translateX(-4px)}
   }
   .gate-btn {
-    width: 100%; padding: 14px; border-radius: 12px;
-    background: linear-gradient(90deg, #2563eb, #3b82f6);
-    color: #fff; font-size: 15px; font-weight: 700;
-    border: none; cursor: pointer; letter-spacing: .5px;
-    transition: opacity .2s, transform .1s;
+    width: 100%; padding: 15px; border-radius: 10px;
+    background: #004475;
+    color: #fff; font-size: 14px; font-weight: 700;
+    border: none; cursor: pointer; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: background .2s, transform .1s;
+    position: relative; overflow: hidden;
   }
-  .gate-btn:hover { opacity: .9; }
+  .gate-btn::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+    transform: translateX(-100%); transition: transform .4s;
+  }
+  .gate-btn:hover { background: #0059a0; }
+  .gate-btn:hover::after { transform: translateX(100%); }
   .gate-btn:active { transform: scale(.98); }
   .gate-error {
-    font-size: 13px; color: #f87171; text-align: center;
-    min-height: 18px; transition: opacity .2s;
+    font-size: 12px; color: #f87171; text-align: center;
+    min-height: 16px; margin-top: 10px;
   }
   .gate-footer {
-    font-size: 11px; color: rgba(255,255,255,0.2);
-    text-align: center; margin-top: 4px;
+    font-size: 10px; color: rgba(255,255,255,0.15);
+    text-align: center; margin-top: 36px; letter-spacing: .5px;
   }
 </style>
 </head>
@@ -481,18 +534,26 @@
 
 <!-- ── ACCESS GATE ─────────────────────────────────────────── -->
 <div id="access-gate">
-  <div class="gate-card">
-    <div class="gate-logo">Grupo Corporativo</div>
-    <div class="gate-brand">Soyoda <span>S.A.</span></div>
-    <div class="gate-sub">Centro de Comando · Zona Austro</div>
+  <!-- Panel izquierdo: imagen corporativa Soyoda -->
+  <div class="gate-left"></div>
+  <!-- Panel derecho: formulario -->
+  <div class="gate-right">
+    <img class="gate-logo-img"
+      src="https://www.soyoda.com/wp-content/uploads/2022/08/Logo-soyoda-1-140x39.png"
+      alt="Soyoda S.A." />
+    <div class="gate-tagline">Desarrollamos Largas Amistades</div>
+    <div class="gate-divider"></div>
+    <div class="gate-title">Centro de Comando</div>
+    <div class="gate-sub">Zona Austro · Acceso restringido</div>
+    <div class="gate-label">Código de acceso</div>
     <div class="gate-input-wrap">
       <input id="gate-input" class="gate-input" type="password"
-        placeholder="Código de acceso" maxlength="10"
+        placeholder="••••••" maxlength="10"
         autocomplete="off" autocorrect="off" spellcheck="false" />
     </div>
-    <button class="gate-btn" id="gate-btn">Ingresar →</button>
+    <button class="gate-btn" id="gate-btn">Ingresar</button>
     <div class="gate-error" id="gate-error"></div>
-    <div class="gate-footer">Acceso restringido · Solo personal autorizado</div>
+    <div class="gate-footer">Grupo Corporativo Soyoda S.A. · Solo personal autorizado</div>
   </div>
 </div>
 
