@@ -546,11 +546,17 @@
     <div class="gate-divider"></div>
     <div class="gate-title">Centro de Comando</div>
     <div class="gate-sub">Zona Austro · Acceso restringido</div>
-    <div class="gate-label">Código de acceso</div>
+    <div class="gate-label">Correo electrónico</div>
     <div class="gate-input-wrap">
-      <input id="gate-input" class="gate-input" type="password"
-        placeholder="••••••" maxlength="10"
-        autocomplete="off" autocorrect="off" spellcheck="false" />
+      <input id="gate-email" class="gate-input" type="email"
+        placeholder="usuario@soyoda.com"
+        style="letter-spacing:0;text-align:left;font-size:14px;font-weight:400"
+        autocomplete="email" />
+    </div>
+    <div class="gate-label">Contraseña</div>
+    <div class="gate-input-wrap">
+      <input id="gate-pwd" class="gate-input" type="password"
+        placeholder="••••••••" autocomplete="current-password" />
     </div>
     <button class="gate-btn" id="gate-btn">Ingresar</button>
     <div class="gate-error" id="gate-error"></div>
@@ -560,46 +566,59 @@
 
 <script>
 (function() {
-  const GATE_KEY = 'sz_auth_v1';
-  const GATE_CODE = '080922';
-  const gate = document.getElementById('access-gate');
-  const input = document.getElementById('gate-input');
-  const btn = document.getElementById('gate-btn');
-  const errEl = document.getElementById('gate-error');
-
-  // Si ya autenticó en esta sesión, ocultar gate inmediatamente
-  if (sessionStorage.getItem(GATE_KEY) === '1') {
-    gate.classList.add('hidden');
-    return;
+  var GATE_KEY='sz_auth_v2';
+  var SB_URL='https://bciqhwodnhlhtjuwyogj.supabase.co';
+  var SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJjaXFod29kbmhsaHRqdXd5b2dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5NDY1MjYsImV4cCI6MjA5ODUyMjUyNn0.RZqV_gfqjYTqyEi14if-iRLKayWlaODW4RiHJg2N6Zg';
+  var gate=document.getElementById('access-gate');
+  var emailEl=document.getElementById('gate-email');
+  var pwEl=document.getElementById('gate-pwd');
+  var btn=document.getElementById('gate-btn');
+  var errEl=document.getElementById('gate-error');
+  var saved=sessionStorage.getItem(GATE_KEY);
+  if(saved){try{window.__USER_ROL=JSON.parse(saved);gate.classList.add('hidden');return;}catch(e){}}
+  document.body.style.overflow='hidden';
+  function getSB(){
+    if(window.supabase)return Promise.resolve(window.supabase.createClient(SB_URL,SB_ANON));
+    return new Promise(function(res,rej){var s=document.createElement('script');
+      s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+      s.onload=function(){res(window.supabase.createClient(SB_URL,SB_ANON));};s.onerror=rej;
+      document.head.appendChild(s);});
   }
-
-  // Bloquear scroll del fondo mientras gate está visible
-  document.body.style.overflow = 'hidden';
-
-  function tryAccess() {
-    if (input.value.trim() === GATE_CODE) {
-      sessionStorage.setItem(GATE_KEY, '1');
-      gate.style.transition = 'opacity .4s';
-      gate.style.opacity = '0';
-      setTimeout(() => {
-        gate.classList.add('hidden');
-        document.body.style.overflow = '';
-      }, 400);
-    } else {
-      errEl.textContent = 'Código incorrecto. Intenta nuevamente.';
-      input.classList.add('shake');
-      input.value = '';
-      setTimeout(() => {
-        input.classList.remove('shake');
-        errEl.textContent = '';
-      }, 1000);
+  async function tryAccess(){
+    var email=emailEl.value.trim(),pw=pwEl.value;
+    if(!email||!pw){errEl.textContent='Ingresa tu correo y contraseña.';return;}
+    btn.disabled=true;btn.textContent='Verificando...';errEl.textContent='';
+    try{
+      var sb=await getSB();
+      var ar=await sb.auth.signInWithPassword({email:email,password:pw});
+      if(ar.error)throw new Error('Credenciales incorrectas.');
+      var rr=await sb.from('user_roles').select('rol,asesor_id').eq('user_id',ar.data.user.id).single();
+      if(rr.error)throw new Error('Sin permisos. Contacte al administrador.');
+      var ud={userId:ar.data.user.id,email:email,rol:rr.data.rol,asesor_id:rr.data.asesor_id};
+      sessionStorage.setItem(GATE_KEY,JSON.stringify(ud));
+      window.__USER_ROL=ud;
+      gate.style.transition='opacity .4s';gate.style.opacity='0';
+      setTimeout(function(){
+        gate.classList.add('hidden');document.body.style.overflow='';
+        if(ud.rol==='asesor'&&ud.asesor_id){
+          var t=function(){
+            if(typeof openModal==='function'&&window.ASESORES&&window.ASESORES.length>0){
+              var a=window.ASESORES.find(function(x){return x.id===ud.asesor_id;});
+              if(a)openModal(a);
+            }else{setTimeout(t,300);}
+          };setTimeout(t,600);
+        }
+      },400);
+    }catch(e){
+      errEl.textContent=e.message||'Error al ingresar.';
+      pwEl.value='';pwEl.classList.add('shake');
+      setTimeout(function(){pwEl.classList.remove('shake');},600);
+      btn.disabled=false;btn.textContent='Ingresar';
     }
   }
-
-  btn.addEventListener('click', tryAccess);
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') tryAccess(); });
-  // Auto-focus
-  setTimeout(() => input.focus(), 100);
+  btn.addEventListener('click',tryAccess);
+  [emailEl,pwEl].forEach(function(el){el.addEventListener('keydown',function(e){if(e.key==='Enter')tryAccess();});});
+  setTimeout(function(){emailEl.focus();},100);
 })();
 </script>
 
