@@ -2402,7 +2402,7 @@ function render() {
     }
   }
   if (state.asesorId) {
-    renderPortal();var _vb=document.getElementById('btn-volver-dash');if(_vb)_vb.style.display='none';
+    renderPortal();if(window.__USER_ROL&&window.__USER_ROL.rol==='asesor'){var _vb=document.getElementById('btn-volver-dash');if(_vb)_vb.style.display='none';}
   } else {
     renderDashboard();
   }
