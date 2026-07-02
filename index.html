@@ -606,7 +606,6 @@ var EMAIL_ROLES={
   if(saved){try{window.__USER_ROL=JSON.parse(saved);if(typeof render==='function')render();gate.classList.add('hidden');setTimeout(function(){showLogoutBar(window.__USER_ROL.email);if(window.__USER_ROL.rol==='asesor'&&window.__USER_ROL.asesor_id){var t=function(){try{if(typeof openModal==='function'&&typeof ASESORES!=='undefined'&&ASESORES.length>0){var a=ASESORES.find(function(x){return x.id===window.__USER_ROL.asesor_id;});if(a){state.asesorId=a.id;render();}}else{setTimeout(t,300);}}catch(e){setTimeout(t,300);}};setTimeout(t,800);}},300);return;}catch(e){}}
   document.body.style.overflow='hidden';
   async function tryAccess(){
-    var email=emailEl.value.trim(),pw=pwEl.value;
     if(!email||!pw){errEl.textContent='Ingresa tu correo y contraseña.';return;}
     btn.disabled=true;btn.textContent='Verificando...';errEl.textContent='';
     try{
@@ -1384,12 +1383,10 @@ function wireAccionesJefe() {
   if (jefeForm) {
     jefeForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const codigo = document.getElementById("jefe-unlock-code").value.trim();
       if (codigo === CODE_JEFE_ZONAL) {
         state.jefeUnlocked = true;
         state.jefeError = "";
       } else {
-        state.jefeError = "Código incorrecto. Estas acciones son solo para el Jefe Zonal.";
       }
       openModal("🔒 Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe);
     });
@@ -1445,7 +1442,6 @@ function wireLoginAsesor() {
       state.asesorId = sel;
       render();
     } else {
-      state.loginError = `Código incorrecto para este asesor (escribiste "${code}"). Verifica con tu jefe zonal.`;
       document.getElementById("login-error").textContent = state.loginError;
     }
   });
@@ -1466,7 +1462,6 @@ function contenidoBuzonSugerenciasDash() {
 
 function wireBuzonSugerenciasDash() {
   function enviarSugerenciaDash(canal) {
-    const texto = document.getElementById("sug-texto-dash").value.trim();
     const confirmEl = document.getElementById("sug-confirm-dash");
     if (!texto) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
     const mensaje = `Sugerencia de mejora — Centro de Comando Zona Austro\n(Enviada desde el dashboard principal, sin identificar asesor)\n\n${texto}`;
@@ -2061,7 +2056,6 @@ function wireChat(a) {
   document.getElementById("chat-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const input = document.getElementById("chat-input");
-    const txt = input.value.trim();
     if (!txt) return;
     state.chatHistory.push({ from: "user", text: txt });
     state.chatHistory.push({ from: "bot", text: respuestaBot(txt) });
@@ -2104,7 +2098,6 @@ function contenidoNecesidad(a) {
 function wireNecesidad(a) {
   document.getElementById("btn-enviar-necesidad").addEventListener("click", () => {
     const area = document.getElementById("necesidad-area").value;
-    const desc = document.getElementById("necesidad-desc").value.trim();
     const confirmEl = document.getElementById("necesidad-confirm");
     if (!desc) { confirmEl.innerHTML = `<p class="login-error">Describe la necesidad antes de enviar.</p>`; return; }
     const info = CONTACTOS_AREAS[area] || CONTACTOS_AREAS["Otro"];
@@ -2136,7 +2129,6 @@ function contenidoCasosGanados() {
 }
 function wireCasosGanados(a) {
   document.getElementById("btn-caso-publicar").addEventListener("click", () => {
-    const txt = document.getElementById("caso-texto").value.trim();
     if (!txt) return;
     state.casosGanados.push({ asesor: a.nombre.split(" ")[0], texto: txt, fecha: new Date().toLocaleDateString("es-EC") });
     saveLocal("soyoda_casos", state.casosGanados);
@@ -2187,16 +2179,9 @@ function wireInforme(a) {
     const archivos = archivosInput && archivosInput.files ? Array.from(archivosInput.files).map((f) => f.name) : [];
     return {
       fecha: new Date().toLocaleDateString("es-EC"),
-      ruc: document.getElementById("ic-ruc").value.trim(),
-      razonSocial: document.getElementById("ic-razon").value.trim(),
-      nombreComercial: document.getElementById("ic-comercial").value.trim(),
-      contacto: document.getElementById("ic-contacto").value.trim(),
-      telContacto: document.getElementById("ic-tel").value.trim(),
       provincia: document.getElementById("ic-provincia").value,
-      subzona: document.getElementById("ic-subzona").value.trim(),
       division: document.getElementById("ic-division").value,
       requerimiento: document.getElementById("ic-requerimiento").value,
-      comentarios: document.getElementById("ic-comentarios").value.trim(),
       archivos,
     };
   }
@@ -2230,7 +2215,6 @@ function contenidoSugerenciasPortal() {
 }
 function wireSugerenciasPortal(a) {
   document.getElementById("sug-wa-portal").addEventListener("click", () => {
-    const txt = document.getElementById("sug-texto-portal").value.trim();
     const confirmEl = document.getElementById("sug-confirm-portal");
     if (!txt) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
     const r = enviarPorWhatsApp(WHATSAPP_DIEGO, `💡 Sugerencia de ${a.nombre}:\n${txt}`);
@@ -2240,7 +2224,6 @@ function wireSugerenciasPortal(a) {
     document.getElementById("sug-texto-portal").value = "";
   });
   document.getElementById("sug-mail-portal").addEventListener("click", () => {
-    const txt = document.getElementById("sug-texto-portal").value.trim();
     const confirmEl = document.getElementById("sug-confirm-portal");
     if (!txt) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
     enviarPorCorreo(EMAIL_DIEGO, `Sugerencia de mejora — ${a.nombre}`, txt);
@@ -2525,7 +2508,6 @@ function initChatbot() {
   const sendMsg = async () => {
     const input = document.getElementById("cb-input");
     const msgs = document.getElementById("cb-messages");
-    const text = input.value.trim();
     if (!text) return;
     input.value = "";
 
