@@ -1418,35 +1418,15 @@ function contenidoLoginAsesor() {
 }
 
 function wireLoginAsesor() {
-  const codeInput = document.getElementById("login-code");
-  const debugEl = document.getElementById("login-debug");
-  codeInput.addEventListener("input", () => {
-    // Solo dígitos, máximo 4 — evita que autocompletar del navegador
-    // meta letras/símbolos o un valor guardado más largo en el campo.
-    const cleaned = codeInput.value.replace(/\D/g, "").slice(0, 4);
-    if (cleaned !== codeInput.value) codeInput.value = cleaned;
-    debugEl.textContent = codeInput.value
-      ? `Ingresaste ${codeInput.value.length} dígito(s): "${codeInput.value}"`
-      : "";
-  });
-
   document.getElementById("login-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const sel = document.getElementById("login-select").value;
-    const code = codeInput.value.replace(/\D/g, "").trim();
-    if (!sel || !code) return;
-    if (ACCESS_CODES[sel] === code) {
-      state.loginError = "";
-      closeModal();
-      state.view = "portal";
-      state.asesorId = sel;
-      render();
-    } else {
-      document.getElementById("login-error").textContent = state.loginError;
-    }
+    if (!sel) return;
+    closeModal();
+    state.asesorId = sel;
+    render();
   });
 }
-
 function contenidoBuzonSugerenciasDash() {
   return `
     <p class="hint" style="margin:0 0 10px;">Para cualquier persona del equipo, sin necesidad de iniciar sesión. Tu sugerencia se envía directo a Diego Barros (Jefe Zonal) — tú eliges el canal y confirmas el envío.</p>
