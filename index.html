@@ -441,7 +441,7 @@ const FECHA_HOY = `${String(_HOY.getDate()).padStart(2,"0")}/${String(_HOY.getMo
 // ⚡ AUTO-ACTUALIZADO desde Power BI — 2026-07-01 | Mes: Julio 2026
 // Fuente: http://186.5.72.155:7052/reports/powerbi/Ventas/Dashboard%20Ventas (tab Ventas, mes actual)
 const ASESORES = [
-  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 0, presupuesto: 55000,
+  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: -17.68, presupuesto: 55000,
     baseCobertura: 40, cobVtas300: 13, cobVentasNegativo: 1, carteraVencida: 14990.31,
     clientesActivos: 49, clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992352056", historial: [] },
   { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 0, presupuesto: 60000,
@@ -2236,7 +2236,6 @@ function initChatbot() {
     if (b && !panelOpen) b.style.display = "none";
   }, 14000);
 
-  // Rotar frases cada 3 minutos y mostrar burbuja
   setInterval(() => {
     fraIdx = (fraIdx + 1) % CB_FRASES.length;
     const b = document.getElementById("cb-bubble");
@@ -2338,4 +2337,4 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 </body>
-</html>
+</h
