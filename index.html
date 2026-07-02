@@ -45,7 +45,6 @@
   @keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-12px,10px) scale(1.06);}}
   @keyframes popIn{from{opacity:0;transform:scale(.9);}to{opacity:1;transform:scale(1);}}
   @keyframes shimmer{0%{background-position:-200px 0;}100%{background-position:200px 0;}}
-  @keyframes spin{to{transform:rotate(360deg);}}
 
   .header-card{margin-bottom:20px;overflow:hidden;border-radius:18px;border:none;position:relative;
     background:linear-gradient(120deg,#003560,#004475,#0077c8,#002a4a);background-size:300% 300%;
@@ -608,9 +607,6 @@
 <div id="modal-root"></div>
 <div id="chart-tip" class="chart-tip"></div>
 <div id="chatbot-root"></div>
-
-<!-- Supabase JS client -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 "use strict";
@@ -2345,25 +2341,7 @@ function render() {
   }
 }
 
-// ---------------------------------------------------------------------------
-// CARGA INICIAL DESDE SUPABASE
-// ---------------------------------------------------------------------------
-(async function initApp() {
-  const SB_URL = 'https://bciqhwodnhlhtjuwyogj.supabase.co';
-  const SB_KEY = 'sb_publishable_-5bZIXmpLHPWy6R1DtpbuA_CXGs141B';
-  document.getElementById('app').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:80vh;flex-direction:column;gap:14px"><div style="width:44px;height:44px;border:4px solid #e2e8f0;border-top-color:#004475;border-radius:50%;animation:spin .8s linear infinite"></div><p style="color:#64748b;font-size:14px;margin:0">Cargando datos Zona Austro...</p></div>';
-  try {
-    const { createClient } = window.supabase;
-    const sb = createClient(SB_URL, SB_KEY);
-    const { data, error } = await sb.from('asesores').select('*').order('nombre');
-    if (error) throw error;
-    ASESORES = data.map(a => ({ id:a.id, nombre:a.nombre, ventaReal:parseFloat(a.ventareal)||0, presupuesto:parseFloat(a.presupuesto)||0, baseCobertura:parseInt(a.basecobertura)||40, cobVtas300:parseInt(a.cobvtas300)||0, cobVentasNegativo:parseInt(a.cobventasnegativo)||0, carteraVencida:parseFloat(a.carteravencida)||0, clientesActivos:parseInt(a.clientesactivos)||0, clientesInactivos:parseInt(a.clientesinactivos)||0, ingresadoHoy:parseFloat(a.ingresadohoy)||0, esperadoHoy:parseFloat(a.esperadohoy)||0, whatsapp:a.whatsapp||'', historial:[] }));
-    console.log('Supabase OK — asesores:', ASESORES.length);
-  } catch (err) {
-    console.warn('Supabase no disponible, usando datos del HTML:', err.message);
-  }
-  render();
-})();
+render();
 
 // ---------------------------------------------------------------------------
 // CHATBOT FLOTANTE — robot con frases motivacionales + IA via Cloudflare Worker
@@ -2557,6 +2535,35 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(() => {});
   });
 }
+</script>
+
+<!-- SUPABASE LIVE DATA -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function initSupabase(){
+  try{
+    var c=window.supabase.createClient('https://bciqhwodnhlhtjuwyogj.supabase.co','sb_publishable_-5bZIXmpLHPWy6R1DtpbuA_CXGs141B');
+    var r=await c.from('asesores').select('*').order('nombre');
+    if(r.error)throw r.error;
+    if(!r.data||!r.data.length){console.warn('Supabase sin datos');return;}
+    ASESORES=r.data.map(function(a){return{
+      id:a.id,nombre:a.nombre,
+      ventaReal:parseFloat(a.ventareal)||0,
+      presupuesto:parseFloat(a.presupuesto)||0,
+      baseCobertura:parseInt(a.basecobertura)||40,
+      cobVtas300:parseInt(a.cobvtas300)||0,
+      cobVentasNegativo:parseInt(a.cobventasnegativo)||0,
+      carteraVencida:parseFloat(a.carteravencida)||0,
+      clientesActivos:parseInt(a.clientesactivos)||0,
+      clientesInactivos:parseInt(a.clientesinactivos)||0,
+      ingresadoHoy:parseFloat(a.ingresadohoy)||0,
+      esperadoHoy:parseFloat(a.esperadohoy)||0,
+      whatsapp:a.whatsapp||'',historial:[]
+    };});
+    console.log('Supabase OK:',ASESORES.length,'asesores');
+    if(typeof render==='function')render();
+  }catch(e){console.warn('Supabase fallback:',e.message);}
+})();
 </script>
 </body>
 </html>
