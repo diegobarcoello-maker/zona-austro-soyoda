@@ -408,9 +408,139 @@
   button:focus:not(:focus-visible),
   input:focus:not(:focus-visible),
   select:focus:not(:focus-visible) { outline: none; }
+
+  /* ── ACCESS GATE ─────────────────────────────────────────── */
+  #access-gate {
+    position: fixed; inset: 0; z-index: 99999;
+    background: linear-gradient(135deg, #0b1a3a 0%, #1a3a6b 60%, #0d2d5e 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0;
+  }
+  #access-gate.hidden { display: none; }
+  .gate-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 48px 40px 40px;
+    width: min(380px, 90vw);
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    backdrop-filter: blur(12px);
+  }
+  .gate-logo {
+    font-size: 13px; font-weight: 700; letter-spacing: 3px;
+    color: rgba(255,255,255,0.4); text-transform: uppercase;
+  }
+  .gate-brand {
+    font-size: 26px; font-weight: 800; color: #fff;
+    text-align: center; line-height: 1.2;
+  }
+  .gate-brand span { color: #60a5fa; }
+  .gate-sub {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    text-align: center; margin-top: -8px;
+  }
+  .gate-input-wrap { width: 100%; position: relative; }
+  .gate-input {
+    width: 100%; padding: 14px 18px; border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08); color: #fff;
+    font-size: 22px; letter-spacing: 6px; text-align: center;
+    font-weight: 700; outline: none; box-sizing: border-box;
+    transition: border-color .2s;
+  }
+  .gate-input::placeholder { letter-spacing: 2px; font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.3); }
+  .gate-input:focus { border-color: #60a5fa; }
+  .gate-input.shake {
+    animation: gate-shake .4s ease;
+    border-color: #f87171 !important;
+  }
+  @keyframes gate-shake {
+    0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 60%{transform:translateX(8px)} 80%{transform:translateX(-4px)}
+  }
+  .gate-btn {
+    width: 100%; padding: 14px; border-radius: 12px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: #fff; font-size: 15px; font-weight: 700;
+    border: none; cursor: pointer; letter-spacing: .5px;
+    transition: opacity .2s, transform .1s;
+  }
+  .gate-btn:hover { opacity: .9; }
+  .gate-btn:active { transform: scale(.98); }
+  .gate-error {
+    font-size: 13px; color: #f87171; text-align: center;
+    min-height: 18px; transition: opacity .2s;
+  }
+  .gate-footer {
+    font-size: 11px; color: rgba(255,255,255,0.2);
+    text-align: center; margin-top: 4px;
+  }
 </style>
 </head>
 <body>
+
+<!-- ── ACCESS GATE ─────────────────────────────────────────── -->
+<div id="access-gate">
+  <div class="gate-card">
+    <div class="gate-logo">Grupo Corporativo</div>
+    <div class="gate-brand">Soyoda <span>S.A.</span></div>
+    <div class="gate-sub">Centro de Comando · Zona Austro</div>
+    <div class="gate-input-wrap">
+      <input id="gate-input" class="gate-input" type="password"
+        placeholder="Código de acceso" maxlength="10"
+        autocomplete="off" autocorrect="off" spellcheck="false" />
+    </div>
+    <button class="gate-btn" id="gate-btn">Ingresar →</button>
+    <div class="gate-error" id="gate-error"></div>
+    <div class="gate-footer">Acceso restringido · Solo personal autorizado</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const GATE_KEY = 'sz_auth_v1';
+  const GATE_CODE = '080922';
+  const gate = document.getElementById('access-gate');
+  const input = document.getElementById('gate-input');
+  const btn = document.getElementById('gate-btn');
+  const errEl = document.getElementById('gate-error');
+
+  // Si ya autenticó en esta sesión, ocultar gate inmediatamente
+  if (sessionStorage.getItem(GATE_KEY) === '1') {
+    gate.classList.add('hidden');
+    return;
+  }
+
+  // Bloquear scroll del fondo mientras gate está visible
+  document.body.style.overflow = 'hidden';
+
+  function tryAccess() {
+    if (input.value.trim() === GATE_CODE) {
+      sessionStorage.setItem(GATE_KEY, '1');
+      gate.style.transition = 'opacity .4s';
+      gate.style.opacity = '0';
+      setTimeout(() => {
+        gate.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 400);
+    } else {
+      errEl.textContent = 'Código incorrecto. Intenta nuevamente.';
+      input.classList.add('shake');
+      input.value = '';
+      setTimeout(() => {
+        input.classList.remove('shake');
+        errEl.textContent = '';
+      }, 1000);
+    }
+  }
+
+  btn.addEventListener('click', tryAccess);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') tryAccess(); });
+  // Auto-focus
+  setTimeout(() => input.focus(), 100);
+})();
+</script>
+
 <div id="app"></div>
 <div id="modal-root"></div>
 <div id="chart-tip" class="chart-tip"></div>
