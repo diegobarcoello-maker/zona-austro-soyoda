@@ -1444,6 +1444,7 @@ function contenidoBuzonSugerenciasDash() {
 
 function wireBuzonSugerenciasDash() {
   function enviarSugerenciaDash(canal) {
+    const texto = document.getElementById("sug-texto-dash").value.trim();
     const confirmEl = document.getElementById("sug-confirm-dash");
     if (!texto) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
     const mensaje = `Sugerencia de mejora — Centro de Comando Zona Austro\n(Enviada desde el dashboard principal, sin identificar asesor)\n\n${texto}`;
@@ -2082,6 +2083,7 @@ function contenidoNecesidad(a) {
 function wireNecesidad(a) {
   document.getElementById("btn-enviar-necesidad").addEventListener("click", () => {
     const area = document.getElementById("necesidad-area").value;
+    const desc = document.getElementById("necesidad-desc").value.trim();
     const confirmEl = document.getElementById("necesidad-confirm");
     if (!desc) { confirmEl.innerHTML = `<p class="login-error">Describe la necesidad antes de enviar.</p>`; return; }
     const info = CONTACTOS_AREAS[area] || CONTACTOS_AREAS["Otro"];
@@ -2170,7 +2172,7 @@ function wireInforme(a) {
     };
   }
   document.getElementById("btn-informe-wa").addEventListener("click", () => {
-    const d = leerDatosInforme();
+    var d; try { d = leerDatosInforme(); } catch(e) { d = {}; }
     const confirmEl = document.getElementById("informe-confirm");
     if (!d.razonSocial) { confirmEl.innerHTML = `<p class="login-error">Ingresa al menos la razón social del cliente.</p>`; return; }
     const r = enviarPorWhatsApp(WHATSAPP_DIEGO, informeClienteTexto(a, d));
@@ -2179,7 +2181,7 @@ function wireInforme(a) {
       : `<p class="confirm-banner" style="background:var(--amber-50);color:var(--amber-800);">⚠️ El número de WhatsApp de Diego aún no está configurado. Copié el informe al portapapeles.</p>`;
   });
   document.getElementById("btn-informe-mail").addEventListener("click", () => {
-    const d = leerDatosInforme();
+    var d; try { d = leerDatosInforme(); } catch(e) { d = {}; }
     const confirmEl = document.getElementById("informe-confirm");
     if (!d.razonSocial) { confirmEl.innerHTML = `<p class="login-error">Ingresa al menos la razón social del cliente.</p>`; return; }
     enviarPorCorreo(EMAIL_DIEGO, `Informe comercial — ${d.razonSocial}`, informeClienteTexto(a, d));
@@ -2199,6 +2201,7 @@ function contenidoSugerenciasPortal() {
 }
 function wireSugerenciasPortal(a) {
   document.getElementById("sug-wa-portal").addEventListener("click", () => {
+    const txt = document.getElementById("sug-texto-portal").value.trim();
     const confirmEl = document.getElementById("sug-confirm-portal");
     if (!txt) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
     const r = enviarPorWhatsApp(WHATSAPP_DIEGO, `💡 Sugerencia de ${a.nombre}:\n${txt}`);
@@ -2208,6 +2211,7 @@ function wireSugerenciasPortal(a) {
     document.getElementById("sug-texto-portal").value = "";
   });
   document.getElementById("sug-mail-portal").addEventListener("click", () => {
+    const txt = document.getElementById("sug-texto-portal").value.trim();
     const confirmEl = document.getElementById("sug-confirm-portal");
     if (!txt) { confirmEl.innerHTML = `<p class="login-error">Escribe la sugerencia antes de enviar.</p>`; return; }
     enviarPorCorreo(EMAIL_DIEGO, `Sugerencia de mejora — ${a.nombre}`, txt);
