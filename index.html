@@ -608,8 +608,6 @@ var EMAIL_ROLES={
   async function tryAccess(){
   const email=document.getElementById('gate-email').value.trim();
   const pw=document.getElementById('gate-pwd').value.trim();
-  const btn=document.querySelector('#gate button');
-  const errEL=document.querySelector('#gate .login-error');
     if(!email||!pw){errEl.textContent='Ingresa tu correo y contraseña.';return;}
     btn.disabled=true;btn.textContent='Verificando...';errEl.textContent='';
     try{
