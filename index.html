@@ -2040,6 +2040,8 @@ function wireChat(a) {
     const input = document.getElementById("chat-input");
       const txt = input.value.trim();
       input.value = "";
+    const txt = input.value.trim();
+    input.value = "";
     if (!txt) return;
     state.chatHistory.push({ from: "user", text: txt });
     state.chatHistory.push({ from: "bot", text: respuestaBot(txt) });
