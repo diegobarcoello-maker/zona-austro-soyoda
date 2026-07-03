@@ -2492,6 +2492,7 @@ function initChatbot() {
   const sendMsg = async () => {
     const input = document.getElementById("cb-input");
     const msgs = document.getElementById("cb-messages");
+    const text = input.value.trim();
     if (!text) return;
     input.value = "";
 
