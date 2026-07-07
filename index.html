@@ -890,7 +890,7 @@ const CARTERA_DETAIL={"cv":{"walnis":[{"c":"Cueva Sarmiento Oscar Dario","s":126
 window.showCarteraDash = function(tipo, aidClicked) {
   var lbs={cv:'Cartera Vencida',g60:'Gestión 60 Días',gv:'Cartera Vigente'};
   var key={cv:'carteraVencida',g60:'gestion60dias',gv:'carteraVigente'}[tipo];
-  var cols={cv:'red',g60:'yellow',gv:'green'};
+  var col={cv:'red',g60:'yellow',gv:'green'}[tipo];
   var asrs=(typeof ASESORES!=='undefined'?ASESORES:[]);
   var maxV=Math.max.apply(null,asrs.map(function(a){return a[key]||0;}));
   maxV=Math.max(maxV,1);
@@ -898,22 +898,24 @@ window.showCarteraDash = function(tipo, aidClicked) {
     var val=a[key]||0;
     var pct=Math.round(val/maxV*100);
     var isAct=a.id===aidClicked;
+    var barCol=isAct?col:'yellow';
     return '<div class="cmp-row"><div class="cmp-label">'+(a.nombre||a.id)+'<br><strong>'+money(val)+'</strong></div>'+
-      '<div class="cmp-track"><div class="cmp-fill '+(isAct?cols[tipo]:'blue')+'" style="width:'+pct+'%"></div></div></div>';
+      '<div class="cmp-track"><div class="cmp-fill '+barCol+'" style="width:'+pct+'%"></div></div></div>';
   }).join('');
   if(typeof openModal==='function')openModal('📊 '+lbs[tipo]+' — Comparativo Zona',rows);
 };
+
 window.showCarteraDetail = function(tipo) {
   var lbs={cv:'Cartera Vencida',g60:'Gestión 60 Días (Pendiente Mayo)',gv:'Cartera Vigente (Junio por Cobrar)'};
   var aid=(window.__USER_ROL&&window.__USER_ROL.asesor_id)||(typeof state!=='undefined'&&state.asesorId)||'';
   var as=(typeof ASESORES!=='undefined'?ASESORES:[]).find(function(x){return x.id===aid;})||{};
   var cv=as.carteraVencida||0,g60=as.gestion60dias||0,gv=as.carteraVigente||0;
   var maxV=Math.max(cv,g60,gv,1);
-  function bar(v,col,act){var p=Math.round(v/maxV*100);return '<div class="cmp-fill '+(act?col:'gray')+'" style="width:'+p+'%"></div>';}
+  function bar(v,col){var p=Math.round(v/maxV*100);return '<div class="cmp-fill '+col+'" style="width:'+p+'%"></div>';}
   var chart='<h4 style="margin:0 0 10px;color:#334;font-size:13px;font-weight:700">📊 Composición de Cartera</h4>'+
-    '<div class="cmp-row"><div class="cmp-label">🧾 Cartera Vencida<br><strong>'+money(cv)+'</strong></div><div class="cmp-track">'+bar(cv,'red',tipo==='cv')+'</div></div>'+
-    '<div class="cmp-row"><div class="cmp-label">📅 Gestión 60 días<br><strong>'+money(g60)+'</strong></div><div class="cmp-track">'+bar(g60,'yellow',tipo==='g60')+'</div></div>'+
-    '<div class="cmp-row"><div class="cmp-label">📋 Cartera Vigente<br><strong>'+money(gv)+'</strong></div><div class="cmp-track">'+bar(gv,'green',tipo==='gv')+'</div></div>';
+    '<div class="cmp-row"><div class="cmp-label">🧾 Cartera Vencida<br><strong>'+money(cv)+'</strong></div><div class="cmp-track">'+bar(cv,'red')+'</div></div>'+
+    '<div class="cmp-row"><div class="cmp-label">📅 Gestión 60 días<br><strong>'+money(g60)+'</strong></div><div class="cmp-track">'+bar(g60,'yellow')+'</div></div>'+
+    '<div class="cmp-row"><div class="cmp-label">📋 Cartera Vigente<br><strong>'+money(gv)+'</strong></div><div class="cmp-track">'+bar(gv,'green')+'</div></div>';
   var lista=(typeof CARTERA_DETAIL!=='undefined'?(CARTERA_DETAIL[tipo]||{})[aid]||[]:[]);
   var tot=lista.reduce(function(s,x){return s+x.s;},0);
   var rows=lista.length?lista.map(function(x){
@@ -2337,11 +2339,11 @@ function renderPortal() {
             ${metric(a.m.cCob, `${a.m.coberturaCalculada}/${a.baseCobertura}`, ` (${pct1(a.m.pctCobertura)})`)}
             <span class="tap-hint">🔍 ver detalle</span>
           </div>
-          <div class="card card-sm" data-kpi-portal="cartera" onclick="window.showCarteraDetail('cv')" style="cursor:pointer">
-            <div class="icon-badge ok">🧾</div>
+          <div class="card card-sm card-clickable" data-kpi-portal="cartera" onclick="window.showCarteraDetail('cv')" style="cursor:pointer">
+            <div class="icon-badge ${a.m.cCV}">🧾</div>
             <p class="label-xs">Cartera vencida</p>
-            <p class="kpi-value">${money(a.carteraVencida)}</p>
-            <span class="tap-hint">Cartera pendiente de cobro</span>
+            ${metric(a.m.cCV, money(a.carteraVencida))}
+            <span class="tap-hint">🔍 ver detalle</span>
           </div>
           <div class="card card-sm" onclick="window.showCarteraDetail('g60')" style="cursor:pointer">
             <div class="icon-badge ok">📅</div>
