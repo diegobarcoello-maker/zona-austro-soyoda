@@ -679,16 +679,16 @@ const FECHA_HOY = `${String(_HOY.getDate()).padStart(2,"0")}/${String(_HOY.getMo
 // Nota: cobertura julio llegará en 2-3 días hábiles; mientras tanto se muestra el último dato disponible.
 let ASESORES = [
   { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 5078.04, presupuesto: 55000,
-    baseCobertura: 40, cobVtas300: 1, cobVentasNegativo: 0, carteraVencida: 17547.14,
+    baseCobertura: 40, cobVtas300: 1, cobVentasNegativo: 0, carteraVencida: 2316.22, gestion60dias: 1942.00, carteraVigente: 25853.27,
     clientesActivos: 49, clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992352056", historial: [] },
   { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 2808.19, presupuesto: 60000,
-    baseCobertura: 40, cobVtas300: 1, cobVentasNegativo: 0, carteraVencida: 19298.16,
+    baseCobertura: 40, cobVtas300: 1, cobVentasNegativo: 0, carteraVencida: 8101.31, gestion60dias: 2470.27, carteraVigente: 36614.33,
     clientesActivos: 94, clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593967700975", historial: [] },
   { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 2549.18, presupuesto: 49000,
-    baseCobertura: 40, cobVtas300: 3, cobVentasNegativo: 0, carteraVencida: 2903.99,
+    baseCobertura: 40, cobVtas300: 3, cobVentasNegativo: 0, carteraVencida: 1141.78, gestion60dias: 231.34, carteraVigente: 32972.19,
     clientesActivos: 59, clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992351546", historial: [] },
   { id: "edisson", nombre: "Edisson Taipe", ventaReal: 1107.03, presupuesto: 42000,
-    baseCobertura: 40, cobVtas300: 0, cobVentasNegativo: 0, carteraVencida: 14129.24,
+    baseCobertura: 40, cobVtas300: 0, cobVentasNegativo: 0, carteraVencida: 6133.20, gestion60dias: 0, carteraVigente: 4491.55,
     clientesActivos: 14, clientesInactivos: 1, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593959761210", historial: [] },
 ];
 
@@ -1478,7 +1478,7 @@ function renderDashboard() {
       <td>${esc(money(a.presupuesto))}</td>
       <td>${metric(a.m.cCumpl, pct1(a.m.pctCumplimiento))}</td>
       <td>${metric(a.m.cCob, `${a.m.coberturaCalculada}/${a.baseCobertura} clientes`, ` (${pct1(a.m.pctCobertura)})`)}</td>
-      <td>${metric(a.m.cCV, money(a.carteraVencida))}</td>
+      <td>${metric(a.m.cCV, money(a.carteraVencida))}</td><td>${money(a.gestion60dias)}</td><td>${money(a.carteraVigente)}</td>
       <td>${metric(a.m.cInact, String(a.clientesInactivos), ` (${pct1(a.m.pctInactivos)})`)}</td>
       <td>${cart ? metric(cVendidos, `${vendidos}/${asignados}`, ` (${pct1(pctVendidos)})`) : "—"}</td>
       <td>${badge(a.m.estadoColor, a.m.estado)}</td>
@@ -1590,7 +1590,7 @@ function renderDashboard() {
           <table>
             <thead><tr>
               <th>Asesor</th><th>Venta real</th><th>Presupuesto</th><th>% Cumpl.</th>
-              <th>Cobertura (real/meta)</th><th>Cartera vencida</th><th>Inactivos</th><th>Vendidos / Asignados</th><th>Estado</th>
+              <th>Cobertura (real/meta)</th><th>Cartera vencida</th><th>Gest. 60d</th><th>C. Vigente</th><th>Inactivos</th><th>Vendidos / Asignados</th><th>Estado</th>
             </tr></thead>
             <tbody>${filasTabla}</tbody>
           </table>
