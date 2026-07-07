@@ -2298,6 +2298,18 @@ function renderPortal() {
             ${metric(a.m.cCV, money(a.carteraVencida))}
             <span class="tap-hint">🔍 ver detalle</span>
           </div>
+          <div class="card card-sm">
+            <div class="icon-badge ok">📅</div>
+            <p class="label-xs">Gestión 60 días</p>
+            <p class="kpi-value">${money(a.gestion60dias)}</p>
+            <span class="tap-hint">Cartera mayo pendiente</span>
+          </div>
+          <div class="card card-sm">
+            <div class="icon-badge ok">📋</div>
+            <p class="label-xs">Cartera vigente</p>
+            <p class="kpi-value">${money(a.carteraVigente)}</p>
+            <span class="tap-hint">Cartera junio por cobrar</span>
+          </div>
           <div class="card card-sm card-clickable" data-kpi-portal="inactivos">
             <div class="icon-badge ${a.m.cInact}">👥</div>
             <p class="label-xs">Clientes inactivos</p>
@@ -2591,6 +2603,8 @@ if ("serviceWorker" in navigator) {
       cobVtas300:parseInt(a.cobvtas300)||0,
       cobVentasNegativo:parseInt(a.cobventasnegativo)||0,
       carteraVencida:parseFloat(a.carteravencida)||0,
+      gestion60dias:parseFloat(a.gestion60dias)||0,
+      carteraVigente:parseFloat(a.carteravigente)||0,
       clientesActivos:parseInt(a.clientesactivos)||0,
       clientesInactivos:parseInt(a.clientesinactivos)||0,
       ingresadoHoy:parseFloat(a.ingresadohoy)||0,
