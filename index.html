@@ -2295,20 +2295,20 @@ function renderPortal() {
             ${metric(a.m.cCob, `${a.m.coberturaCalculada}/${a.baseCobertura}`, ` (${pct1(a.m.pctCobertura)})`)}
             <span class="tap-hint">🔍 ver detalle</span>
           </div>
-          <div class="card card-sm card-clickable" data-kpi-portal="cartera">
-            <div class="icon-badge ${a.m.cCV}" onclick="showCarteraDetail('cv')" style="cursor:pointer">🧾</div>
+          <div class="card card-sm card-clickable" data-kpi-portal="cartera" onclick="window.showCarteraDetail('cv')" style="cursor:pointer">
+            <div class="icon-badge ${a.m.cCV}">🧾</div>
             <p class="label-xs">Cartera vencida</p>
             ${metric(a.m.cCV, money(a.carteraVencida))}
             <span class="tap-hint">🔍 ver detalle</span>
           </div>
-          <div class="card card-sm">
-            <div class="icon-badge ok" onclick="showCarteraDetail('g60')" style="cursor:pointer">📅</div>
+          <div class="card card-sm" onclick="window.showCarteraDetail('g60')" style="cursor:pointer">
+            <div class="icon-badge ok">📅</div>
             <p class="label-xs">Gestión 60 días</p>
             <p class="kpi-value">${money(a.gestion60dias)}</p>
             <span class="tap-hint">Cartera mayo pendiente</span>
           </div>
-          <div class="card card-sm">
-            <div class="icon-badge ok" onclick="showCarteraDetail('gv')" style="cursor:pointer">📋</div>
+          <div class="card card-sm" onclick="window.showCarteraDetail('gv')" style="cursor:pointer">
+            <div class="icon-badge ok">📋</div>
             <p class="label-xs">Cartera vigente</p>
             <p class="kpi-value">${money(a.carteraVigente)}</p>
             <span class="tap-hint">Cartera junio por cobrar</span>
