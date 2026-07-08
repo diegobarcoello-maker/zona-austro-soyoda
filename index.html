@@ -1662,9 +1662,12 @@ function renderDashboard() {
             ])}
           </div>
         </div>
-        <div class="card mb-20">
-          <h3 style="margin:0 0 14px;color:#334;font-size:14px;font-weight:700">&#128202; Comparativo de Cartera &#8212; Zona</h3>
-          ${(function(){var asrs=typeof ASESORES_M!=='undefined'?ASESORES_M:(typeof ASESORES!=='undefined'?ASESORES:[]);function section(title,key,col){var vals=asrs.map(function(x){return x[key]||0;});var mx=Math.max.apply(null,vals.concat([1]));var rows=asrs.map(function(x){var v=x[key]||0,pct=Math.round(v/mx*100);return '<div class="cmp-row"><div class="cmp-label">'+(x.nombre||x.id).split(' ')[0]+'<br><strong>'+money(v)+'</strong></div><div class="cmp-track"><div class="cmp-fill '+col+'" style="width:'+pct+'%"></div></div></div>';}).join('');return '<div style="margin-bottom:16px"><p style="font-size:12px;font-weight:700;color:#555;margin:0 0 8px">'+title+'</p>'+rows+'</div>';}return section('Cartera Vencida','carteraVencida','red')+section('Gestion 60 dias','gestion60dias','yellow')+section('Cartera Vigente','carteraVigente','green');})()}
+        <div class="card mb-20" style="background:linear-gradient(160deg,#ffffff 0%,#f8fafc 100%)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+            <h3 style="margin:0;color:#1e293b;font-size:14px;font-weight:700;letter-spacing:-0.3px">&#128202; Comparativo de Cartera &#8212; Zona</h3>
+            <span style="font-size:10px;color:#94a3b8;background:#f1f5f9;padding:2px 8px;border-radius:12px;font-weight:500">4 asesores</span>
+          </div>
+          ${(function(){var asrs=typeof ASESORES_M!=='undefined'?ASESORES_M:(typeof ASESORES!=='undefined'?ASESORES:[]);function miniChart(title,key,hex){var vals=asrs.map(function(x){return x[key]||0;});var mx=Math.max.apply(null,vals.concat([1]));var cols=asrs.map(function(x){var v=x[key]||0,pct=Math.max(Math.round(v/mx*100),3);return '<div style="flex:1;display:flex;flex-direction:column;align-items:center"><div style="font-size:10px;font-weight:700;color:#1e293b;margin-bottom:4px;text-align:center;white-space:nowrap">'+money(v)+'</div><div style="width:100%;height:80px;background:#f8fafc;border-radius:6px 6px 0 0;display:flex;align-items:flex-end;justify-content:center;padding:0 8px;box-sizing:border-box"><div style="width:100%;background:'+hex+';height:'+pct+'%;border-radius:4px 4px 0 0;box-shadow:0 -3px 10px '+hex+'44;transition:height .3s"></div></div><div style="width:100%;height:2px;background:'+hex+';opacity:0.15;margin-bottom:7px"></div><div style="font-size:10px;color:#64748b;text-align:center;font-weight:500">'+(x.nombre||x.id).split(' ')[0]+'</div></div>';}).join('');return '<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="width:10px;height:10px;border-radius:50%;background:'+hex+';box-shadow:0 0 0 3px '+hex+'22;flex-shrink:0"></div><span style="font-size:11px;font-weight:700;color:#334155;letter-spacing:0.3px">'+title+'</span></div><div style="display:flex;gap:8px">'+cols+'</div><div style="height:1px;background:#f1f5f9;margin-top:14px"></div></div>';}return miniChart('Cartera Vencida','carteraVencida','#ef4444')+miniChart('Gestión 60 días','gestion60dias','#f59e0b')+miniChart('Cartera Vigente','carteraVigente','#22c55e');})()}
         </div>
       </div>
     </div>
@@ -2396,9 +2399,12 @@ function renderPortal() {
             ], { scope: "asesor", label: a.nombre.split(" ")[0] })}
           </div>
         </div>
-        <div class="card mb-20">
-          <h3 style="margin:0 0 14px;color:#334;font-size:14px;font-weight:700">&#128202; Composicion de Cartera</h3>
-          ${(function(){var cv=a.carteraVencida||0,g60=a.gestion60dias||0,gv=a.carteraVigente||0,mx=Math.max(cv,g60,gv,1);function bar(v,col,lbl){return '<div class="cmp-row"><div class="cmp-label">'+lbl+'<br><strong>'+money(v)+'</strong></div><div class="cmp-track"><div class="cmp-fill '+col+'" style="width:'+Math.round(v/mx*100)+'%"></div></div></div>';}return bar(cv,'red','Cartera Vencida')+bar(g60,'yellow','Gestion 60 dias')+bar(gv,'green','Cartera Vigente');})()}
+        <div class="card mb-20" style="background:linear-gradient(160deg,#ffffff 0%,#f8fafc 100%)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+            <h3 style="margin:0;color:#1e293b;font-size:14px;font-weight:700;letter-spacing:-0.3px">&#128202; Composici&#243;n de Cartera</h3>
+            <span style="font-size:10px;color:#94a3b8;background:#f1f5f9;padding:2px 8px;border-radius:12px;font-weight:500">% del total</span>
+          </div>
+          ${(function(){var cv=a.carteraVencida||0,g60=a.gestion60dias||0,gv=a.carteraVigente||0,mx=Math.max(cv,g60,gv,1),total=cv+g60+gv;function vcol(v,hex,label){var pct=Math.max(Math.round(v/mx*100),3),share=total>0?Math.round(v/total*100):0;return '<div style="flex:1;display:flex;flex-direction:column;align-items:center"><div style="font-size:11px;font-weight:700;color:#1e293b;margin-bottom:6px;text-align:center;white-space:nowrap">'+money(v)+'</div><div style="width:100%;height:120px;background:#f1f5f9;border-radius:8px 8px 0 0;display:flex;align-items:flex-end;justify-content:center;padding:0 12px;box-sizing:border-box"><div style="width:100%;background:'+hex+';height:'+pct+'%;border-radius:6px 6px 0 0;box-shadow:0 -4px 14px '+hex+'55;transition:height .3s"></div></div><div style="width:100%;height:3px;background:'+hex+';opacity:0.2;margin-bottom:10px"></div><div style="font-size:10px;color:#64748b;text-align:center;line-height:1.5">'+label+'</div><div style="font-size:13px;font-weight:800;color:'+hex+';margin-top:4px">'+share+'%</div></div>';}return '<div style="display:flex;gap:8px">'+vcol(cv,'#ef4444','Cartera<br>Vencida')+vcol(g60,'#f59e0b','Gestión<br>60 días')+vcol(gv,'#22c55e','Cartera<br>Vigente')+'</div>';})()}
         </div>
       </div>
     </div>`;
