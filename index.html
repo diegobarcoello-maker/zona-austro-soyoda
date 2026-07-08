@@ -2679,39 +2679,44 @@ if ("serviceWorker" in navigator) {
 </script>
 <script>
 (function(){
-  if(window._cmtInit)return;
+  if(window._cmtDashInit)return;
   var _t=0;
   function init(){
-    if(typeof contenidoCarteraClientes==="undefined"&&_t++<50)return setTimeout(init,200);
-    window._cmtInit=true;
-    var allSrc=Array.from(document.querySelectorAll("script")).map(function(s){return s.textContent;}).join("");
-    var m=allSrc.match(/createClient\(["'`]([^"'`]+)["'`]\s*,\s*["'`]([^"'`]{20,})["'`]/);
-    var U=m?m[1]:"", K=m?m[2]:"";
+    if(typeof window.showCarteraDash==="undefined"&&_t++<50)return setTimeout(init,200);
+    window._cmtDashInit=true;
+    var sc=Array.from(document.querySelectorAll("script")).map(function(s){return s.textContent;}).join("");
+    var m=sc.match(/createClient\(["'`]([^"'`]+)["'`]\s*,\s*["'`]([^"'`]{20,})["'`]/);
+    var U=m?m[1]:"",K=m?m[2]:"";
     document.addEventListener("click",function(e){
-      var btn=e.target.closest(".cmt-save-btn");
+      var btn=e.target.closest?e.target.closest(".cmt-save-btn"):null;
       if(btn)window.guardarCmt(btn.dataset.tipo,btn.dataset.aid,btn.dataset.mes,U,K);
     });
-    var orig=window.contenidoCarteraClientes;
-    window.contenidoCarteraClientes=function(a){
-      var base=orig(a);
-      var mes=new Date().toISOString().slice(0,7);
-      var aid=(a.id||a.nombre||"").replace(/[^a-z0-9]/gi,"_").toLowerCase();
-      var b='<div style="margin-top:20px;padding-top:16px;border-top:2px solid #e2e8f0">'
-        +'<h4 style="margin:0 0 14px;font-size:13px;font-weight:700;color:#334155">&#128203; Seguimiento de Cartera</h4>'
-        +'<div style="margin-bottom:14px">'
-        +'<label style="display:block;font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Comentario Jefe Zonal</label>'
-        +'<textarea id="cmt-jz-'+aid+'" rows="3" placeholder="Estrategia de cobro, acuerdos, compromisos..." style="width:100%;box-sizing:border-box;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:inherit;resize:vertical;background:#f8fafc;color:#1e293b"></textarea>'
-        +'<div style="text-align:right;margin-top:6px"><button class="cmt-save-btn" data-tipo="jz" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:6px 16px;background:#1e293b;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Guardar &#10003;</button></div>'
-        +'</div>'
-        +'<div style="margin-top:6px">'
-        +'<label style="display:block;font-size:10px;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Comentario Asesor</label>'
-        +'<textarea id="cmt-asr-'+aid+'" rows="3" placeholder="Gestiones realizadas, compromisos de pago del cliente..." style="width:100%;box-sizing:border-box;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:inherit;resize:vertical;background:#f8fafc;color:#1e293b"></textarea>'
-        +'<div style="text-align:right;margin-top:6px"><button class="cmt-save-btn" data-tipo="asr" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:6px 16px;background:#475569;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Guardar &#10003;</button></div>'
-        +'</div>'
-        +'<div id="cmt-status-'+aid+'" style="font-size:11px;text-align:right;margin-top:8px;min-height:16px;color:#22c55e"></div>'
-        +'</div>';
-      setTimeout(function(){window.cargarCmt(aid,mes,U,K);},400);
-      return base+b;
+    var origSCD=window.showCarteraDash;
+    window.showCarteraDash=function(tipo,aid){
+      origSCD(tipo,aid);
+      setTimeout(function(){
+        var body=document.querySelector(".modal-body");
+        if(!body||document.getElementById("cmt-jz-"+aid))return;
+        var mes=new Date().toISOString().slice(0,7);
+        var div=document.createElement("div");
+        div.innerHTML=
+          '<div style="margin-top:20px;padding-top:16px;border-top:2px solid #e2e8f0">'
+          +'<h4 style="margin:0 0 14px;font-size:13px;font-weight:700;color:#334155">&#128203; Seguimiento de Cartera</h4>'
+          +'<div style="margin-bottom:14px">'
+          +'<label style="display:block;font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Comentario Jefe Zonal</label>'
+          +'<textarea id="cmt-jz-'+aid+'" rows="3" placeholder="Estrategia de cobro, acuerdos, compromisos..." style="width:100%;box-sizing:border-box;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:inherit;resize:vertical;background:#f8fafc;color:#1e293b"></textarea>'
+          +'<div style="text-align:right;margin-top:6px"><button class="cmt-save-btn" data-tipo="jz" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:6px 16px;background:#1e293b;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Guardar &#10003;</button></div>'
+          +'</div>'
+          +'<div style="margin-top:6px">'
+          +'<label style="display:block;font-size:10px;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Comentario Asesor</label>'
+          +'<textarea id="cmt-asr-'+aid+'" rows="3" placeholder="Gestiones realizadas, compromisos de pago del cliente..." style="width:100%;box-sizing:border-box;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:inherit;resize:vertical;background:#f8fafc;color:#1e293b"></textarea>'
+          +'<div style="text-align:right;margin-top:6px"><button class="cmt-save-btn" data-tipo="asr" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:6px 16px;background:#475569;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Guardar &#10003;</button></div>'
+          +'</div>'
+          +'<div id="cmt-status-'+aid+'" style="font-size:11px;text-align:right;margin-top:8px;min-height:16px;color:#22c55e"></div>'
+          +'</div>';
+        body.appendChild(div);
+        window.cargarCmt(aid,mes,U,K);
+      },200);
     };
     window.guardarCmt=async function(tipo,aid,mes,U,K){
       var campo=tipo==="jz"?"comentario_jefe":"comentario_asesor";
@@ -2749,6 +2754,4 @@ if ("serviceWorker" in navigator) {
   init();
 })();
 </script>
-</body>
-<!-- v:logout1 -->
-</html>
+</body></html>
