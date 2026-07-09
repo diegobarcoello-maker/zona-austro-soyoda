@@ -2703,10 +2703,11 @@ if ("serviceWorker" in navigator) {
     });
   }
   function getAid(){
-    if(typeof window.asesorId!=="undefined"&&window.asesorId)return""+window.asesorId;
-    try{var lk=Object.keys(localStorage).find(function(k){return k.startsWith("sb-")&&k.endsWith("-auth-token");});
-      if(lk){var ss=JSON.parse(localStorage.getItem(lk)||"{}");var uid=(ss.user||{}).id||((ss.currentSession||{}).user||{}).id;if(uid)return""+uid;}}
-    catch(e){} return null;
+    try{
+      if(window.__USER_ROL&&window.__USER_ROL.asesor_id)return""+window.__USER_ROL.asesor_id;
+      var g=JSON.parse(localStorage.getItem("sz_auth_v2")||"{}"); if(g.asesor_id)return""+g.asesor_id;
+    }catch(e){}
+    return null;
   }
   function mkCell(aid,mes,nom,campo){
     var uid="cmt6-"+Math.random().toString(36).substr(2,8);
