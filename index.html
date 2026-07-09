@@ -2783,7 +2783,7 @@ if ("serviceWorker" in navigator) {
     var body={asesor_id:aid,mes:mes,cliente_nombre:nom,updated_at:new Date().toISOString()};
     body[campo]=val;
     if(btn){btn.textContent="...";btn.style.background="#6366f1";}
-    fetch(U.replace(/\/$/,"")+"/rest/v1/comentarios_clientes",{
+    fetch(U.replace(/\/$/,"")+"/rest/v1/comentarios_clientes?on_conflict=cliente_nombre,asesor_id,mes",{
       method:"POST",
       headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},
       body:JSON.stringify(body)
