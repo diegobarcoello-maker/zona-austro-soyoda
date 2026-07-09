@@ -678,13 +678,13 @@ const FECHA_HOY = `${String(_HOY.getDate()).padStart(2,"0")}/${String(_HOY.getMo
 // Fuente cobertura: CM016 Cumplimiento Cobertura — Periodo 202606 — Emitido 01-07-2026
 // Nota: cobertura julio llegará en 2-3 días hábiles; mientras tanto se muestra el último dato disponible.
 let ASESORES = [
-  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 7432.5, presupuesto: 55000,
+  { id: "walnis", nombre: "Walnis Cabrera", ventaReal: 5519.56, presupuesto: 55000,
     baseCobertura: 40, cobVtas300: 1, cobVentasNegativo: 0, carteraVencida: 2316.22, gestion60dias: 1942.00, carteraVigente: 25853.27,
     clientesActivos: 49, clientesInactivos: 7, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992352056", historial: [] },
-  { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 5360.84, presupuesto: 60000,
+  { id: "jessica", nombre: "Jessica Campoverde", ventaReal: 5036.32, presupuesto: 60000,
     baseCobertura: 40, cobVtas300: 1, cobVentasNegativo: 0, carteraVencida: 8101.31, gestion60dias: 2470.27, carteraVigente: 36614.33,
     clientesActivos: 94, clientesInactivos: 4, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593967700975", historial: [] },
-  { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 5370.48, presupuesto: 49000,
+  { id: "oswaldo", nombre: "Oswaldo Patiño", ventaReal: 3369.31, presupuesto: 49000,
     baseCobertura: 40, cobVtas300: 3, cobVentasNegativo: 0, carteraVencida: 1141.78, gestion60dias: 231.34, carteraVigente: 32972.19,
     clientesActivos: 59, clientesInactivos: 0, ingresadoHoy: 0, esperadoHoy: 0, whatsapp: "593992351546", historial: [] },
   { id: "edisson", nombre: "Edisson Taipe", ventaReal: 1570.09, presupuesto: 42000,
@@ -2682,7 +2682,7 @@ if ("serviceWorker" in navigator) {
   if(window._cmtDashInit)return;
   var _t=0;
   function init(){
-    if(typeof window.showCarteraDash==="undefined"&&_t++<50)return setTimeout(init,200);
+    if(typeof window.showCarteraDash==="undefined"&&_t++<60)return setTimeout(init,200);
     window._cmtDashInit=true;
     var sc=Array.from(document.querySelectorAll("script")).map(function(s){return s.textContent;}).join("");
     var m=sc.match(/createClient\(["'`]([^"'`]+)["'`]\s*,\s*["'`]([^"'`]{20,})["'`]/);
@@ -2698,25 +2698,37 @@ if ("serviceWorker" in navigator) {
         var body=document.querySelector(".modal-body");
         if(!body||document.getElementById("cmt-jz-"+aid))return;
         var mes=new Date().toISOString().slice(0,7);
-        var div=document.createElement("div");
-        div.innerHTML=
-          '<div style="margin-top:20px;padding-top:16px;border-top:2px solid #e2e8f0">'
-          +'<h4 style="margin:0 0 14px;font-size:13px;font-weight:700;color:#334155">&#128203; Seguimiento de Cartera</h4>'
-          +'<div style="margin-bottom:14px">'
-          +'<label style="display:block;font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Comentario Jefe Zonal</label>'
-          +'<textarea id="cmt-jz-'+aid+'" rows="3" placeholder="Estrategia de cobro, acuerdos, compromisos..." style="width:100%;box-sizing:border-box;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:inherit;resize:vertical;background:#f8fafc;color:#1e293b"></textarea>'
-          +'<div style="text-align:right;margin-top:6px"><button class="cmt-save-btn" data-tipo="jz" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:6px 16px;background:#1e293b;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Guardar &#10003;</button></div>'
+        var detalleEl=null;
+        var allEls=body.querySelectorAll("*");
+        for(var i=0;i<allEls.length;i++){
+          var el=allEls[i];var t=el.textContent.trim();
+          if((t==="Detalle de Clientes"||t.startsWith("Detalle"))&&el.children.length===0){
+            detalleEl=el.closest("div")||el.parentElement;
+            break;
+          }
+        }
+        var wrapper=document.createElement("div");
+        wrapper.innerHTML=
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 16px;padding:14px;background:#f8fafc;border-radius:10px;border:1.5px solid #e2e8f0">'
+          +'<div>'
+          +'<label style="display:block;font-size:10px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:5px">&#128197; Comentario Jefe Zonal</label>'
+          +'<textarea id="cmt-jz-'+aid+'" rows="3" placeholder="Estrategia de cobro, acuerdos..." style="width:100%;box-sizing:border-box;padding:8px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:11px;font-family:inherit;resize:vertical;background:#fff;color:#1e293b"></textarea>'
+          +'<div style="text-align:right;margin-top:4px"><button class="cmt-save-btn" data-tipo="jz" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:4px 12px;background:#1e293b;color:#fff;border:none;border-radius:5px;font-size:10px;font-weight:700;cursor:pointer">Guardar &#10003;</button></div>'
           +'</div>'
-          +'<div style="margin-top:6px">'
-          +'<label style="display:block;font-size:10px;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px">Comentario Asesor</label>'
-          +'<textarea id="cmt-asr-'+aid+'" rows="3" placeholder="Gestiones realizadas, compromisos de pago del cliente..." style="width:100%;box-sizing:border-box;padding:10px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:12px;font-family:inherit;resize:vertical;background:#f8fafc;color:#1e293b"></textarea>'
-          +'<div style="text-align:right;margin-top:6px"><button class="cmt-save-btn" data-tipo="asr" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:6px 16px;background:#475569;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Guardar &#10003;</button></div>'
+          +'<div>'
+          +'<label style="display:block;font-size:10px;font-weight:700;color:#22c55e;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:5px">&#128172; Comentario Asesor</label>'
+          +'<textarea id="cmt-asr-'+aid+'" rows="3" placeholder="Gestiones, compromisos de pago..." style="width:100%;box-sizing:border-box;padding:8px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:11px;font-family:inherit;resize:vertical;background:#fff;color:#1e293b"></textarea>'
+          +'<div style="text-align:right;margin-top:4px"><button class="cmt-save-btn" data-tipo="asr" data-aid="'+aid+'" data-mes="'+mes+'" style="padding:4px 12px;background:#475569;color:#fff;border:none;border-radius:5px;font-size:10px;font-weight:700;cursor:pointer">Guardar &#10003;</button></div>'
           +'</div>'
-          +'<div id="cmt-status-'+aid+'" style="font-size:11px;text-align:right;margin-top:8px;min-height:16px;color:#22c55e"></div>'
+          +'<div style="grid-column:1/-1;font-size:10px;text-align:right;min-height:14px;color:#22c55e" id="cmt-status-'+aid+'"></div>'
           +'</div>';
-        body.appendChild(div);
+        if(detalleEl&&detalleEl.parentNode){
+          detalleEl.parentNode.insertBefore(wrapper,detalleEl);
+        }else{
+          body.appendChild(wrapper);
+        }
         window.cargarCmt(aid,mes,U,K);
-      },200);
+      },350);
     };
     window.guardarCmt=async function(tipo,aid,mes,U,K){
       var campo=tipo==="jz"?"comentario_jefe":"comentario_asesor";
@@ -2725,23 +2737,19 @@ if ("serviceWorker" in navigator) {
       var st=document.getElementById("cmt-status-"+aid);
       try{
         var upd={};upd[campo]=val;
-        var r=await fetch(U+"/rest/v1/comentarios_cartera?asesor_id=eq."+aid+"&mes=eq."+mes,{
-          method:"PATCH",headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"return=representation"},
-          body:JSON.stringify(upd)});
-        var rows=await r.json();
+        var resp=await fetch(U+"/rest/v1/comentarios_cartera?asesor_id=eq."+aid+"&mes=eq."+mes,{
+          method:"PATCH",headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"return=representation"},body:JSON.stringify(upd)});
+        var rows=await resp.json();
         if(!rows||!rows.length){
           var ins={asesor_id:aid,mes:mes};ins[campo]=val;
-          await fetch(U+"/rest/v1/comentarios_cartera",{
-            method:"POST",headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"return=minimal"},
-            body:JSON.stringify(ins)});}
+          await fetch(U+"/rest/v1/comentarios_cartera",{method:"POST",headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify(ins)});}
         if(st){st.textContent="&#10003; Guardado";setTimeout(function(){st.textContent="";},2500);}
-      }catch(e){if(st)st.textContent="&#9888; Error al guardar";}
+      }catch(e){if(st)st.textContent="&#9888; Error";}
     };
     window.cargarCmt=async function(aid,mes,U,K){
       try{
-        var r=await fetch(U+"/rest/v1/comentarios_cartera?asesor_id=eq."+aid+"&mes=eq."+mes+"&select=comentario_jefe,comentario_asesor",{
-          headers:{"apikey":K,"Authorization":"Bearer "+K}});
-        var rows=await r.json();
+        var resp=await fetch(U+"/rest/v1/comentarios_cartera?asesor_id=eq."+aid+"&mes=eq."+mes+"&select=comentario_jefe,comentario_asesor",{headers:{"apikey":K,"Authorization":"Bearer "+K}});
+        var rows=await resp.json();
         if(rows&&rows[0]){
           var jz=document.getElementById("cmt-jz-"+aid);
           var asr=document.getElementById("cmt-asr-"+aid);
