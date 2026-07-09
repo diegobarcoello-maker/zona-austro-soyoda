@@ -2215,13 +2215,21 @@ function contenidoInforme(a) {
 }
 function wireInforme(a) {
   function leerDatosInforme() {
+    const g = (id) => { const el = document.getElementById(id); return el ? el.value : ''; };
     const archivosInput = document.getElementById("ic-archivos");
     const archivos = archivosInput && archivosInput.files ? Array.from(archivosInput.files).map((f) => f.name) : [];
     return {
       fecha: new Date().toLocaleDateString("es-EC"),
-      provincia: document.getElementById("ic-provincia").value,
-      division: document.getElementById("ic-division").value,
-      requerimiento: document.getElementById("ic-requerimiento").value,
+      razonSocial: g("ic-razon"),
+      ruc: g("ic-ruc"),
+      nombreComercial: g("ic-comercial"),
+      contacto: g("ic-contacto"),
+      telContacto: g("ic-telefono"),
+      comentarios: g("ic-comentarios"),
+      subzona: g("ic-subzona"),
+      provincia: g("ic-provincia"),
+      division: g("ic-division"),
+      requerimiento: g("ic-requerimiento"),
       archivos,
     };
   }
