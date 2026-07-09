@@ -2679,11 +2679,11 @@ if ("serviceWorker" in navigator) {
 </script>
 <script>
 (function(){
-  if(window._cmtInit3)return;
+  if(window._cmtInit4)return;
   var _t=0;
   function init(){
     if((typeof window.showCarteraDetail==="undefined"||typeof window.showCarteraDash==="undefined")&&_t++<80)return setTimeout(init,200);
-    window._cmtInit3=true;
+    window._cmtInit4=true;
     var sc=Array.from(document.querySelectorAll("script")).map(function(s){return s.textContent||"";}).join("");
     var mU=sc.match(/createClient\(['"`]([^'"`]{10,})['"`\,]/);
     var mK=sc.match(/createClient\([^,)]+,\s*['"`]([^'"`]{20,})['"`\,]/);
@@ -2692,17 +2692,18 @@ if ("serviceWorker" in navigator) {
     var _od=window.showCarteraDash;
     window.showCarteraDash=function(tipo,aidClicked){
       _od.apply(this,arguments);
-      if(aidClicked)setTimeout(function(){injCli(""+aidClicked,U,K);},500);
+      if(aidClicked)setTimeout(function(){injCli(""+aidClicked,U,K,"jefe");},500);
     };
     var _o=window.showCarteraDetail;
     window.showCarteraDetail=function(tipo){
       _o.apply(this,arguments);
-      setTimeout(function(){var a=getAid();if(a)injCli(a,U,K);},500);
+      setTimeout(function(){var a=getAid();if(a)injCli(a,U,K,"asesor");},500);
     };
     document.addEventListener("blur",function(e){
       if(!e.target.classList.contains("cmt-cli-inp"))return;
-      var i=e.target,aid=i.dataset.aid,mes=i.dataset.mes,nom=i.dataset.nom,val=i.value.trim();
-      saveCli(aid,mes,nom,val,U,K,i);
+      var i=e.target;
+      if(i.readOnly)return;
+      saveCli(i.dataset.aid,i.dataset.mes,i.dataset.nom,i.dataset.campo,i.value.trim(),U,K,i);
     },true);
   }
   function getAid(){
@@ -2713,7 +2714,25 @@ if ("serviceWorker" in navigator) {
     }catch(e){}
     return null;
   }
-  function injCli(aid,U,K){
+  function mkInp(aid,mes,nom,campo,editable){
+    var inp=document.createElement("input");
+    inp.type="text";
+    inp.className="cmt-cli-inp";
+    inp.dataset.aid=aid; inp.dataset.mes=mes; inp.dataset.nom=nom; inp.dataset.campo=campo;
+    inp.readOnly=!editable;
+    var base="width:100%;min-width:140px;padding:4px 8px;border:1.5px solid "+(editable?"#c7d2fe":"#e2e8f0")+";border-radius:5px;font-size:12px;background:"+(editable?"#f8fafc":"#f1f5f9")+";color:"+(editable?"#334155":"#64748b")+";box-sizing:border-box;";
+    inp.style.cssText=base;
+    if(editable){
+      inp.placeholder="Escribir comentario...";
+      inp.addEventListener("focus",function(){this.style.borderColor="#6366f1";this.style.background="#fff";});
+      inp.addEventListener("blur",function(){this.style.borderColor="#c7d2fe";this.style.background="#f8fafc";});
+    } else {
+      inp.placeholder="—";
+      inp.title="Solo la otra parte puede editar este campo";
+    }
+    return inp;
+  }
+  function injCli(aid,U,K,rol){
     var mb=document.querySelector(".modal-body");
     if(!mb||mb.querySelector(".cmt-cli-col"))return;
     var mes=new Date().toISOString().substring(0,7);
@@ -2725,52 +2744,52 @@ if ("serviceWorker" in navigator) {
     if(allRows.length<2)return;
     var hRow=allRows[0];
     if(hRow.querySelector(".cmt-cli-col"))return;
-    var th=document.createElement("th");
-    th.className="cmt-cli-col";
-    th.textContent="COMENTARIO";
-    th.style.cssText="color:#64748b;font-size:11px;font-weight:600;padding:8px 10px;min-width:180px;text-align:left;";
-    hRow.appendChild(th);
+    // Add two header columns
+    var th1=document.createElement("th"),th2=document.createElement("th");
+    th1.className="cmt-cli-col"; th2.className="cmt-cli-col";
+    th1.innerHTML='<span style="color:#3730a3;font-size:10px;font-weight:700;">👔 JEFE ZONAL</span>';
+    th2.innerHTML='<span style="color:#0369a1;font-size:10px;font-weight:700;">📝 ASESOR</span>';
+    th1.style.cssText="padding:8px 6px;min-width:150px;"; th2.style.cssText="padding:8px 6px;min-width:150px;";
+    hRow.appendChild(th1); hRow.appendChild(th2);
+    var jefeEdit=(rol==="jefe"), asEdit=(rol==="asesor");
     allRows.slice(1).forEach(function(row){
       var tds=row.querySelectorAll("td");
       if(!tds.length)return;
       var nom=(tds[0].textContent||"").trim();
       if(!nom)return;
-      var td=document.createElement("td");
-      td.style.cssText="padding:4px 6px;vertical-align:middle;";
-      var inp=document.createElement("input");
-      inp.type="text";
-      inp.className="cmt-cli-inp";
-      inp.placeholder="Ej: cobrado, tiene problema...";
-      inp.dataset.aid=aid;
-      inp.dataset.mes=mes;
-      inp.dataset.nom=nom;
-      inp.style.cssText="width:100%;min-width:170px;padding:4px 8px;border:1.5px solid #e2e8f0;border-radius:5px;font-size:12px;background:#f8fafc;color:#334155;box-sizing:border-box;";
-      inp.addEventListener("focus",function(){this.style.borderColor="#6366f1";this.style.background="#fff";});
-      inp.addEventListener("blur",function(){this.style.borderColor="#e2e8f0";this.style.background="#f8fafc";});
-      td.appendChild(inp);
-      row.appendChild(td);
+      var td1=document.createElement("td"),td2=document.createElement("td");
+      td1.style.cssText="padding:3px 5px;vertical-align:middle;";
+      td2.style.cssText="padding:3px 5px;vertical-align:middle;";
+      td1.appendChild(mkInp(aid,mes,nom,"comentario_jefe",jefeEdit));
+      td2.appendChild(mkInp(aid,mes,nom,"comentario_asesor",asEdit));
+      row.appendChild(td1); row.appendChild(td2);
     });
     loadCli(aid,mes,tbl,U,K);
   }
   function loadCli(aid,mes,tbl,U,K){
-    fetch(U.replace(/\/$/,"")+"/rest/v1/comentarios_clientes?asesor_id=eq."+encodeURIComponent(aid)+"&mes=eq."+encodeURIComponent(mes)+"&select=cliente_nombre,comentario",{headers:{"apikey":K,"Authorization":"Bearer "+K}})
+    fetch(U.replace(/\/$/,"")+"/rest/v1/comentarios_clientes?asesor_id=eq."+encodeURIComponent(aid)+"&mes=eq."+encodeURIComponent(mes)+"&select=cliente_nombre,comentario_jefe,comentario_asesor",{headers:{"apikey":K,"Authorization":"Bearer "+K}})
       .then(function(r){return r.json();})
       .then(function(data){
         if(!Array.isArray(data))return;
         data.forEach(function(row){
           tbl.querySelectorAll(".cmt-cli-inp").forEach(function(inp){
-            if(inp.dataset.nom===row.cliente_nombre)inp.value=row.comentario||"";
+            if(inp.dataset.nom===row.cliente_nombre){
+              if(inp.dataset.campo==="comentario_jefe")inp.value=row.comentario_jefe||"";
+              if(inp.dataset.campo==="comentario_asesor")inp.value=row.comentario_asesor||"";
+            }
           });
         });
       }).catch(function(){});
   }
-  function saveCli(aid,mes,nom,val,U,K,inp){
+  function saveCli(aid,mes,nom,campo,val,U,K,inp){
+    var body={asesor_id:aid,mes:mes,cliente_nombre:nom,updated_at:new Date().toISOString()};
+    body[campo]=val;
     fetch(U.replace(/\/$/,"")+"/rest/v1/comentarios_clientes",{
       method:"POST",
       headers:{"apikey":K,"Authorization":"Bearer "+K,"Content-Type":"application/json","Prefer":"resolution=merge-duplicates"},
-      body:JSON.stringify({asesor_id:aid,mes:mes,cliente_nombre:nom,comentario:val,updated_at:new Date().toISOString()})
+      body:JSON.stringify(body)
     }).then(function(r){
-      if(r.ok&&inp){inp.style.borderColor="#10b981";setTimeout(function(){inp.style.borderColor="#e2e8f0";},1500);}
+      if(r.ok&&inp){inp.style.borderColor="#10b981";setTimeout(function(){inp.style.borderColor="#c7d2fe";},1500);}
     }).catch(function(){});
   }
   init();
