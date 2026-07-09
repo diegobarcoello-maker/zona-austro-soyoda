@@ -2274,7 +2274,7 @@ function wireSugerenciasPortal(a) {
   });
 }
 
-function renderPortal() {
+function renderPortal() {window._cmtLastAid=(a&&a.id)?(""+a.id):(typeof a==="string"?a:null);
   const a = ASESORES_M.find((x) => x.id === state.asesorId);
   if (!a) {
     document.getElementById("app").innerHTML = `
