@@ -2689,7 +2689,7 @@ if ("serviceWorker" in navigator) {
     var _od=window.showCarteraDash;
     window.showCarteraDash=function(tipo,aid){
       _od.apply(this,arguments);
-      if(aid)setTimeout(function(){injCli(""+aid,U,K);},600);
+      if(aid){window._cmtLastAid=""+aid;setTimeout(function(){injCli(""+aid,U,K);},600);}
     };
     var _o=window.showCarteraDetail;
     window.showCarteraDetail=function(tipo){
@@ -2707,6 +2707,7 @@ if ("serviceWorker" in navigator) {
       if(window.__USER_ROL&&window.__USER_ROL.asesor_id)return""+window.__USER_ROL.asesor_id;
       var g=JSON.parse(localStorage.getItem("sz_auth_v2")||"{}"); if(g.asesor_id)return""+g.asesor_id;
     }catch(e){}
+    if(window._cmtLastAid)return""+window._cmtLastAid;
     return null;
   }
   function mkCell(aid,mes,nom,campo){
