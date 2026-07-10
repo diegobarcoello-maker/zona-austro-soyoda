@@ -2254,11 +2254,25 @@ function generarFormatoClienteXLSX(asesor,d,confirmEl){
       a.download='FORMATO_CLIENTE_'+(d.ruc||'NUEVO')+'_'+(d.razonSocial||'').replace(/[^a-zA-Z0-9]/g,'_')+'.xlsx';
       document.body.appendChild(a);a.click();document.body.removeChild(a);
       setTimeout(function(){URL.revokeObjectURL(url);},5000);
-      var msg='Informe Comercial de Cliente\nAsesor: '+(asesor?asesor.nombre:'')+' Â· '+d.fecha+'\nRUC: '+(d.ruc||'')+' Â· '+(d.razonSocial||'')+'\nRequerimiento: '+(d.requerimiento||'')+'\nâš ï¸ Adjuntar el archivo FORMATO_CLIENTE descargado.';
-      var r2=enviarPorWhatsApp(WHATSAPP_DIEGO,msg);
-      confirmEl.innerHTML=r2.ok
-        ?'<p class="confirm-banner">âœ… Excel generado. WhatsApp abierto â€” adjunta el archivo.</p>'
-        :'<p class="confirm-banner" style="background:var(--slate-600)">âš ï¸ Excel descargado. AdjÃºntalo al chat de Diego en WhatsApp.</p>';
+      // Subir a Supabase Storage y enviar link a Diego por WhatsApp
+           confirmEl.innerHTML='<p class="confirm-banner" style="background:var(--slate-600)">⏳ Subiendo informe a la nube...</p>';
+           var sbUrl='https://bciqhwodnhlhtjuwyogj.supabase.co';
+           var sbKey='sb_publishable_-5bZIXmpLHPWy6R1DtpbuA_CXGs141B';
+           var fname='FORMATO_'+(d.ruc||'NUEVO')+'_'+Date.now()+'.xlsx';
+           fetch(sbUrl+'/storage/v1/object/informes/'+encodeURIComponent(fname),{
+             method:'POST',
+             headers:{'Authorization':'Bearer '+sbKey,'apikey':sbKey,'Content-Type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','x-upsert':'true'},
+             body:blob
+           }).then(function(r2){return r2.json();}).then(function(){
+             var publicUrl=sbUrl+'/storage/v1/object/public/informes/'+encodeURIComponent(fname);
+             var msg='📊 *Informe Comercial de Cliente*\nAsesor: '+(asesor?asesor.nombre:'')+' · '+d.fecha+'\nRUC: '+(d.ruc||'')+' · '+(d.razonSocial||'')+'\nRequerimiento: '+(d.requerimiento||'')+'\n\n📎 Descargar Excel:\n'+publicUrl;
+             var rr=enviarPorWhatsApp(WHATSAPP_DIEGO,msg);
+             confirmEl.innerHTML=rr.ok?'<p class="confirm-banner">✅ Link enviado a Diego por WhatsApp. El Excel también se descargó aquí.</p>':'<p class="confirm-banner" style="background:var(--slate-600)">✅ Excel subido. Link enviado a Diego.</p>';
+           }).catch(function(e){
+             var msg='Informe Comercial de Cliente\nAsesor: '+(asesor?asesor.nombre:'')+' · '+d.fecha+'\nRUC: '+(d.ruc||'')+' · '+(d.razonSocial||'')+'\nRequerimiento: '+(d.requerimiento||'')+'\n⚠️ Adjuntar el archivo FORMATO_CLIENTE descargado.';
+             enviarPorWhatsApp(WHATSAPP_DIEGO,msg);
+             confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">⚠️ Excel descargado (error al subir). Adjúntalo manualmente a Diego.</p>';
+           })
     })
     .catch(function(e){
       confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">âŒ Error: '+e.message+'</p>';
