@@ -2214,15 +2214,11 @@ function contenidoInforme(a) {
     </div>`;
 }
 function generarFormatoClienteXLSX(asesor,d,confirmEl){
-  function xesc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function setCell(xml,ref,val){
-    if(val==null||val==='')return xml;
-    var v=xesc(val);
-    var re=new RegExp('<c r="'+ref+'"([^>]*?)(?:/>|>[\\s\\S]*?<\/c>)');
-    return xml.replace(re,function(m,attrs){
-      var a=attrs.replace(/\s+t="[^"]*"/,'');
-      return '<c r="'+ref+'"'+a+' t="inlineStr"><is><t>'+v+'</t></is></c>';
-    });
+  function xe(s){return String(s||'').split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;');}
+  function fill(xml,old,val){
+    if(!val&&val!==0)return xml;
+    var ni=old.lastIndexOf('"');
+    return xml.split(old).join(old.substring(0,ni+1)+' t="inlineStr"><is><t>'+xe(val)+'</t></is></c>');
   }
   function doGen(){
     fetch('https://diegobarcoello-maker.github.io/zona-austro-soyoda/assets/formato_cliente.xlsx')
@@ -2230,19 +2226,19 @@ function generarFormatoClienteXLSX(asesor,d,confirmEl){
     .then(function(ab){return JSZip.loadAsync(ab);})
     .then(function(zip){
       return zip.file('xl/worksheets/sheet1.xml').async('string').then(function(xml){
-        xml=setCell(xml,'C12',d.fecha);
-        xml=setCell(xml,'C13','Diego Barros');
-        xml=setCell(xml,'C14',asesor?asesor.nombre:'');
-        xml=setCell(xml,'C15',d.division);
-        xml=setCell(xml,'N13',d.provincia);
-        xml=setCell(xml,'N14',d.subzona);
-        xml=setCell(xml,'N15',d.requerimiento);
-        xml=setCell(xml,'C18',d.ruc);
-        xml=setCell(xml,'F18',d.razonSocial);
-        xml=setCell(xml,'N18',d.nombreComercial);
-        xml=setCell(xml,'C21',d.contacto);
-        xml=setCell(xml,'F21',d.telContacto);
-        xml=setCell(xml,'C54',d.comentarios);
+        xml=fill(xml,'<c r="C12" s="15"/>',d.fecha);
+        xml=fill(xml,'<c r="C13" s="15"/>','Diego Barros');
+        xml=fill(xml,'<c r="C14" s="15"/>',asesor?asesor.nombre:'');
+        xml=fill(xml,'<c r="C15" s="15"/>',d.division);
+        xml=fill(xml,'<c r="N13" s="22"/>',d.provincia);
+        xml=fill(xml,'<c r="N14" s="21"/>',d.subzona);
+        xml=fill(xml,'<c r="N15" s="22"/>',d.requerimiento);
+        xml=fill(xml,'<c r="C18" s="26"/>',d.ruc);
+        xml=fill(xml,'<c r="F18" s="28"/>',d.razonSocial);
+        xml=fill(xml,'<c r="N18" s="30"/>',d.nombreComercial);
+        xml=fill(xml,'<c r="C21" s="37"/>',d.contacto);
+        xml=fill(xml,'<c r="F21" s="38"/>',d.telContacto);
+        if(d.comentarios)xml=xml.split('<c r="C54" s="82" t="s"><v>69</v></c>').join('<c r="C54" s="82" t="inlineStr"><is><t>'+xe(d.comentarios)+'</t></is></c>');
         zip.file('xl/worksheets/sheet1.xml',xml);
         return zip.generateAsync({type:'uint8array'});
       });
@@ -2259,10 +2255,19 @@ function generarFormatoClienteXLSX(asesor,d,confirmEl){
       confirmEl.innerHTML=r2.ok
         ?'<p class="confirm-banner">\u2705 Excel generado y descargado. WhatsApp abierto \u2014 adjunta el archivo manualmente.</p>'
         :'<p class="confirm-banner" style="background:var(--slate-600)">\u26a0\ufe0f Excel descargado. Adj\u00fantalo al chat de Diego en WhatsApp.</p>';
+    })
+    .catch(function(e){
+      confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">\u274c Error generando Excel: '+e.message+'</p>';
     });
   }
   if(window.JSZip){doGen();}
-  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';s.onload=doGen;document.head.appendChild(s);}
+  else{
+    var s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/jszip@3/dist/jszip.min.js';
+    s.onload=function(){doGen();};
+    s.onerror=function(){confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">Error: no se pudo cargar JSZip</p>';};
+    document.head.appendChild(s);
+  }
 }
 function wireInforme(a) {
   function leerDatosInforme() {
