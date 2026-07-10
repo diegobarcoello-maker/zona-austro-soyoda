@@ -2225,10 +2225,10 @@ function generarFormatoClienteXLSX(asesor,d,confirmEl){
     .then(function(r){return r.arrayBuffer();})
     .then(function(ab){
       var uint8=new Uint8Array(ab);
-      var files=fflate.unzipSync(uint8);
+      var all=fflate.unzipSync(uint8);
       var dec=new TextDecoder('utf-8');
       var enc=new TextEncoder();
-      var xml=dec.decode(files['xl/worksheets/sheet1.xml']);
+      var xml=dec.decode(all['xl/worksheets/sheet1.xml']);
       xml=fill(xml,'<c r="C12" s="15"/>',d.fecha);
       xml=fill(xml,'<c r="C13" s="15"/>','Diego Barros');
       xml=fill(xml,'<c r="C14" s="15"/>',asesor?asesor.nombre:'');
@@ -2242,8 +2242,12 @@ function generarFormatoClienteXLSX(asesor,d,confirmEl){
       xml=fill(xml,'<c r="C21" s="37"/>',d.contacto);
       xml=fill(xml,'<c r="F21" s="38"/>',d.telContacto);
       if(d.comentarios)xml=xml.split('<c r="C54" s="82" t="s"><v>69</v></c>').join('<c r="C54" s="82" t="inlineStr"><is><t>'+xe(d.comentarios)+'</t></is></c>');
-      files['xl/worksheets/sheet1.xml']=enc.encode(xml);
-      var out=fflate.zipSync(files,{level:6});
+      all['xl/worksheets/sheet1.xml']=enc.encode(xml);
+      var first=['[Content_Types].xml','_rels/.rels'];
+      var ordered={};
+      first.forEach(function(k){if(all[k])ordered[k]=all[k];});
+      Object.keys(all).forEach(function(k){if(first.indexOf(k)<0)ordered[k]=all[k];});
+      var out=fflate.zipSync(ordered,{level:6});
       var blob=new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       var url=URL.createObjectURL(blob);
       var a=document.createElement('a');a.href=url;
