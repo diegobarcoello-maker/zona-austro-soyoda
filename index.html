@@ -2223,27 +2223,27 @@ function generarFormatoClienteXLSX(asesor,d,confirmEl){
   function doGen(){
     fetch('https://diegobarcoello-maker.github.io/zona-austro-soyoda/assets/formato_cliente.xlsx')
     .then(function(r){return r.arrayBuffer();})
-    .then(function(ab){return JSZip.loadAsync(ab);})
-    .then(function(zip){
-      return zip.file('xl/worksheets/sheet1.xml').async('string').then(function(xml){
-        xml=fill(xml,'<c r="C12" s="15"/>',d.fecha);
-        xml=fill(xml,'<c r="C13" s="15"/>','Diego Barros');
-        xml=fill(xml,'<c r="C14" s="15"/>',asesor?asesor.nombre:'');
-        xml=fill(xml,'<c r="C15" s="15"/>',d.division);
-        xml=fill(xml,'<c r="N13" s="22"/>',d.provincia);
-        xml=fill(xml,'<c r="N14" s="21"/>',d.subzona);
-        xml=fill(xml,'<c r="N15" s="22"/>',d.requerimiento);
-        xml=fill(xml,'<c r="C18" s="26"/>',d.ruc);
-        xml=fill(xml,'<c r="F18" s="28"/>',d.razonSocial);
-        xml=fill(xml,'<c r="N18" s="30"/>',d.nombreComercial);
-        xml=fill(xml,'<c r="C21" s="37"/>',d.contacto);
-        xml=fill(xml,'<c r="F21" s="38"/>',d.telContacto);
-        if(d.comentarios)xml=xml.split('<c r="C54" s="82" t="s"><v>69</v></c>').join('<c r="C54" s="82" t="inlineStr"><is><t>'+xe(d.comentarios)+'</t></is></c>');
-        zip.file('xl/worksheets/sheet1.xml',xml);
-        return zip.generateAsync({type:'uint8array'});
-      });
-    })
-    .then(function(out){
+    .then(function(ab){
+      var uint8=new Uint8Array(ab);
+      var files=fflate.unzipSync(uint8);
+      var dec=new TextDecoder('utf-8');
+      var enc=new TextEncoder();
+      var xml=dec.decode(files['xl/worksheets/sheet1.xml']);
+      xml=fill(xml,'<c r="C12" s="15"/>',d.fecha);
+      xml=fill(xml,'<c r="C13" s="15"/>','Diego Barros');
+      xml=fill(xml,'<c r="C14" s="15"/>',asesor?asesor.nombre:'');
+      xml=fill(xml,'<c r="C15" s="15"/>',d.division);
+      xml=fill(xml,'<c r="N13" s="22"/>',d.provincia);
+      xml=fill(xml,'<c r="N14" s="21"/>',d.subzona);
+      xml=fill(xml,'<c r="N15" s="22"/>',d.requerimiento);
+      xml=fill(xml,'<c r="C18" s="26"/>',d.ruc);
+      xml=fill(xml,'<c r="F18" s="28"/>',d.razonSocial);
+      xml=fill(xml,'<c r="N18" s="30"/>',d.nombreComercial);
+      xml=fill(xml,'<c r="C21" s="37"/>',d.contacto);
+      xml=fill(xml,'<c r="F21" s="38"/>',d.telContacto);
+      if(d.comentarios)xml=xml.split('<c r="C54" s="82" t="s"><v>69</v></c>').join('<c r="C54" s="82" t="inlineStr"><is><t>'+xe(d.comentarios)+'</t></is></c>');
+      files['xl/worksheets/sheet1.xml']=enc.encode(xml);
+      var out=fflate.zipSync(files,{level:6});
       var blob=new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       var url=URL.createObjectURL(blob);
       var a=document.createElement('a');a.href=url;
@@ -2253,19 +2253,19 @@ function generarFormatoClienteXLSX(asesor,d,confirmEl){
       var msg='Informe Comercial de Cliente\nAsesor: '+(asesor?asesor.nombre:'')+' \u00b7 '+d.fecha+'\nRUC: '+(d.ruc||'')+' \u00b7 '+(d.razonSocial||'')+'\nRequerimiento: '+(d.requerimiento||'')+'\n\u26a0\ufe0f Adjuntar el archivo FORMATO_CLIENTE descargado.';
       var r2=enviarPorWhatsApp(WHATSAPP_DIEGO,msg);
       confirmEl.innerHTML=r2.ok
-        ?'<p class="confirm-banner">\u2705 Excel generado y descargado. WhatsApp abierto \u2014 adjunta el archivo manualmente.</p>'
+        ?'<p class="confirm-banner">\u2705 Excel generado. WhatsApp abierto \u2014 adjunta el archivo.</p>'
         :'<p class="confirm-banner" style="background:var(--slate-600)">\u26a0\ufe0f Excel descargado. Adj\u00fantalo al chat de Diego en WhatsApp.</p>';
     })
     .catch(function(e){
-      confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">\u274c Error generando Excel: '+e.message+'</p>';
+      confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">\u274c Error: '+e.message+'</p>';
     });
   }
-  if(window.JSZip){doGen();}
+  if(window.fflate){doGen();}
   else{
     var s=document.createElement('script');
-    s.src='https://cdn.jsdelivr.net/npm/jszip@3/dist/jszip.min.js';
+    s.src='https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js';
     s.onload=function(){doGen();};
-    s.onerror=function(){confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">Error: no se pudo cargar JSZip</p>';};
+    s.onerror=function(){confirmEl.innerHTML='<p class="confirm-banner" style="background:#c00">Error cargando fflate</p>';};
     document.head.appendChild(s);
   }
 }
