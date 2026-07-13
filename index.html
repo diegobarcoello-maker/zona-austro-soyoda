@@ -529,6 +529,21 @@
     font-size: 10px; color: rgba(255,255,255,0.15);
     text-align: center; margin-top: 36px; letter-spacing: .5px;
   }
+
+/* ── TUTORIAL OVERLAY ─────────────────────────────── */
+#tut-ov{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1rem;animation:fadeIn .25s ease}
+.tut-card{background:var(--slate-800,#1e293b);border:1px solid var(--slate-600,#475569);border-radius:1.25rem;padding:2rem 1.75rem;max-width:400px;width:100%;box-shadow:0 25px 50px rgba(0,0,0,.5);text-align:center}
+.tut-icon{font-size:3rem;margin-bottom:.5rem}
+.tut-ttl{font-size:1.2rem;font-weight:700;margin:.25rem 0 .5rem;color:var(--slate-100,#f1f5f9)}
+.tut-body{color:var(--slate-400,#94a3b8);line-height:1.6;margin-bottom:1.25rem;font-size:.92rem}
+.tut-dots{display:flex;justify-content:center;gap:.4rem;margin-bottom:1.25rem}
+.tut-dot{width:7px;height:7px;border-radius:50%;background:var(--slate-600,#475569);transition:background .2s;cursor:pointer}
+.tut-dot.on{background:var(--primary,#3b82f6)}
+.tut-btns{display:flex;gap:.6rem}
+.tut-btns button{flex:1;padding:.7rem .5rem;border-radius:.7rem;font-weight:600;cursor:pointer;border:none;font-size:.9rem}
+.btn-tskip{background:transparent;color:var(--slate-400,#94a3b8);border:1px solid var(--slate-600,#475569)!important}
+.btn-tprev{background:var(--slate-700,#334155);color:#fff}
+.btn-tnext{background:var(--primary,#3b82f6);color:#fff}
 </style>
 </head>
 <body>
@@ -1538,6 +1553,7 @@ function renderDashboard() {
         { icon: "🎥", label: "Capacitación rápida", action: "capacitacion" },
         { icon: "🔒", label: "Acciones jefe zonal", action: "jefe" },
         { icon: "💡", label: "Buzón de sugerencias", action: "sugerencias" },
+        { icon: "🎓", label: "Tutorial de uso", action: "tutorial" },
       ])}
       <div class="container">
         <div class="disclaimer">
@@ -1968,6 +1984,40 @@ const CATALOGOS_PRODUCTOS = [
   { nombre: "Pernos Soyoda", archivo: "https://raw.githubusercontent.com/diegobarcoello-maker/zona-austro-soyoda/main/catalogos/Catalogo_Pernos_Soyoda.pdf", mb: 2 },
   { nombre: "Wall Panel — Presentación", archivo: "https://raw.githubusercontent.com/diegobarcoello-maker/zona-austro-soyoda/main/catalogos/Wall_Panel_Presentacion.pdf", mb: 1 },
 ];
+
+/* ── TUTORIAL INTERACTIVO ─────────────────────────── */
+var TUT=[
+  {i:'🎓',t:'¡Bienvenido al Portal Soyoda!',b:'Este es tu espacio de trabajo personal. Aquí encontrarás todo lo que necesitas para gestionar tus clientes y alcanzar tus metas de venta.'},
+  {i:'📊',t:'Tus indicadores de zona',b:'Las tarjetas superiores muestran venta real, cumplimiento vs presupuesto, cartera vencida, cobertura y cartera vigente — actualizados mensualmente.'},
+  {i:'☰',t:'Menú de navegación',b:'Toca el ícono ≡ (menú) en la parte superior para acceder a todas las funciones: catálogos, asistente, informes, videos y más.'},
+  {i:'🤖',t:'Asistente de ventas ARI',b:'ARI responde preguntas sobre objeciones, argumentos por línea de producto y estrategias de cierre. Úsalo antes y durante tus visitas de campo.'},
+  {i:'🧾',t:'Informe comercial de cliente',b:'Genera informes personalizados por cliente. El Excel se descarga y se envía automáticamente al jefe zonal por WhatsApp.'},
+  {i:'📚',t:'Catálogos y videos',b:'Consulta catálogos de productos y videos de capacitación directamente desde el portal, sin necesidad de buscarlos en otra carpeta.'},
+  {i:'📨',t:'Necesidades y sugerencias',b:'Envía requerimientos a las áreas de soporte y reporta mejoras al sistema. Tu opinión ayuda a mejorar el portal.'},
+  {i:'🚀',t:'¡Listo para operar!',b:'Ya conoces el portal. Puedes relanzar este tutorial en cualquier momento desde el menú ≡. ¡Éxito en tu gestión comercial!'},
+];
+function iniciarTutorial(){
+  var el=document.getElementById('tut-ov');if(el)el.remove();
+  var tot=TUT.length;
+  function draw(i){
+    var old=document.getElementById('tut-ov');if(old)old.remove();
+    var s=TUT[i];
+    var dots=TUT.map(function(_,j){return '<div class="tut-dot'+(j===i?' on':'')+'" data-ti="'+j+'"></div>';}).join('');
+    var isL=i===tot-1,isF=i===0;
+    var d=document.createElement('div');d.id='tut-ov';
+    d.innerHTML='<div class="tut-card"><div class="tut-icon">'+s.i+'</div><div class="tut-ttl">'+s.t+'</div><div class="tut-body">'+s.b+'</div><div class="tut-dots">'+dots+'</div><div class="tut-btns">'+(isF?'<button class="btn-tskip" data-ta="skip">✕ Saltar</button>':'<button class="btn-tprev" data-ta="prev">← Atrás</button>')+(isL?'<button class="btn-tnext" data-ta="fin">¡Empezar! 🎉</button>':'<button class="btn-tnext" data-ta="next">Siguiente →</button>')+'</div></div>';
+    document.body.appendChild(d);
+    d.addEventListener('click',function(e){
+      var ta=e.target.dataset.ta,ti=e.target.dataset.ti;
+      if(ta==='skip'||ta==='fin'){d.remove();return;}
+      if(ta==='next'&&i<tot-1){draw(i+1);return;}
+      if(ta==='prev'&&i>0){draw(i-1);return;}
+      if(ti!==undefined&&ti!==''){draw(parseInt(ti));return;}
+    });
+  }
+  draw(0);
+}
+/* ─────────────────────────────────────────────────── */
 
 function renderVideos(){
   return '<div style="padding:4px 0">' +
@@ -2507,7 +2557,8 @@ function renderPortal() {
     necesidad: () => openModal("📨 Enviar necesidad a un área", contenidoNecesidad(a), () => wireNecesidad(a)),
     casos: () => openModal("🏆 Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a)),
     informe: () => openModal("🧾 Informe comercial de cliente", contenidoInforme(a), () => wireInforme(a)),
-    sugerencias: () => openModal("💡 Buzón de sugerencias", contenidoSugerenciasPortal(), () => wireSugerenciasPortal(a)),
+    sugerencias: () => openModal("💡 Buzón de sugerencias", contenidoSugerenciasPortal(), () => wireSugerenciasPortal(a)),,
+  tutorial: () => iniciarTutorial()
   });
 }
 
