@@ -1997,7 +1997,7 @@ var TUT=[
   {i:'📨',t:'Necesidades y sugerencias',b:'Envía requerimientos a las áreas de soporte y reporta mejoras al sistema. Tu opinión ayuda a mejorar el portal.'},
   {i:'🚀',t:'¡Listo para operar!',b:'Ya conoces el portal. Puedes relanzar este tutorial en cualquier momento desde el menú ≡. ¡Éxito en tu gestión comercial!'},
 ];
-function _playTutSound(){try{var c=new(window.AudioContext||window.webkitAudioContext)(),g=c.createGain();g.connect(c.destination);g.gain.setValueAtTime(.25,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.7);[[523,.0],[659,.12],[784,.24]].forEach(function(n){var o=c.createOscillator();o.type='sine';o.frequency.value=n[0];o.connect(g);o.start(c.currentTime+n[1]);o.stop(c.currentTime+n[1]+.5);});}catch(e){}}
+function _playTutSound(){try{var c=new(window.AudioContext||window.webkitAudioContext)();var m=c.createGain();m.gain.setValueAtTime(0,c.currentTime);m.gain.linearRampToValueAtTime(.14,c.currentTime+.15);m.gain.linearRampToValueAtTime(0,c.currentTime+5.5);m.connect(c.destination);var dl=c.createDelay(2);dl.delayTime.value=.28;var fb=c.createGain();fb.gain.value=.38;dl.connect(fb);fb.connect(dl);dl.connect(c.destination);[[528,0,4,.28],[396,.45,3.5,.22],[660,.75,3.8,.25],[792,1.15,3.2,.2],[440,1.6,3.5,.2],[594,2.05,3,.17],[330,2.5,3.5,.19],[660,3,2.5,.14],[528,3.5,2.5,.12]].forEach(function(n){var o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=n[0];g.gain.setValueAtTime(0,c.currentTime+n[1]);g.gain.linearRampToValueAtTime(n[3],c.currentTime+n[1]+.01);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+n[1]+n[2]);o.connect(g);g.connect(m);g.connect(dl);o.start(c.currentTime+n[1]);o.stop(c.currentTime+n[1]+n[2]+.1);});}catch(e){}}
 function iniciarTutorial(){
   _playTutSound();
   var el=document.getElementById('tut-ov');if(el)el.remove();
@@ -2005,10 +2005,10 @@ function iniciarTutorial(){
   function draw(i){
     var old=document.getElementById('tut-ov');if(old)old.remove();
     var s=TUT[i];
-    var dots=TUT.map(function(_,j){return '<div class="tut-dot'+(j===i?' on':'')+'" data-ti="'+j+'"></div>';}).join('');
     var isL=i===tot-1,isF=i===0;
+    var pct=Math.round((i+1)/tot*100);
     var d=document.createElement('div');d.id='tut-ov';
-    d.innerHTML='<div class="tut-card"><div class="tut-icon">'+s.i+'</div><div class="tut-ttl">'+s.t+'</div><div class="tut-body">'+s.b+'</div><div class="tut-dots">'+dots+'</div><div class="tut-btns">'+(isF?'<button class="btn-tskip" data-ta="skip">✕ Saltar</button>':'<button class="btn-tprev" data-ta="prev">← Atrás</button>')+(isL?'<button class="btn-tnext" data-ta="fin">¡Empezar! 🎉</button>':'<button class="btn-tnext" data-ta="next">Siguiente →</button>')+'</div></div>';
+    d.innerHTML='<div class="tut-card"><div class="tut-icon-wrap"><div class="tut-icon">'+s.i+'</div></div><div class="tut-step">Paso '+(i+1)+' de '+tot+'</div><div class="tut-ttl">'+s.t+'</div><div class="tut-body">'+s.b+'</div><div class="tut-prog"><div class="tut-prog-bar" style="width:'+pct+'%"></div></div><div class="tut-btns">'+(isF?'<button class="btn-tskip" data-ta="skip">✕ Saltar</button>':'<button class="btn-tprev" data-ta="prev">← Atrás</button>')+(isL?'<button class="btn-tnext" data-ta="fin">¡Empezar! 🚀</button>':'<button class="btn-tnext" data-ta="next">Siguiente →</button>')+'</div></div>';
     document.body.appendChild(d);
     d.addEventListener('click',function(e){
       var ta=e.target.dataset.ta,ti=e.target.dataset.ti;
