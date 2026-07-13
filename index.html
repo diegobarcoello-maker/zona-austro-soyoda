@@ -1997,7 +1997,9 @@ var TUT=[
   {i:'📨',t:'Necesidades y sugerencias',b:'Envía requerimientos a las áreas de soporte y reporta mejoras al sistema. Tu opinión ayuda a mejorar el portal.'},
   {i:'🚀',t:'¡Listo para operar!',b:'Ya conoces el portal. Puedes relanzar este tutorial en cualquier momento desde el menú ≡. ¡Éxito en tu gestión comercial!'},
 ];
+function _playTutSound(){try{var c=new(window.AudioContext||window.webkitAudioContext)(),g=c.createGain();g.connect(c.destination);g.gain.setValueAtTime(.25,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.7);[[523,.0],[659,.12],[784,.24]].forEach(function(n){var o=c.createOscillator();o.type='sine';o.frequency.value=n[0];o.connect(g);o.start(c.currentTime+n[1]);o.stop(c.currentTime+n[1]+.5);});}catch(e){}}
 function iniciarTutorial(){
+  _playTutSound();
   var el=document.getElementById('tut-ov');if(el)el.remove();
   var tot=TUT.length;
   function draw(i){
