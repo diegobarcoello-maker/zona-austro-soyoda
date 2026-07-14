@@ -32,7 +32,7 @@
   }
   *{box-sizing:border-box;}
   body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(135deg,#cddcff 0%,#bdd0ff 50%,#d4e4ff 100%);color:var(--slate-800);}
-  .page{background:linear-gradient(135deg,#cddcff 0%,#bdd0ff 50%,#d4e4ff 100%);min-height:100vh;min-height:100vh;padding:16px;}
+  .page{background:linear-gradient(135deg,#cddcff,#a8c4ff,#bdd0ff,#d4e4ff,#b8d8ff);background-size:400% 400%;animation:bgShift 10s ease infinite;min-height:100vh;min-height:100vh;padding:16px;}
   .container{max-width:1120px;margin:0 auto;}
   .hidden{display:none !important;}
   .disclaimer{position:fixed;bottom:0;left:0;right:0;z-index:500;
@@ -548,6 +548,7 @@
 .btn-tskip{background:transparent;color:#64748b;border:1px solid rgba(255,255,255,.1)!important}
 .btn-tprev{background:rgba(255,255,255,.08);color:#e2e8f0;border:1px solid rgba(255,255,255,.12)!important}
 .btn-tnext{background:rgba(99,102,241,.65);backdrop-filter:blur(8px);color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.25)}
+@keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 </style>
 </head>
 <body>
