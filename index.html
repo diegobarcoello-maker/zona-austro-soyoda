@@ -553,6 +553,28 @@
 .card .label-xs{color:#1a3464!important;font-size:13.5px!important;font-weight:600!important;letter-spacing:.02em!important}.card .val-lg{color:#0d1f40!important;font-size:23px!important}.card .val-sub{color:#2a4a82!important;font-size:13px!important;font-weight:500!important}.card .icon-badge{box-shadow:0 2px 8px rgba(50,100,200,.15)!important}.chart-card .label-xs,.card-sm .label-xs{color:#1a3464!important;font-size:13px!important;font-weight:600!important}
 .modal-box{background:linear-gradient(160deg,#ddeeff 0%,#e8f3ff 100%)!important;border:1px solid rgba(150,200,255,0.4)!important;box-shadow:0 8px 40px rgba(50,120,255,0.18)!important}.modal-head{background:linear-gradient(90deg,#c8e0ff,#d8ecff)!important;border-bottom:1px solid rgba(130,180,255,0.35)!important}.modal-head h2,.modal-head h3,.modal-title{color:#0d2a5e!important;font-weight:700!important}
 .menu-dropdown{background:linear-gradient(160deg,#ddeeff 0%,#e8f3ff 100%)!important;border:1px solid rgba(150,200,255,0.45)!important;box-shadow:0 8px 40px rgba(50,120,255,0.2)!important}.menu-item{color:#0d2a5e!important;font-weight:500!important}.menu-item:hover{background:rgba(180,215,255,0.55)!important;color:#0a1f4e!important}.menu-section{color:#2a5090!important;font-size:11px!important;font-weight:700!important;letter-spacing:.08em!important}.menu-title{color:#0d2a5e!important;font-weight:700!important}
+
+  /* ── Panel de Compromisos ── */
+  .comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .comp-table th{background:rgba(210,228,255,0.7);color:#0d2060;font-weight:700;padding:8px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;}
+  .comp-table td{padding:8px 10px;border-bottom:1px solid rgba(180,210,255,0.3);vertical-align:middle;}
+  .comp-semaforo{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;flex-shrink:0;}
+  .comp-semaforo.rojo{background:#ef4444;}
+  .comp-semaforo.amarillo{background:#f59e0b;}
+  .comp-semaforo.verde{background:#22c55e;}
+  .comp-semaforo.gris{background:#94a3b8;}
+  .comp-form-wrap{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;background:rgba(220,235,255,0.5);border-radius:12px;padding:14px;}
+  .comp-form-wrap label{font-size:12px;font-weight:700;color:#0d2060;margin-bottom:3px;display:block;}
+  .comp-form-wrap input,.comp-form-wrap textarea,.comp-form-wrap select{width:100%;padding:8px;border:1.5px solid rgba(150,200,255,0.5);border-radius:8px;background:rgba(240,248,255,0.9);font-size:13px;box-sizing:border-box;font-family:inherit;}
+  .comp-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+  .comp-badge.pendiente{background:#fef3c7;color:#92400e;}
+  .comp-badge.cumplido{background:#dcfce7;color:#166534;}
+  .comp-badge.incumplido{background:#fee2e2;color:#991b1b;}
+  .comp-btn-mini{font-size:11px;padding:4px 10px;border-radius:6px;border:none;cursor:pointer;font-weight:600;margin-right:4px;}
+  .comp-btn-mini.cumplir{background:#22c55e;color:#fff;}
+  .comp-btn-mini.fallar{background:#ef4444;color:#fff;}
+  .comp-empty{text-align:center;padding:32px 16px;color:#64748b;font-size:13px;}
+  .comp-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
 </style>
 </head>
 <body>
@@ -1561,7 +1583,9 @@ function renderDashboard() {
       ${renderMenu([
         { icon: "🎥", label: "Capacitación rápida", action: "capacitacion" },
         { icon: "🔒", label: "Acciones jefe zonal", action: "jefe" },
+        { icon: "📅", label: "Compromisos zona", action: "compromisos" },
         { icon: "💡", label: "Buzón de sugerencias", action: "sugerencias" },
+        { icon: "📅", label: "Compromisos de cartera", action: "compromisos" },
       ])}
       <div class="container">
         <div class="disclaimer">
@@ -1707,6 +1731,7 @@ function renderDashboard() {
     capacitacion: () => openModal("🎥 Capacitación rápida para el equipo", contenidoCapacitacion()),
     jefe: () => openModal("🔒 Acciones de jefe zonal", contenidoAccionesJefe(), wireAccionesJefe),
     sugerencias: () => openModal("💡 Buzón de sugerencias de mejora", contenidoBuzonSugerenciasDash(), wireBuzonSugerenciasDash),
+    compromisos: abrirCompromisosZonal,
   });
 }
 
@@ -1721,16 +1746,22 @@ function handleAction(action) {
     }).join("");
     openModal("Seguimiento WhatsApp a asesores", blocks, () => {
       document.querySelectorAll("[data-wa-idx]").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
           const a = ASESORES_M[+btn.dataset.waIdx];
-          enviarPorWhatsApp(a.whatsapp, mensajeWhatsApp(a));
+          const lbl = a.nombre.split(" ")[0];
+          btn.disabled = true; btn.textContent = "⏳ Preparando...";
+          const msg = await mensajeWhatsAppConCompromisos(a);
+          btn.disabled = false; btn.textContent = "📲 Enviar a " + lbl;
+          enviarPorWhatsApp(a.whatsapp, msg);
         });
       });
       document.querySelectorAll("[data-copy-idx]").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
           const a = ASESORES_M[+btn.dataset.copyIdx];
-          navigator.clipboard.writeText(mensajeWhatsApp(a));
-          btn.textContent = "✅ Copiado";
+          btn.disabled = true; btn.textContent = "⏳ Preparando...";
+          const msg = await mensajeWhatsAppConCompromisos(a);
+          await navigator.clipboard.writeText(msg);
+          btn.disabled = false; btn.textContent = "✅ Copiado (con compromisos)";
         });
       });
     });
@@ -2569,7 +2600,12 @@ function renderPortal() {
     casos: () => openModal("🏆 Casos ganados del equipo", contenidoCasosGanados(), () => wireCasosGanados(a)),
     informe: () => openModal("🧾 Informe comercial de cliente", contenidoInforme(a), () => wireInforme(a)),
     sugerencias: () => openModal("💡 Buzón de sugerencias", contenidoSugerenciasPortal(), () => wireSugerenciasPortal(a)),
-  tutorial: () => iniciarTutorial()
+  tutorial: () => iniciarTutorial(),
+    compromisos: () => openModal("📅 Compromisos de cartera", cargandoComp(), async function() {
+      var html = await construirTablaCompromisos(a);
+      var mb = document.querySelector('#modal-root .modal-body');
+      if (mb) { mb.innerHTML = html; await wireCompromisos(a); }
+    })
   });
 }
 
@@ -2776,6 +2812,186 @@ function cbRespuestaLocal(texto) {
 
 // Inicializar chatbot al cargar
 initChatbot();
+
+
+// ---------------------------------------------------------------------------
+// PANEL DE COMPROMISOS DE CARTERA
+// ---------------------------------------------------------------------------
+const SB_REST_BASE = 'https://bciqhwodnhlhtjuwyogj.supabase.co/rest/v1';
+const SB_ANON_KEY  = 'sb_publishable_-5bZIXmpLHPWy6R1DtpbuA_CXGs141B';
+
+async function sbQ(path, opts) {
+  opts = opts || {};
+  const hdrs = Object.assign({ apikey: SB_ANON_KEY, Authorization: 'Bearer ' + SB_ANON_KEY,
+    'Content-Type': 'application/json', Prefer: 'return=representation' }, opts.headers || {});
+  const r = await fetch(SB_REST_BASE + path, Object.assign({}, opts, { headers: hdrs }));
+  if (r.status === 204) return [];
+  return r.json();
+}
+
+function semaforoComp(fecha, estado) {
+  if (estado === 'cumplido')   return 'verde';
+  if (estado === 'incumplido') return 'gris';
+  const hoy = new Date().toISOString().split('T')[0];
+  if (fecha < hoy) return 'rojo';
+  const man = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+  if (fecha <= man) return 'amarillo';
+  return 'gris';
+}
+
+function cargandoComp() {
+  return '<div style="display:flex;align-items:center;justify-content:center;padding:40px;flex-direction:column;gap:14px;">' +
+    '<div style="width:32px;height:32px;border:3px solid #e2e8f0;border-top-color:#004475;border-radius:50%;animation:spin .8s linear infinite;"></div>' +
+    '<p style="color:#64748b;font-size:13px;margin:0;">Cargando compromisos...</p></div>';
+}
+
+async function construirTablaCompromisos(a) {
+  var rows;
+  try { rows = await sbQ('/compromisos_cartera?asesor_id=eq.' + a.id + '&order=fecha_compromiso.asc&limit=100'); }
+  catch(e) { return '<p style="color:#ef4444;text-align:center;padding:20px;">Error: ' + esc(e.message) + '</p>'; }
+  var hoy  = new Date().toISOString().split('T')[0];
+  var pend = rows.filter(function(r){ return r.estado === 'pendiente'; });
+  var venc = pend.filter(function(r){ return r.fecha_compromiso < hoy; });
+  var hoyL = pend.filter(function(r){ return r.fecha_compromiso === hoy; });
+  var cart = CARTERA_CLIENTES[a.id];
+  var opts = cart ? cart.top.map(function(c){ return '<option value="' + esc(c.c) + '">' + esc(c.c) + '</option>'; }).join('') : '';
+  var tableRows = rows.map(function(r) {
+    var sem  = semaforoComp(r.fecha_compromiso, r.estado);
+    var accs = r.estado === 'pendiente'
+      ? '<button class="comp-btn-mini cumplir" data-cid="' + r.id + '" data-cact="cumplido">&#10003;</button>' +
+        '<button class="comp-btn-mini fallar"  data-cid="' + r.id + '" data-cact="incumplido">&#10007;</button>'
+      : '';
+    return '<tr><td><span class="comp-semaforo ' + sem + '"></span>' + esc(r.cliente) + '</td>' +
+      '<td style="white-space:nowrap">' + r.fecha_compromiso + '</td>' +
+      '<td>' + (r.monto_comprometido ? money(r.monto_comprometido) : '—') + '</td>' +
+      '<td><span class="comp-badge ' + r.estado + '">' + r.estado + '</span></td>' +
+      '<td style="font-size:11px;color:#64748b">' + (r.observacion ? esc(r.observacion.substring(0,40)) : '—') + '</td>' +
+      '<td>' + accs + '</td></tr>';
+  }).join('');
+  return '<div class="comp-grid3">' +
+    '<div class="card" style="padding:10px;text-align:center"><p class="label-xs" style="margin:0 0 4px">&#128308; Vencidos</p><p class="val-lg" style="color:#ef4444;margin:0">' + venc.length + '</p></div>' +
+    '<div class="card" style="padding:10px;text-align:center"><p class="label-xs" style="margin:0 0 4px">&#128993; Para hoy</p><p class="val-lg" style="color:#f59e0b;margin:0">' + hoyL.length + '</p></div>' +
+    '<div class="card" style="padding:10px;text-align:center"><p class="label-xs" style="margin:0 0 4px">&#9989; Pendientes</p><p class="val-lg" style="color:#0d2060;margin:0">' + pend.length + '</p></div>' +
+    '</div>' +
+    '<div class="comp-form-wrap" id="comp-form-wrap">' +
+    '<h4 style="margin:0 0 8px;color:#0d2060;font-size:13px;">&#10133; Registrar compromiso</h4>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
+    '<div><label>Cliente</label>' + (opts ? '<select id="comp-cliente">' + opts + '</select>' : '<input type="text" id="comp-cliente" placeholder="Nombre del cliente" />') + '</div>' +
+    '<div><label>Fecha compromiso</label><input type="date" id="comp-fecha" value="' + hoy + '" /></div></div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
+    '<div><label>Monto comprometido ($)</label><input type="number" id="comp-monto" placeholder="0.00" min="0" step="0.01" /></div>' +
+    '<div><label>Observaci&#243;n</label><input type="text" id="comp-obs" placeholder="Ej: Paga el viernes en banco" /></div></div>' +
+    '<div style="display:flex;align-items:center;gap:10px">' +
+    '<button class="btn-primary" id="btn-comp-guardar" style="margin:0">&#128190; Guardar</button>' +
+    '<span id="comp-status" style="font-size:12px;color:#22c55e"></span></div>' +
+    '</div>' +
+    (rows.length
+      ? '<div style="overflow-x:auto"><table class="comp-table"><thead><tr><th>Cliente</th><th>Fecha</th><th>Monto</th><th>Estado</th><th>Observaci&#243;n</th><th>Acci&#243;n</th></tr></thead><tbody>' + tableRows + '</tbody></table></div>'
+      : '<p class="comp-empty">&#128203; Sin compromisos a&#250;n. &#161;Registra el primero!</p>');
+}
+
+async function wireCompromisos(a) {
+  var btnG = document.getElementById('btn-comp-guardar');
+  if (btnG) {
+    btnG.addEventListener('click', async function() {
+      var cli  = (document.getElementById('comp-cliente') || {}).value || '';
+      cli = cli.trim();
+      var fch  = (document.getElementById('comp-fecha')  || {}).value || '';
+      var mnt  = parseFloat((document.getElementById('comp-monto') || {}).value) || null;
+      var obs  = ((document.getElementById('comp-obs')   || {}).value || '').trim();
+      var st   = document.getElementById('comp-status');
+      if (!cli || !fch) { if(st) st.textContent = '⚠️ Completa cliente y fecha'; return; }
+      if(st) st.textContent = '⏳ Guardando...';
+      btnG.disabled = true;
+      try {
+        await sbQ('/compromisos_cartera', { method:'POST', body: JSON.stringify({ asesor_id:a.id, cliente:cli, fecha_compromiso:fch, monto_comprometido:mnt, observacion:obs }) });
+        var mb = document.querySelector('#modal-root .modal-body');
+        if (mb) mb.innerHTML = cargandoComp();
+        var html = await construirTablaCompromisos(a);
+        if (mb) { mb.innerHTML = html; await wireCompromisos(a); }
+      } catch(e) {
+        if(st) st.textContent = '❌ Error: ' + e.message;
+        btnG.disabled = false;
+      }
+    });
+  }
+  document.querySelectorAll('[data-cid]').forEach(function(btn) {
+    btn.addEventListener('click', async function() {
+      var id  = btn.getAttribute('data-cid');
+      var act = btn.getAttribute('data-cact');
+      btn.disabled = true;
+      try {
+        await sbQ('/compromisos_cartera?id=eq.' + id, { method:'PATCH', body: JSON.stringify({ estado:act, updated_at: new Date().toISOString() }) });
+        var mb = document.querySelector('#modal-root .modal-body');
+        if (mb) mb.innerHTML = cargandoComp();
+        var html = await construirTablaCompromisos(a);
+        if (mb) { mb.innerHTML = html; await wireCompromisos(a); }
+      } catch(e2) { btn.disabled = false; }
+    });
+  });
+}
+
+async function abrirCompromisosZonal() {
+  openModal('&#128197; Compromisos de cartera — Zona', cargandoComp(), async function() {
+    var rows;
+    try { rows = await sbQ('/compromisos_cartera?order=fecha_compromiso.asc&limit=300'); }
+    catch(e) {
+      var mb2 = document.querySelector('#modal-root .modal-body');
+      if(mb2) mb2.innerHTML = '<p style="color:#ef4444;text-align:center;padding:20px;">Error: ' + esc(e.message) + '</p>';
+      return;
+    }
+    var hoy  = new Date().toISOString().split('T')[0];
+    var man  = new Date(Date.now()+86400000).toISOString().split('T')[0];
+    var pend = rows.filter(function(r){ return r.estado==='pendiente'; });
+    var venc = pend.filter(function(r){ return r.fecha_compromiso < hoy; });
+    var hmL  = pend.filter(function(r){ return r.fecha_compromiso >= hoy && r.fecha_compromiso <= man; });
+    var mTot = pend.reduce(function(s,r){ return s + (parseFloat(r.monto_comprometido)||0); }, 0);
+    var trZ  = rows.map(function(r) {
+      var a2  = ASESORES_M.find(function(x){ return x.id===r.asesor_id; });
+      var sem = semaforoComp(r.fecha_compromiso, r.estado);
+      return '<tr>' +
+        '<td style="font-size:11px;font-weight:700;color:#0d2060">' + esc(a2 ? a2.nombre.split(' ')[0] : r.asesor_id) + '</td>' +
+        '<td><span class="comp-semaforo ' + sem + '"></span>' + esc(r.cliente) + '</td>' +
+        '<td style="white-space:nowrap">' + r.fecha_compromiso + '</td>' +
+        '<td>' + (r.monto_comprometido ? money(r.monto_comprometido) : '—') + '</td>' +
+        '<td><span class="comp-badge ' + r.estado + '">' + r.estado + '</span></td>' +
+        '<td style="font-size:11px;color:#64748b">' + (r.observacion ? esc(r.observacion.substring(0,40)) : '—') + '</td>' +
+        '</tr>';
+    }).join('');
+    var htmlZ = '<div class="comp-grid3">' +
+      '<div class="card" style="padding:10px;text-align:center"><p class="label-xs" style="margin:0 0 4px">&#128308; Vencidos</p><p class="val-lg" style="color:#ef4444;margin:0">' + venc.length + '</p></div>' +
+      '<div class="card" style="padding:10px;text-align:center"><p class="label-xs" style="margin:0 0 4px">&#128993; Hoy/Ma&#241;ana</p><p class="val-lg" style="color:#f59e0b;margin:0">' + hmL.length + '</p></div>' +
+      '<div class="card" style="padding:10px;text-align:center"><p class="label-xs" style="margin:0 0 4px">&#128176; Monto pendiente</p><p class="val-lg" style="color:#0d2060;font-size:16px;margin:0">' + money(mTot) + '</p></div>' +
+      '</div>' +
+      (rows.length
+        ? '<div style="overflow-x:auto"><table class="comp-table"><thead><tr><th>Asesor</th><th>Cliente</th><th>Fecha</th><th>Monto</th><th>Estado</th><th>Observaci&#243;n</th></tr></thead><tbody>' + trZ + '</tbody></table></div>'
+        : '<p class="comp-empty">Sin compromisos registrados en la zona a&#250;n.</p>');
+    var mb3 = document.querySelector('#modal-root .modal-body');
+    if (mb3) mb3.innerHTML = htmlZ;
+  });
+}
+
+async function compromisosHoyAsesor(asesorId) {
+  try {
+    var hoy = new Date().toISOString().split('T')[0];
+    var d = await sbQ('/compromisos_cartera?asesor_id=eq.' + asesorId + '&fecha_compromiso=eq.' + hoy + '&estado=eq.pendiente');
+    return Array.isArray(d) ? d : [];
+  } catch(e) { return []; }
+}
+
+async function mensajeWhatsAppConCompromisos(a) {
+  var base = mensajeWhatsApp(a);
+  var comps = await compromisosHoyAsesor(a.id);
+  if (!comps.length) return base;
+  var lista = comps.map(function(c){
+    return '  • ' + c.cliente + (c.monto_comprometido ? ' — ' + money(c.monto_comprometido) : '');
+  }).join('
+');
+  return base + '
+
+📋 Compromisos de cartera para HOY:
+' + lista;
+}
 
 // ---------------------------------------------------------------------------
 // PWA — registro del service worker (instalable + funciona sin internet
