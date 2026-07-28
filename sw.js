@@ -9,3 +9,6 @@ self.addEventListener('activate', function(e) {
   })());
 });
 // Sin handler de fetch: el navegador va directo a la red.
+
+// Handler de fetch vacío: cumple criterios de instalación PWA sin interceptar nada.
+self.addEventListener('fetch', function() {});
