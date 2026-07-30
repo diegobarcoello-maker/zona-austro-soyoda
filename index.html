@@ -877,7 +877,7 @@ function computeMetrics(a) {
   return { pctCumplimiento, coberturaCalculada, pctCobertura, pctInactivos, cCumpl, cCob, cInact, cCV, estado, estadoColor };
 }
 
-const ASESORES_M = ASESORES.map((a) => ({ ...a, m: computeMetrics(a) }));
+let ASESORES_M = ASESORES.map((a) => ({ ...a, m: computeMetrics(a) }));
 
 const TOTAL_VENTA = ASESORES_M.reduce((s, a) => s + a.ventaReal, 0);
 const TOTAL_META = ASESORES_M.reduce((s, a) => s + a.presupuesto, 0);
@@ -890,7 +890,7 @@ const TOTAL_ESPERADO_HOY = ASESORES_M.reduce((s, a) => s + a.esperadoHoy, 0);
 const PCT_CUMPLIMIENTO_ZONA = pct(TOTAL_VENTA, TOTAL_META);
 const PCT_COBERTURA_ZONA = pct(TOTAL_COBERTURA_CALCULADA, TOTAL_BASE_COBERTURA);
 const DESFASE_HOY = TOTAL_INGRESADO_HOY - TOTAL_ESPERADO_HOY;
-const ASESORES_CRITICOS = ASESORES_M.filter((a) => a.m.estado === "Crítico");
+let ASESORES_CRITICOS = ASESORES_M.filter((a) => a.m.estado === "Crítico");
 const PROPORCION_DIA = DIA_ACTUAL / DIAS_MES;
 
 const BAR_DATA = ASESORES_M.map((a) => ({
@@ -3046,7 +3046,8 @@ if ("serviceWorker" in navigator) {
       whatsapp:a.whatsapp||'',historial:[]
     };});
     console.log('Supabase OK:',ASESORES.length,'asesores');
-    if(typeof render==='function')render();
+    if(typeof render==='function')/* re-derivar métricas */ ASESORES_M = ASESORES.map((a) => ({ ...a, m: computeMetrics(a) })); ASESORES_CRITICOS = ASESORES_M.filter((a) => a.m.estado === "Crítico");
+      render();
   }catch(e){console.warn('Supabase fallback:',e.message);}
 })();
 </script>
