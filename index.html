@@ -3097,5 +3097,63 @@ if ("serviceWorker" in navigator) {
   });
 })();
 </script>
+
+<script>
+/* ==== AUTO-REFRESCO DE DATOS (Supabase) ==== */
+(function(){
+  var B="https://bciqhwodnhlhtjuwyogj.supabase.co/rest/v1";
+  var K="sb_publishable_-5bZIXmpLHPWy6R1DtpbuA_CXGs141B";
+  var ultimo=Date.now(), cargando=false;
+  var mapear=function(a){return{
+      id:a.id,nombre:a.nombre,
+      ventaReal:parseFloat(a.ventareal)||0,
+      presupuesto:parseFloat(a.presupuesto)||0,
+      baseCobertura:parseInt(a.basecobertura)||40,
+      cobVtas300:parseInt(a.cobvtas300)||0,
+      cobVentasNegativo:parseInt(a.cobventasnegativo)||0,
+      carteraVencida:parseFloat(a.carteravencida)||0,
+      gestion60dias:parseFloat(a.gestion60dias)||0,
+      carteraVigente:parseFloat(a.carteravigente)||0,
+      clientesActivos:parseInt(a.clientesactivos)||0,
+      clientesInactivos:parseInt(a.clientesinactivos)||0,
+      ingresadoHoy:parseFloat(a.ingresadohoy)||0,
+      esperadoHoy:parseFloat(a.esperadohoy)||0,
+      whatsapp:a.whatsapp||'',historial:[]
+    };};
+  function hayModal(){
+    var els=document.querySelectorAll('[class*="modal"],[id*="modal"],dialog');
+    for(var i=0;i<els.length;i++){ var s=getComputedStyle(els[i]); if(s.display!=="none"&&s.visibility!=="hidden"&&els[i].offsetHeight>60) return true; }
+    return false;
+  }
+  function sello(){
+    var el=document.getElementById("sello-datos");
+    if(!el){ el=document.createElement("div"); el.id="sello-datos";
+      el.style.cssText="position:fixed;bottom:8px;right:10px;z-index:9998;font-size:10.5px;color:#5f6b76;background:rgba(255,255,255,.92);border:1px solid #dde5ec;border-radius:20px;padding:4px 11px;cursor:pointer;font-family:system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.08)";
+      el.title="Clic para actualizar ahora"; el.onclick=function(){ refrescar(true); };
+      document.body.appendChild(el); }
+    var h=new Date(ultimo);
+    el.textContent="\u21bb Datos "+("0"+h.getHours()).slice(-2)+":"+("0"+h.getMinutes()).slice(-2);
+  }
+  async function refrescar(forzar){
+    if(cargando) return; if(!forzar&&hayModal()) return;
+    cargando=true;
+    try{
+      var rows=await fetch(B+"/asesores?select=*&order=nombre",{headers:{apikey:K,Authorization:"Bearer "+K},cache:"no-cache"}).then(function(r){return r.json();});
+      if(Array.isArray(rows)&&rows.length){
+        ASESORES=rows.map(mapear);
+        ASESORES_M = ASESORES.map((a) => ({ ...a, m: computeMetrics(a) })); ASESORES_CRITICOS = ASESORES_M.filter((a) => a.m.estado === "Crítico");
+        if(typeof render==="function") render();
+        ultimo=Date.now(); sello();
+      }
+    }catch(e){}
+    cargando=false;
+  }
+  document.addEventListener("visibilitychange",function(){ if(!document.hidden&&Date.now()-ultimo>60000) refrescar(false); });
+  window.addEventListener("focus",function(){ if(Date.now()-ultimo>60000) refrescar(false); });
+  setInterval(function(){ if(!document.hidden) refrescar(false); },300000);
+  window.refrescarDatos=function(){ refrescar(true); };
+  setTimeout(sello,3000);
+})();
+</script>
 </body>
 </html>
